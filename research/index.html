@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Исследования — AI Girls База знаний</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'JetBrains Mono', monospace; background: #fff; color: #1a1a1a; line-height: 1.6; }
+        .top-bar { padding: 16px 40px; border-bottom: 1px solid #e8e8e8; font-size: 12px; color: #888; }
+        .top-bar a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 2px; }
+        .top-bar a:hover { color: #555; }
+        .top-bar span { color: #ccc; margin: 0 6px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 56px 40px 100px; }
+        .page-title { font-size: 36px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 10px; }
+        .page-desc { font-size: 13px; color: #888; margin-bottom: 48px; }
+        .list { display: flex; flex-direction: column; gap: 12px; }
+        .card { display: block; padding: 22px 28px; border: 1px solid #d8d8d8; border-radius: 2px; text-decoration: none; color: #1a1a1a; transition: background 0.1s; }
+        .card:hover { background: #f5f5f5; }
+        .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .card-title { font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+        .card-arrow { font-size: 14px; color: #888; }
+        .card-desc { font-size: 13px; color: #777; line-height: 1.6; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; padding: 10px 20px; border: 1px solid #d8d8d8; color: #1a1a1a; border-radius: 2px; text-decoration: none; font-size: 12px; font-family: 'JetBrains Mono', monospace; transition: background 0.1s; }
+        .back-btn:hover { background: #f5f5f5; }
+        footer { margin-top: 80px; padding-top: 24px; border-top: 1px solid #e8e8e8; font-size: 12px; color: #bbb; }
+        @media (max-width: 600px) { .container { padding: 32px 20px 60px; } .top-bar { padding: 14px 20px; } .page-title { font-size: 26px; } }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="../index.html">База знаний</a>
+    <span>/</span>
+    Исследования
+</div>
+<div class="container">
+    <h1 class="page-title">Исследования</h1>
+    <p class="page-desc">3 материала · анализ ниши, инструментов и стратегий</p>
+
+    <div class="list">
+        <a href="ai-avatar-research.html" class="card">
+            <div class="card-header">
+                <span class="card-title">AI-аватары девушек — исследование ниши 2026</span>
+                <span class="card-arrow">→</span>
+            </div>
+            <div class="card-desc">Обзор рынка · монетизация · эксперты РФ и Запад · инструменты · топ аватары · стратегия входа</div>
+        </a>
+
+        <a href="blueprint-kharchevnikov.html" class="card">
+            <div class="card-header">
+                <span class="card-title">Blueprint Харчевникова — 34 дня до $800/нед</span>
+                <span class="card-arrow">→</span>
+            </div>
+            <div class="card-desc">Полный разбор эксперимента · 5 фаз · воронка монетизации · пошаговый план · чеклист</div>
+        </a>
+
+        <a href="comfyui-wan-animate.html" class="card">
+            <div class="card-header">
+                <span class="card-title">ComfyUI + Wan Animate — техническое исследование</span>
+                <span class="card-arrow">→</span>
+            </div>
+            <div class="card-desc">Инструменты · GPU и стоимость генерации · бенчмарки · автоматизация через API</div>
+        </a>
+    </div>
+
+    <a href="../index.html" class="back-btn">← Назад</a>
+    <footer>AI Girls © 2026</footer>
+</div>
+</body>
+</html>
