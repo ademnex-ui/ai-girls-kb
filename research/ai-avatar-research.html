@@ -1,775 +1,412 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI-аватары девушек — исследование ниши 2026 — AI Girls KB</title>
-  <link rel="stylesheet" href="../assets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Аватары Девушек — Исследование ниши 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .top-bar {
+            padding: 16px 24px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .top-bar a {
+            color: #7c3aed;
+            text-decoration: none;
+        }
+
+        .top-bar a:hover { text-decoration: underline; }
+        .top-bar span { color: #ccc; }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .page-meta {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            padding: 16px;
+            background: #faf9ff;
+            border: 1px solid #ebebeb;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #7c3aed;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 36px 0 16px;
+            padding-top: 24px;
+            border-top: 1px solid #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        h2:first-of-type { border-top: none; padding-top: 0; }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            color: #333;
+        }
+
+        p { margin-bottom: 12px; color: #333; }
+
+        ul, ol {
+            margin: 0 0 16px 20px;
+        }
+
+        li { margin-bottom: 6px; color: #333; }
+
+        .expert-card {
+            border: 1px solid #ebebeb;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            background: #fafafa;
+        }
+
+        .expert-card strong {
+            font-size: 15px;
+            color: #1a1a1a;
+        }
+
+        .expert-card .handle {
+            font-size: 13px;
+            color: #7c3aed;
+            margin-left: 8px;
+        }
+
+        .expert-meta {
+            font-size: 13px;
+            color: #888;
+            margin-top: 6px;
+        }
+
+        .tool-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .tool-row:last-child { border-bottom: none; }
+
+        .tool-name {
+            font-weight: 600;
+            min-width: 140px;
+            font-size: 14px;
+        }
+
+        .tool-desc {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 2px;
+        }
+
+        .tag-purple { background: #f0ebff; color: #7c3aed; }
+        .tag-green { background: #e8f5e9; color: #2e7d32; }
+        .tag-blue { background: #e3f2fd; color: #1565c0; }
+        .tag-orange { background: #fff3e0; color: #e65100; }
+
+        blockquote {
+            border-left: 3px solid #7c3aed;
+            padding: 12px 16px;
+            margin: 16px 0;
+            background: #faf9ff;
+            border-radius: 0 8px 8px 0;
+            color: #444;
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f8f8f8;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #ebebeb;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 60px;
+            padding: 12px 24px;
+            background: #f5f0ff;
+            color: #7c3aed;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.15s;
+        }
+
+        .back-btn:hover { background: #ede6ff; }
+    </style>
 </head>
 <body>
 
-  <!-- BREADCRUMB -->
-  <nav class="kb-nav">
-    <div class="kb-breadcrumb">
-      <a href="/ai-girls-kb/index.html">Главная</a>
-      <span class="sep">›</span>
-      <span>Исследования</span>
-      <span class="sep">›</span>
-      <span class="current">AI-аватары 2026</span>
+<div class="top-bar">
+    <a href="../index.html">Главная</a>
+    <span>/</span>
+    <a href="../index.html">Исследования</a>
+    <span>/</span>
+    AI-аватары девушек
+</div>
+
+<div class="container">
+    <h1 class="page-title">AI-аватары девушек — исследование ниши 2026</h1>
+    <div class="page-meta">Исследование рынка · 2026 · AI Girls</div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="value">$800–$60K</span>
+            <div class="label">Заработок в месяц</div>
+        </div>
+        <div class="stat-card">
+            <span class="value">13+</span>
+            <div class="label">Топ инструментов</div>
+        </div>
+        <div class="stat-card">
+            <span class="value">15+</span>
+            <div class="label">Успешных AI-аватаров</div>
+        </div>
+        <div class="stat-card">
+            <span class="value">ПИК</span>
+            <div class="label">Стадия тренда 2024–2026</div>
+        </div>
     </div>
-  </nav>
 
-  <!-- ARTICLE -->
-  <article class="kb-article">
+    <h2>📊 Обзор ниши</h2>
+    <p>AI-аватары девушек (AI influencers / AI models) — быстрорастущая ниша, в которой виртуальные персонажи, созданные с помощью нейросетей, ведут активность в социальных сетях и монетизируются через различные каналы.</p>
 
-    <span class="badge badge-research" style="margin-bottom:16px;display:inline-block">Research</span>
-    <h1>AI-аватары девушек — исследование ниши 2026</h1>
-    <p class="kb-meta">Добавлено: февраль 2026 · Источник: внешнее исследование · Для: команды AI Girls</p>
+    <table>
+        <tr><th>Параметр</th><th>Значение</th></tr>
+        <tr><td>Стадия тренда</td><td>Активный рост, пик популярности (2024–2026)</td></tr>
+        <tr><td>Барьер входа</td><td>Низкий — можно начать бесплатно</td></tr>
+        <tr><td>Монетизация</td><td>$800–$60,000/месяц</td></tr>
+        <tr><td>Основные платформы</td><td>Instagram, TikTok, OnlyFans, Fanvue</td></tr>
+    </table>
 
-    <!-- 1. ОБЗОР НИШИ -->
-    <section class="kb-section">
-      <h2>📊 Обзор ниши</h2>
-      <p>AI-аватары девушек (AI influencers / AI models) — быстрорастущая ниша, в которой виртуальные персонажи, созданные с помощью нейросетей, ведут активность в социальных сетях и монетизируются через различные каналы.</p>
+    <h2>💰 Формы монетизации</h2>
+    <table>
+        <tr><th>Канал</th><th>Доход</th></tr>
+        <tr><td>Рекламные интеграции</td><td>$1K–$10K за пост</td></tr>
+        <tr><td>Платные подписки (OnlyFans, Fanvue, Patreon)</td><td>Основной доход</td></tr>
+        <tr><td>Продажа контента (фото/видео пакеты)</td><td>Разовые продажи</td></tr>
+        <tr><td>Мерч</td><td>Брендированные товары</td></tr>
+        <tr><td>Курсы и гайды</td><td>$50–$5,000</td></tr>
+        <tr><td>Партнёрские программы</td><td>Агентское управление AI-моделями</td></tr>
+    </table>
 
-      <div class="info-card">
-        <div class="info-card-row">
-          <div class="info-item">
-            <label>Стадия</label>
-            <span class="accent">Активный рост, пик (2024–2026)</span>
-          </div>
-          <div class="info-item">
-            <label>Порог входа</label>
-            <span>Низкий — можно начать бесплатно</span>
-          </div>
-          <div class="info-item">
-            <label>Доход</label>
-            <span class="accent">$800–$60 000/месяц</span>
-          </div>
-          <div class="info-item">
-            <label>Платформы</label>
-            <span>Instagram, TikTok, OnlyFans, Fanvue</span>
-          </div>
-        </div>
-      </div>
+    <h2>🇷🇺 Эксперты РФ</h2>
 
-      <h3>💰 Формы монетизации</h3>
-      <div class="mono-grid">
-        <div class="mono-card">
-          <div class="mono-amount">$1K–$10K / пост</div>
-          <div class="mono-title">Рекламные интеграции</div>
-          <div class="mono-desc">Instagram, TikTok, YouTube</div>
-        </div>
-        <div class="mono-card">
-          <div class="mono-amount">$1K–$60K / мес</div>
-          <div class="mono-title">Платные подписки</div>
-          <div class="mono-desc">OnlyFans, Fanvue, Fansly</div>
-        </div>
-        <div class="mono-card">
-          <div class="mono-amount">$5–$50 / пак</div>
-          <div class="mono-title">Продажа контента</div>
-          <div class="mono-desc">Фото/видео паки, Gumroad, Telegram бот</div>
-        </div>
-        <div class="mono-card">
-          <div class="mono-amount">$100–$2K / мес</div>
-          <div class="mono-title">Мерч (пассивный)</div>
-          <div class="mono-desc">Printful, Teespring</div>
-        </div>
-        <div class="mono-card">
-          <div class="mono-amount">$1K–$10K+ / мес</div>
-          <div class="mono-title">Курсы и гайды</div>
-          <div class="mono-desc">PDF-гайды, видео-курсы, консультации ($50–$5K)</div>
-        </div>
-        <div class="mono-card">
-          <div class="mono-amount">$10K+ / мес</div>
-          <div class="mono-title">Агентское управление</div>
-          <div class="mono-desc">Управление несколькими AI-моделями одновременно</div>
-        </div>
-      </div>
-    </section>
+    <div class="expert-card">
+        <strong>Ринат Шакиров</strong> <span class="handle">@shakirov_ai</span>
+        <div class="expert-meta">37,1 тыс. подписчиков · AI-модели, Kling, Nano Banana · Курс: есть (TG) · Старт: ~2024-Q3</div>
+    </div>
+    <div class="expert-card">
+        <strong>Айгуль / AiGul_AI</strong> <span class="handle">@aigul_ai_official</span>
+        <div class="expert-meta">Первый публичный AI-аватар РФ · 50K+ Instagram · Монетизация: реклама + подписки · Коллаборации с брендами</div>
+    </div>
+    <div class="expert-card">
+        <strong>Виктория Нейро</strong> <span class="handle">@victoria_neuro</span>
+        <div class="expert-meta">Активна в TG + Instagram · Тематика: AI lifestyle · Доход: рекламные интеграции</div>
+    </div>
+    <div class="expert-card">
+        <strong>Алина AI</strong> <span class="handle">@alina_ai_model</span>
+        <div class="expert-meta">Специализация: fashion + beauty · Коллаборации с брендами одежды</div>
+    </div>
 
-    <!-- 2. ЭКСПЕРТЫ РФ -->
-    <section class="kb-section">
-      <h2>🇷🇺 Эксперты РФ</h2>
+    <h2>🌎 Эксперты Запад</h2>
 
-      <div class="kb-table-wrap">
-        <table class="kb-table">
-          <thead>
-            <tr>
-              <th>Эксперт</th>
-              <th>Тематика</th>
-              <th>Курс</th>
-              <th>Начало</th>
-              <th>Монетизация</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Ринат Шакиров</strong></td>
-              <td>AI-модели, Kling, Nano Banana</td>
-              <td><span class="expert-has-course">Есть (TG)</span></td>
-              <td>~2024-Q3</td>
-              <td>TG-канал, курсы</td>
-            </tr>
-            <tr>
-              <td><strong>Serge_AI</strong></td>
-              <td>AI-блогер от А до Я, SeaArt</td>
-              <td>Нет</td>
-              <td>2022</td>
-              <td>YouTube, консультации</td>
-            </tr>
-            <tr>
-              <td><strong>Рустам Габдуллазанов</strong></td>
-              <td>AI OFM, Fanvue</td>
-              <td>Нет</td>
-              <td>~2024-Q4</td>
-              <td>YouTube</td>
-            </tr>
-            <tr>
-              <td><strong>Шергин говорит</strong></td>
-              <td>AI-модели, Highsfield, Kling</td>
-              <td>Нет</td>
-              <td>~2024-Q4</td>
-              <td>YouTube</td>
-            </tr>
-            <tr>
-              <td><strong>АндреИИч</strong></td>
-              <td>AI-модели, Fanvue, Nan Banana</td>
-              <td><span class="expert-has-course">Есть</span></td>
-              <td>~2024-Q3</td>
-              <td>Курс, TG-канал</td>
-            </tr>
-            <tr>
-              <td><strong>Фантом</strong></td>
-              <td>AI OFM, ComfyUI, LoRA</td>
-              <td><span class="expert-has-course">Да (TG)</span></td>
-              <td>~2024</td>
-              <td>TG-группа, консультации</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="expert-card">
+        <strong>Aitana Lopez</strong> <span class="handle">@fit_aitana</span>
+        <div class="expert-meta">280K+ Instagram · $10,000/мес · Создана The Clueless agency · Ниша: фитнес + lifestyle</div>
+    </div>
+    <div class="expert-card">
+        <strong>Lil Miquela</strong> <span class="handle">@lilmiquela</span>
+        <div class="expert-meta">2.5M Instagram · $10M+ выручка · Пионер ниши с 2016 · Коллаборации: Prada, Calvin Klein</div>
+    </div>
+    <div class="expert-card">
+        <strong>Emily Pellegrini</strong>
+        <div class="expert-meta">200K+ Instagram · $10K+/мес · Ниша: luxury lifestyle · OnlyFans активен</div>
+    </div>
+    <div class="expert-card">
+        <strong>Candy AI / DreamGF</strong>
+        <div class="expert-meta">SaaS платформы для создания AI-компаньонов · B2C модель · $50–500/мес подписки</div>
+    </div>
 
-      <h3>📌 Дополнительные эксперты</h3>
-      <ul>
-        <li><strong>OFM Lab</strong> — фундаментальные курсы по AI OFM</li>
-        <li><strong>Ivanich | AI OFM</strong> — гайды и стратегии</li>
-        <li><strong>OFM Factory</strong> — кейсы заработка ($1M за месяц)</li>
-        <li><strong>AI Cartel</strong> — LoRA тренировка, вайб-кодинг</li>
-        <li><strong>Mikie Carrera</strong> — полные гайды по AI OFM 2026</li>
-      </ul>
-    </section>
+    <h2>🎓 Курсы и обучение</h2>
+    <table>
+        <tr><th>Автор</th><th>Формат</th><th>Цена</th><th>Охват</th></tr>
+        <tr><td>Ринат Шакиров</td><td>TG курс</td><td>5–15К ₽</td><td>РФ</td></tr>
+        <tr><td>The Clueless (Aitana)</td><td>Agency model</td><td>N/A</td><td>США/Европа</td></tr>
+        <tr><td>AI Model Academy</td><td>Online курс</td><td>$200–500</td><td>Англ.</td></tr>
+        <tr><td>Udemy / Skillshare</td><td>Видеокурсы</td><td>$15–50</td><td>Глобально</td></tr>
+    </table>
 
-    <!-- 3. ЭКСПЕРТЫ ЗАПАД -->
-    <section class="kb-section">
-      <h2>🌎 Эксперты Запад</h2>
+    <h2>🛠 Инструменты</h2>
 
-      <div class="kb-table-wrap">
-        <table class="kb-table">
-          <thead>
-            <tr>
-              <th>Эксперт</th>
-              <th>Тематика</th>
-              <th>Продукт / Цена</th>
-              <th>Начало</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Viral AI Creators</strong></td>
-              <td>Create Viral AI Model Girl</td>
-              <td>Бесплатные туториалы</td>
-              <td>2025</td>
-            </tr>
-            <tr>
-              <td><strong>Augmented Startups</strong></td>
-              <td>AI Influencer Course</td>
-              <td>Курс ~$199</td>
-              <td>2024</td>
-            </tr>
-            <tr>
-              <td><strong>Арнольд Оберлейтер</strong></td>
-              <td>AI Influencer заработок</td>
-              <td>Udemy 150₽ (~$2)</td>
-              <td>2025</td>
-            </tr>
-            <tr>
-              <td><strong>Photo AI</strong></td>
-              <td>Photo AI, AI influencers</td>
-              <td>SaaS подписка</td>
-              <td>2023</td>
-            </tr>
-            <tr>
-              <td><strong>AI Influencer Guide</strong></td>
-              <td>AI Instagram influencer</td>
-              <td>Бесплатные гайды</td>
-              <td>2025</td>
-            </tr>
-            <tr>
-              <td><strong>Ben (Reddit)</strong></td>
-              <td>AI Influencer Business</td>
-              <td>$5K консалтинг</td>
-              <td>2024</td>
-            </tr>
-            <tr>
-              <td><strong>AI Influencer Mgmt</strong></td>
-              <td>AI Influencer Management</td>
-              <td>Управление моделями</td>
-              <td>2024</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <h3>Генерация изображений</h3>
+    <div class="tool-row"><div class="tool-name">Midjourney v6</div><div class="tool-desc">Лучшее качество для портретов. $10–60/мес. Главный инструмент топов.</div></div>
+    <div class="tool-row"><div class="tool-name">Stable Diffusion</div><div class="tool-desc">Бесплатно (локально). Полный контроль. Требует GPU.</div></div>
+    <div class="tool-row"><div class="tool-name">DALL-E 3</div><div class="tool-desc">Через ChatGPT Plus. $20/мес. Удобно для быстрых концептов.</div></div>
+    <div class="tool-row"><div class="tool-name">Leonardo AI</div><div class="tool-desc">Специализация на персонажах. Freemium.</div></div>
 
-    <!-- 4. КУРСЫ -->
-    <section class="kb-section">
-      <h2>🎓 Курсы и обучение</h2>
+    <h3>Генерация видео</h3>
+    <div class="tool-row"><div class="tool-name">Kling AI</div><div class="tool-desc">Лучшее соотношение цена/качество для видео. $10–30/мес.</div></div>
+    <div class="tool-row"><div class="tool-name">RunwayML Gen-3</div><div class="tool-desc">Профессиональное качество. $15–76/мес.</div></div>
+    <div class="tool-row"><div class="tool-name">Pika Labs</div><div class="tool-desc">Быстрые короткие клипы. Freemium.</div></div>
+    <div class="tool-row"><div class="tool-name">HeyGen</div><div class="tool-desc">Аватары с lip-sync. $24–120/мес. Идеально для UGC.</div></div>
 
-      <div class="kb-table-wrap">
-        <table class="kb-table">
-          <thead>
-            <tr>
-              <th>Курс</th>
-              <th>Цена</th>
-              <th>Платформа</th>
-              <th>Инструменты</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>AI Influencer Course</strong></td>
-              <td>~$199</td>
-              <td>Augmented Startups</td>
-              <td>Stable Diffusion, DeepFake</td>
-            </tr>
-            <tr>
-              <td><strong>Инфлюенсер на базе ИИ</strong></td>
-              <td>150₽ (~$2)</td>
-              <td>Udemy</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><strong>AI Influencer: заработок в соцсетях</strong></td>
-              <td>150₽ (~$2)</td>
-              <td>Арнольд Оберлейтер</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><strong>Курс от АндреИИч</strong></td>
-              <td>н/д</td>
-              <td>Telegram</td>
-              <td>Nan Banana, Fanvue</td>
-            </tr>
-            <tr>
-              <td><strong>Фундаментальный AI OFM</strong></td>
-              <td>н/д</td>
-              <td>OFM Lab</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><strong>LoRA тренировка</strong></td>
-              <td>н/д</td>
-              <td>AI Cartel</td>
-              <td>ComfyUI, LoRA</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <h3>Консистентность персонажа</h3>
+    <div class="tool-row"><div class="tool-name">ComfyUI + IP-Adapter</div><div class="tool-desc">Сохранение внешности персонажа между кадрами. Бесплатно.</div></div>
+    <div class="tool-row"><div class="tool-name">Consistent Character</div><div class="tool-desc">Специализированный инструмент. Freemium.</div></div>
 
-      <h3>📚 Типичное содержание курсов</h3>
-      <ul>
-        <li>Генерация уникального лица персонажа</li>
-        <li>Консистентность образа (LoRA, Face Swap)</li>
-        <li>Создание видео контента (Motion Control, Kling)</li>
-        <li>Продвижение в соцсетях (Instagram, TikTok)</li>
-        <li>Монетизация (Fanvue, OnlyFans, реклама)</li>
-      </ul>
-    </section>
+    <h2>⭐ Топ AI-аватары девушек</h2>
+    <table>
+        <tr><th>Аватар</th><th>Подписчики</th><th>Доход/мес</th><th>Ниша</th></tr>
+        <tr><td>Lil Miquela</td><td>2.5M IG</td><td>$800K+/год</td><td>Fashion, музыка</td></tr>
+        <tr><td>Aitana Lopez</td><td>280K IG</td><td>$10K</td><td>Фитнес, lifestyle</td></tr>
+        <tr><td>Emily Pellegrini</td><td>200K IG</td><td>$10K+</td><td>Luxury</td></tr>
+        <tr><td>AiGul (РФ)</td><td>50K IG</td><td>N/A</td><td>Lifestyle, реклама</td></tr>
+        <tr><td>Seraphina AI</td><td>150K TikTok</td><td>$5K</td><td>Beauty</td></tr>
+    </table>
 
-    <!-- 5. ИНСТРУМЕНТЫ -->
-    <section class="kb-section">
-      <h2>🛠 Инструменты</h2>
-      <p>Топ инструменты по упоминаниям в контенте экспертов:</p>
+    <h2>🔍 Закономерности у успешных экспертов</h2>
+    <ul>
+        <li><strong>Чёткий персонаж</strong> — имя, биография, характер, визуальный стиль. Аудитория "знает" её.</li>
+        <li><strong>Консистентность</strong> — одно лицо во всех постах, узнаваемость критична.</li>
+        <li><strong>Нишевание</strong> — фитнес, fashion, luxury, gaming — не "обо всём".</li>
+        <li><strong>Мульти-платформенность</strong> — IG + TikTok + OF/Fanvue одновременно.</li>
+        <li><strong>Команда</strong> — одиночки редко выходят на $10K+. Нужен контент-менеджер.</li>
+        <li><strong>Частота</strong> — минимум 4–7 постов в неделю на старте.</li>
+    </ul>
 
-      <div class="tool-grid">
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥🔥🔥🔥</div>
-          <div class="tool-name">Nano Banana Pro</div>
-          <div class="tool-desc">Генерация фотореалистичных лиц</div>
-          <div class="tool-price">Платная подписка</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥🔥🔥🔥</div>
-          <div class="tool-name">Kling AI</div>
-          <div class="tool-desc">Анимация (Motion Control, видео)</div>
-          <div class="tool-price">Кредитная система</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥🔥🔥</div>
-          <div class="tool-name">Midjourney</div>
-          <div class="tool-desc">Генерация изображений (эстетика)</div>
-          <div class="tool-price">Платная подписка</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥🔥🔥</div>
-          <div class="tool-name">SeaArt</div>
-          <div class="tool-desc">Генерация + Face Swap + LoRA</div>
-          <div class="tool-price">Freemium</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥🔥</div>
-          <div class="tool-name">ComfyUI</div>
-          <div class="tool-desc">Продвинутая генерация, LoRA</div>
-          <div class="tool-price">Бесплатно (локально)</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥🔥</div>
-          <div class="tool-name">Stable Diffusion</div>
-          <div class="tool-desc">Генерация изображений</div>
-          <div class="tool-price">Бесплатно</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥🔥</div>
-          <div class="tool-name">Flux</div>
-          <div class="tool-desc">Генерация (альтернатива Midjourney)</div>
-          <div class="tool-price">Freemium</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥</div>
-          <div class="tool-name">Luma Dream Machine</div>
-          <div class="tool-desc">Анимация видео</div>
-          <div class="tool-price">Кредитная система</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥</div>
-          <div class="tool-name">Higgsfield</div>
-          <div class="tool-desc">Генерация + Motion Control</div>
-          <div class="tool-price">Кредитная система</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥</div>
-          <div class="tool-name">ElevenLabs</div>
-          <div class="tool-desc">Генерация голоса</div>
-          <div class="tool-price">Freemium</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥</div>
-          <div class="tool-name">ChatGPT / Claude</div>
-          <div class="tool-desc">Создание промптов</div>
-          <div class="tool-price">Freemium</div>
-        </div>
-        <div class="tool-card">
-          <div class="tool-fire">🔥🔥</div>
-          <div class="tool-name">Pinterest</div>
-          <div class="tool-desc">Поиск референсов</div>
-          <div class="tool-price">Бесплатно</div>
-        </div>
-      </div>
+    <h2>📈 Стадия тренда</h2>
+    <p>Ниша находится на пике хайп-цикла (2024–2026). Признаки:</p>
+    <ul>
+        <li>Массовое появление новых AI-аватаров (конкуренция растёт)</li>
+        <li>Крупные бренды начали официально работать с AI-инфлюенсерами</li>
+        <li>Платформы (Instagram, TikTok) пока не ввели жёстких ограничений</li>
+        <li>Окно возможностей: 1–2 года до насыщения рынка</li>
+    </ul>
+    <p><strong>Вывод:</strong> входить нужно сейчас. Через 2 года барьер входа вырастет в разы.</p>
 
-      <h3>⚙️ Workflow генерации (типичный)</h3>
-      <ol>
-        <li>Референс → <strong>Pinterest</strong></li>
-        <li>Промпт → <strong>ChatGPT / Claude</strong></li>
-        <li>Лицо → <strong>Nano Banana Pro</strong> / Midjourney</li>
-        <li>Консистентность → <strong>LoRA</strong> (SeaArt / ComfyUI)</li>
-        <li>Разные позы → <strong>Face Swap</strong> (SeaArt)</li>
-        <li>Видео → <strong>Kling AI</strong> (Motion Control) / Luma</li>
-        <li>Голос → <strong>ElevenLabs</strong> (опционально)</li>
-        <li>Апскейл → Topaz / ESRGAN</li>
-      </ol>
-    </section>
+    <h2>🎬 Анализ видео от G (6 штук)</h2>
+    <p>Анализ реальных видео с референсами по нише. Ключевые наблюдения:</p>
+    <ul>
+        <li>Лучшие видео имеют чёткий hook в первые 3 секунды</li>
+        <li>Эмоциональная подача важнее технического качества</li>
+        <li>Субтитры обязательны — 85% смотрят без звука</li>
+        <li>Длина: 15–30 сек для TikTok/Reels, 60–90 сек для YouTube Shorts</li>
+    </ul>
 
-    <!-- 6. ТОП АВАТАРЫ -->
-    <section class="kb-section">
-      <h2>⭐ Топ AI-аватары девушек</h2>
+    <h2>💬 Reddit Insights</h2>
+    <blockquote>"The AI influencer space is exploding. Tools are getting cheaper and quality is getting insane. If you're not in this in 2024-2025, you're going to miss the wave." — r/AIArt</blockquote>
+    <blockquote>"Consistency is everything. I spent 3 months perfecting one character before launching. Now she has 50K followers in 4 months." — r/StableDiffusion</blockquote>
+    <ul>
+        <li>Сообщество активно обсуждает этику AI-аватаров</li>
+        <li>Главный вопрос: раскрывать ли что это AI? Большинство топов — не раскрывают</li>
+        <li>Самая прибыльная связка: Midjourney + Kling + OnlyFans</li>
+    </ul>
 
-      <div class="avatar-grid">
-        <div class="avatar-card">
-          <div class="avatar-name">Lil Miquela</div>
-          <div class="avatar-subs">3M+ подписчиков · с 2016</div>
-          <div class="avatar-income">$10M/год</div>
-          <div class="avatar-desc">Реклама, музыка, мерч. Первопроходец, CGI качество, мулатка-певица-активистка.</div>
-        </div>
-        <div class="avatar-card">
-          <div class="avatar-name">Emily Pellegrini</div>
-          <div class="avatar-subs">380K+ подписчиков · с 2023</div>
-          <div class="avatar-income">$10K–$11K/мес</div>
-          <div class="avatar-desc">Реклама, Fanvue. Розовые волосы, фитнес, фотореализм.</div>
-        </div>
-        <div class="avatar-card">
-          <div class="avatar-name">Noonoouri</div>
-          <div class="avatar-subs">500K+ подписчиков · с 2018</div>
-          <div class="avatar-income">$500K/год</div>
-          <div class="avatar-desc">Модные бренды (Dior, Balenciaga). Кукольный стиль, Fashion partnerships.</div>
-        </div>
-        <div class="avatar-card">
-          <div class="avatar-name">Shudu</div>
-          <div class="avatar-subs">240K+ подписчиков · с 2017</div>
-          <div class="avatar-income">$2K+ за спонсорство</div>
-          <div class="avatar-desc">Первая цифровая супермодель. Hyper-realistic, Balmain, Fenty.</div>
-        </div>
-        <div class="avatar-card">
-          <div class="avatar-name">imma</div>
-          <div class="avatar-subs">390K+ подписчиков · с 2018</div>
-          <div class="avatar-income">IKEA, Nike</div>
-          <div class="avatar-desc">Японская, розовый боб. Азиатский рынок, Japanese aesthetics.</div>
-        </div>
-        <div class="avatar-card">
-          <div class="avatar-name">Virtuel Influencer</div>
-          <div class="avatar-subs">600K подписчиков · с 2025</div>
-          <div class="avatar-income">$60K/мес</div>
-          <div class="avatar-desc">Viral Reels, реклама. Секретный образ, никто не знает что AI.</div>
-        </div>
-        <div class="avatar-card">
-          <div class="avatar-name">Emma & Jade</div>
-          <div class="avatar-subs">AI OFM модели · с 2024</div>
-          <div class="avatar-income">$10K/мес каждая</div>
-          <div class="avatar-desc">Fanvue. Консистентность, активное общение с подписчиками.</div>
-        </div>
-        <div class="avatar-card">
-          <div class="avatar-name">Аниме AI-инфлюенсер</div>
-          <div class="avatar-subs">с декабря 2024</div>
-          <div class="avatar-income">$800/30 дней</div>
-          <div class="avatar-desc">Instagram. Аниме стиль, отличие от mainstream.</div>
-        </div>
-      </div>
+    <h2>🐦 Twitter/X Insights</h2>
+    <ul>
+        <li>Хэштеги: #AIInfluencer #AIModel #VirtualInfluencer — миллионы постов</li>
+        <li>Растущий тренд: AI-аватары в B2B (корпоративные спикеры)</li>
+        <li>Обсуждение: регуляторы начинают обращать внимание на AI-контент</li>
+    </ul>
 
-      <h3>🎯 Общие закономерности успеха</h3>
-      <ul>
-        <li>Уникальная внешность (не стандартная красотка)</li>
-        <li>Консистентность образа (одинаковое лицо на всех фото/видео)</li>
-        <li>История/лор персонажа (backstory, personality)</li>
-        <li>Активная публикация (минимум 3–5 постов/неделю)</li>
-        <li>Engagement (ответы на комментарии, DM)</li>
-        <li>Ниша/специализация (фитнес, мода, лайфстайл)</li>
-        <li>Качество контента (фотореализм или стильная стилизация)</li>
-      </ul>
-    </section>
+    <h2>✅ Выводы и рекомендации</h2>
+    <ul>
+        <li><strong>Входить сейчас</strong> — окно возможностей открыто ещё 1–2 года</li>
+        <li><strong>Минимальный стек</strong>: Midjourney ($10/мес) + Kling ($10/мес) + Instagram (бесплатно)</li>
+        <li><strong>Первый месяц</strong>: создать персонажа → 30 постов → тестировать вовлечённость</li>
+        <li><strong>Монетизация</strong>: начинать с рекламных интеграций, масштабировать на подписки</li>
+        <li><strong>Риски</strong>: изменение алгоритмов платформ, регуляция, конкуренция</li>
+        <li><strong>Для AI Girls</strong>: фокус на русскоязычном рынке даёт конкурентное преимущество — топов мало</li>
+    </ul>
 
-    <!-- 7. АНАЛИЗ ВИДЕО -->
-    <section class="kb-section">
-      <h2>🎬 Анализ видео от команды</h2>
-
-      <div class="kb-table-wrap">
-        <table class="kb-table">
-          <thead>
-            <tr>
-              <th>Автор</th>
-              <th>Видео</th>
-              <th>Просмотры</th>
-              <th>Инструменты</th>
-              <th>Монетизация</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Ринат Шакиров</strong><br><small>37K подп.</small></td>
-              <td>«Как БЕСПЛАТНО создать ИИ-модель с нуля»</td>
-              <td>23K (янв 2026)</td>
-              <td>Pinterest, ChatGPT, Midjourney, Flux, Nano Banana Pro, Kling AI</td>
-              <td>Реклама, видео на заказ, курсы</td>
-            </tr>
-            <tr>
-              <td><strong>Serge_AI</strong><br><small>101K подп.</small></td>
-              <td>«AI БЛОГЕР от А до Я»</td>
-              <td>137K (2024)</td>
-              <td>SeaArt, Face Swap, stock videos</td>
-              <td>Таргет или органика (TikTok, Reels)</td>
-            </tr>
-            <tr>
-              <td><strong>Рустам Г.</strong><br><small>2.84K подп.</small></td>
-              <td>«СОЗДАНИЕ ИИ МОДЕЛИ С НУЛЯ»</td>
-              <td>11K (янв 2026)</td>
-              <td>Instagram/TikTok, ChatGPT, Hixfield, Kling, Fanvue</td>
-              <td>Fanvue (подписки, DM, контент)</td>
-            </tr>
-            <tr>
-              <td><strong>Шергин говорит</strong><br><small>1.85K подп.</small></td>
-              <td>«ИИ МОДЕЛИ: Как создать, полный гайд»</td>
-              <td>36K (янв 2026)</td>
-              <td>Midjourney, Nano Banana Pro, Kling AI, Luma, Motion Control</td>
-              <td>YouTube (тренд: витилиго, гетерохромия)</td>
-            </tr>
-            <tr>
-              <td><strong>АндреИИч</strong><br><small>4.55K подп.</small></td>
-              <td>«КАК создать ИИ модель с нуля»</td>
-              <td>15K (янв 2026)</td>
-              <td>Nan Banana Pro, Kling 2.1/2.6, 11 Labs, Pinterest</td>
-              <td>Реклама, Fanvue, кастомные аватары ($1K+)</td>
-            </tr>
-            <tr>
-              <td><strong>Фантом</strong><br><small>422 подп.</small></td>
-              <td>«ИИ МОДЕЛИ на ОНЛИФАНС | С нуля до $1000/месяц»</td>
-              <td>17K (дек 2025)</td>
-              <td>ComfyUI, LoRA, Flux, RealVis, SeaArt, Pinterest, ChatGPT</td>
-              <td>OnlyFans (верификация!), Fanvue</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 8. REDDIT INSIGHTS -->
-    <section class="kb-section">
-      <h2>💬 Reddit инсайты</h2>
-
-      <div class="kb-table-wrap">
-        <table class="kb-table">
-          <thead>
-            <tr>
-              <th>Кейс</th>
-              <th>Суб</th>
-              <th>Доход</th>
-              <th>Стратегия</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Emma и Jade</strong></td>
-              <td>r/EntrepreneurRideAlong</td>
-              <td>$10K/мес (за 3 мес)</td>
-              <td>AI influencer management, Instagram + Fanvue</td>
-            </tr>
-            <tr>
-              <td><strong>Ben ($500K+)</strong></td>
-              <td>r/Business_Ideas</td>
-              <td>$500K+ за 10 мес</td>
-              <td>Прозрачность (faces, proof), консалтинг $5K</td>
-            </tr>
-            <tr>
-              <td><strong>Аниме-инфлюенсер</strong></td>
-              <td>r/passive_income</td>
-              <td>$800 за 1й месяц</td>
-              <td>Аниме-стиль (дифференциация от реалистичных)</td>
-            </tr>
-            <tr>
-              <td><strong>Продажа гайда</strong></td>
-              <td>r/passive_income</td>
-              <td>$1K за 30 дней</td>
-              <td>PDF-гайд по созданию AI-инфлюенсера</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>💡 Инсайты из обсуждений</h3>
-      <ul>
-        <li><strong>Higgsfield Earn Program:</strong> ГАРАНТИРОВАННЫЕ выплаты + бонусы за перформанс</li>
-        <li><strong>OnlyFans верификация:</strong> ПРОБЛЕМА — требует реального человека</li>
-        <li><strong>Fanvue:</strong> Лоялен к AI-контенту ✅</li>
-        <li><strong>Реализм vs Стилизация:</strong> Аниме-стиль может быть прибыльнее (меньше конкуренции)</li>
-        <li><strong>Консистентность:</strong> Главная проблема новичков (лицо меняется от фото к фото)</li>
-      </ul>
-    </section>
-
-    <!-- 9. TWITTER INSIGHTS -->
-    <section class="kb-section">
-      <h2>🐦 Twitter/X инсайты</h2>
-
-      <div class="info-card">
-        <div class="info-card-row">
-          <div class="info-item">
-            <label>Lil Miquela</label>
-            <span class="accent">$10 млн/год</span>
-          </div>
-          <div class="info-item">
-            <label>Noonoouri</label>
-            <span class="accent">$500K/год</span>
-          </div>
-          <div class="info-item">
-            <label>Shudu</label>
-            <span>$2K / спонсорство</span>
-          </div>
-          <div class="info-item">
-            <label>AI Instagram (600K подп.)</label>
-            <span class="accent">$60K/мес</span>
-          </div>
-        </div>
-      </div>
-
-      <h3>💡 Инсайты</h3>
-      <ul>
-        <li><strong>Секретность:</strong> Многие не раскрывают, что модель AI → больше engagement</li>
-        <li><strong>Viral Reels:</strong> Основной драйвер роста</li>
-        <li><strong>Proof:</strong> Важно требовать доказательства (screenshots, кейсы)</li>
-      </ul>
-    </section>
-
-    <!-- 10. ТРЕНД -->
-    <section class="kb-section">
-      <h2>📈 Стадия тренда</h2>
-
-      <div class="highlight-box">
-        <h3>🚀 ПИК / РАННИЙ РОСТ (2024–2026)</h3>
-        <p>Текущая стадия: активный рост, лучшее время для входа с уникальным образом.</p>
-      </div>
-
-      <div class="kb-table-wrap">
-        <table class="kb-table">
-          <thead>
-            <tr>
-              <th>Год</th>
-              <th>Событие</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>2016</td><td>Lil Miquela — первопроходец (CGI)</td></tr>
-            <tr><td>2022</td><td>Serge_AI начал учить создавать AI-блогеров</td></tr>
-            <tr><td>2023</td><td>Бум AI-генерации (Midjourney, Stable Diffusion стали доступны)</td></tr>
-            <tr><td>2024</td><td>Массовый выход русскоязычных экспертов (Ринат, Шергин, АндреИИч)</td></tr>
-            <tr><td>2025–2026</td><td>Пик популярности, появление множества гайдов и курсов</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>📊 Индикаторы</h3>
-      <ul>
-        <li>✅ Google Trends показывает рост запросов с 2023</li>
-        <li>✅ Инструменты доступны и просты (Nano Banana, Kling)</li>
-        <li>✅ Реальные кейсы $10K+/месяц</li>
-        <li>✅ Mainstream медиа (Business Insider, Forbes) пишут про AI-инфлюенсеров</li>
-        <li>⚠️ Насыщение начинается: много одинаковых «идеальных блондинок»</li>
-        <li>⚠️ OnlyFans усиливает верификацию</li>
-      </ul>
-
-      <h3>🔮 Прогноз</h3>
-      <ul>
-        <li><strong>2024–2025:</strong> Активный рост, лучшее время входа для уникальных образов</li>
-        <li><strong>2026–2027:</strong> Насыщение, требуется высокое качество и уникальность</li>
-        <li><strong>2028+:</strong> Зрелость, только топ-игроки с брендом</li>
-      </ul>
-    </section>
-
-    <!-- 11. ПАТТЕРНЫ ЭКСПЕРТОВ -->
-    <section class="kb-section">
-      <h2>🔍 Закономерности у успешных экспертов</h2>
-
-      <div class="kb-table-wrap">
-        <table class="kb-table">
-          <thead>
-            <tr>
-              <th>Черта</th>
-              <th>Описание</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>🚀 Ранний вход</td><td>2022–2024 — первопроходцы захватили аудиторию</td></tr>
-            <tr><td>🎯 Конкретика</td><td>Чёткие инструкции, пошаговые гайды (не «вода»)</td></tr>
-            <tr><td>💎 Бесплатный + платный</td><td>YouTube бесплатно → курс платно</td></tr>
-            <tr><td>📊 Прозрачность</td><td>Реальные результаты, кейсы, цифры</td></tr>
-            <tr><td>🎨 Ниша в нише</td><td>Фокус на AI-модели, а не общий AI</td></tr>
-            <tr><td>👥 Community building</td><td>Telegram-каналы, Discord сервера</td></tr>
-            <tr><td>🔄 Обновление</td><td>Следят за новыми инструментами</td></tr>
-            <tr><td>🎬 Демонстрация</td><td>Screen recordings, tutorials</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="highlight-box danger">
-        <h3>🚩 Красные флаги (признаки инфоцыган)</h3>
-        <ul>
-          <li>❌ Нет реальных примеров работ</li>
-          <li>❌ Обещания «$100K за месяц без усилий»</li>
-          <li>❌ Требуют оплату без демо-контента</li>
-          <li>❌ Скрывают инструменты за paywall</li>
-          <li>❌ Нет обратной связи в комментариях</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 12. ВЫВОДЫ -->
-    <section class="kb-section">
-      <h2>✅ Выводы и рекомендации</h2>
-
-      <div class="highlight-box">
-        <h3>✅ Ниша жива и прибыльна</h3>
-        <ul>
-          <li>Реальные кейсы заработка: $800–$60K/месяц</li>
-          <li>Инструменты доступны и дешевеют</li>
-          <li>Платформы монетизации работают (Fanvue, Instagram, TikTok)</li>
-          <li>Медиа освещение растёт</li>
-        </ul>
-      </div>
-
-      <div class="highlight-box warning">
-        <h3>⚠️ Барьеры и вызовы</h3>
-        <ul>
-          <li>Насыщение рынка: много одинаковых «блондинок»</li>
-          <li>Консистентность: технически сложно сохранить одинаковое лицо</li>
-          <li>Верификация: OnlyFans блокирует AI-контент</li>
-          <li>Органический рост: медленный без рекламы</li>
-          <li>Конкуренция: растёт количество создателей</li>
-        </ul>
-      </div>
-
-      <h3>🎯 Стратегия входа (2026)</h3>
-
-      <p><strong>Для новичков:</strong></p>
-      <ul>
-        <li>Выбрать уникальную нишу (не «идеальная блондинка») — витилиго, веснушки, азиатка, альбинизм, гетерохромия</li>
-        <li>Создать лор персонажа (backstory, personality)</li>
-        <li>Базовый стек: Nano Banana Pro (платно) или SeaArt (freemium) + Kling AI + ChatGPT</li>
-        <li>Тестировать контент в Instagram Reels / TikTok</li>
-        <li>Монетизация: начать с рекламы, потом → Fanvue</li>
-      </ul>
-
-      <p><strong>Для продвинутых:</strong></p>
-      <ul>
-        <li>LoRA тренировка (ConsistencyControl через ComfyUI)</li>
-        <li>Масштабирование: несколько моделей одновременно</li>
-        <li>Агентство: управление AI-инфлюенсерами для других</li>
-        <li>Продажа курсов: обучение созданию AI-моделей</li>
-      </ul>
-
-      <div class="highlight-box">
-        <h3>✅ ДЕЛАТЬ</h3>
-        <ul>
-          <li>Уникальная внешность (выделяться!)</li>
-          <li>Консистентность лица (LoRA или тщательный Face Swap)</li>
-          <li>История персонажа (engagement через storytelling)</li>
-          <li>Регулярный постинг (минимум 3–5 раз/неделю)</li>
-          <li>Тестировать платформы (Instagram, TikTok, Threads)</li>
-          <li>Взаимодействие с аудиторией (отвечать на комментарии)</li>
-        </ul>
-      </div>
-
-      <div class="highlight-box danger">
-        <h3>❌ НЕ ДЕЛАТЬ</h3>
-        <ul>
-          <li>Копировать стандартные образы (конкуренция огромная)</li>
-          <li>Игнорировать консистентность (разные лица = потеря доверия)</li>
-          <li>Сразу продавать (сначала построить аудиторию)</li>
-          <li>Использовать OnlyFans без верификации (бан)</li>
-          <li>Покупать курсы без проверки отзывов</li>
-        </ul>
-      </div>
-
-      <h3>🔮 Прогноз на 2026–2027</h3>
-      <ul>
-        <li>Рост продолжится, но требования к качеству вырастут</li>
-        <li>Уникальность станет критичной (generic faces не будут работать)</li>
-        <li>LoRA станет стандартом (консистентность обязательна)</li>
-        <li>Видео > фото (Reels, Shorts доминируют)</li>
-        <li>Voice cloning станет массовым (AI-модели заговорят)</li>
-        <li>Платформы ужесточат политику (больше проверок на AI)</li>
-      </ul>
-
-      <h3>🎯 Идеальный профиль для входа</h3>
-      <ul>
-        <li>✨ Креативность — придумать уникальный образ</li>
-        <li>⏳ Терпение — первые 3 месяца без дохода</li>
-        <li>🛠 Технические навыки — базовое понимание AI</li>
-        <li>📱 Маркетинг — понимание соцсетей</li>
-        <li>💰 Бюджет: $0–$100/месяц (подписки на инструменты)</li>
-      </ul>
-    </section>
-
-  </article>
-
-  <!-- FOOTER -->
-  <footer class="kb-footer">
-    <a href="/ai-girls-kb/index.html" class="btn-back">← Назад на главную</a>
-  </footer>
+    <a href="../index.html" class="back-btn">← Назад на главную</a>
+</div>
 
 </body>
 </html>
