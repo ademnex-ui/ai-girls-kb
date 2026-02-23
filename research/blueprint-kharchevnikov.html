@@ -6,43 +6,38 @@
     <title>Blueprint Харчевникова — AI Girls База знаний</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; line-height: 1.7; font-size: 15px; }
-        .top-bar { padding: 14px 24px; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #999; }
-        .top-bar a { color: #7c3aed; text-decoration: none; }
-        .top-bar a:hover { text-decoration: underline; }
-        .top-bar span { color: #ddd; margin: 0 6px; }
-        .container { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
-        .page-title { font-size: 26px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
-        .page-meta { font-size: 13px; color: #999; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #f0f0f0; }
-        h2 { font-size: 18px; font-weight: 600; margin: 36px 0 14px; padding-top: 28px; border-top: 1px solid #f5f5f5; }
-        h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
-        h3 { font-size: 15px; font-weight: 600; margin: 20px 0 10px; color: #333; }
-        p { margin-bottom: 12px; color: #333; }
-        ul, ol { margin: 0 0 16px 20px; }
-        li { margin-bottom: 6px; color: #333; }
-        strong { color: #1a1a1a; }
-        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
-        th { background: #f8f8f8; padding: 10px 14px; text-align: left; font-weight: 600; border-bottom: 2px solid #ebebeb; }
-        td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; color: #333; }
-        tr:last-child td { border-bottom: none; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 20px 0 32px; }
-        .stat-card { padding: 14px 16px; background: #faf9ff; border: 1px solid #ebebeb; border-radius: 10px; text-align: center; }
-        .stat-card .value { font-size: 20px; font-weight: 700; color: #7c3aed; display: block; }
-        .stat-card .label { font-size: 12px; color: #888; margin-top: 3px; }
-        .phase { border-left: 3px solid #7c3aed; padding: 16px 20px; background: #faf9ff; border-radius: 0 10px 10px 0; margin: 16px 0; }
-        .phase-title { font-weight: 700; color: #7c3aed; margin-bottom: 8px; font-size: 15px; }
-        .highlight { background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 14px 16px; margin: 16px 0; }
-        .highlight-title { font-weight: 600; margin-bottom: 6px; }
-        .funnel { background: #f8f8f8; border-radius: 10px; padding: 20px; margin: 16px 0; font-family: monospace; font-size: 13px; line-height: 1.8; white-space: pre-wrap; }
-        .checklist li { list-style: none; padding-left: 4px; }
-        .checklist li::before { content: '☐ '; color: #7c3aed; font-weight: 700; }
-        .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; margin: 2px; }
-        .tag-green { background: #e8f5e9; color: #2e7d32; }
-        .tag-red { background: #fce4ec; color: #b71c1c; }
-        .back-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 56px; padding: 12px 24px; background: #f5f0ff; color: #7c3aed; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; transition: background 0.15s; }
-        .back-btn:hover { background: #ede6ff; }
-    </style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; line-height: 1.7; font-size: 15px; }
+.top-bar { padding: 14px 24px; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #999; }
+.top-bar a { color: #7c3aed; text-decoration: none; }
+.top-bar a:hover { text-decoration: underline; }
+.top-bar span { color: #ddd; margin: 0 6px; }
+.container { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0; }
+h2 { font-size: 19px; font-weight: 600; margin: 36px 0 14px; padding-top: 28px; border-top: 1px solid #f5f5f5; color: #1a1a1a; }
+h3 { font-size: 16px; font-weight: 600; margin: 22px 0 10px; color: #333; }
+h4 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: #555; }
+p { margin-bottom: 14px; color: #333; }
+ul, ol { margin: 0 0 16px 22px; }
+li { margin-bottom: 6px; color: #333; line-height: 1.6; }
+li > ul, li > ol { margin-top: 6px; }
+strong { color: #1a1a1a; font-weight: 600; }
+em { color: #555; }
+code { background: #f5f5f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: monospace; }
+pre { background: #f5f5f5; border: 1px solid #e8e8e8; border-radius: 8px; padding: 16px 18px; margin: 14px 0; overflow-x: auto; }
+pre code { background: none; padding: 0; font-size: 13px; line-height: 1.6; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+th { background: #f8f8f8; padding: 10px 14px; text-align: left; font-weight: 600; border-bottom: 2px solid #e8e8e8; color: #1a1a1a; }
+td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; color: #333; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+blockquote { border-left: 3px solid #7c3aed; padding: 12px 16px; margin: 16px 0; background: #faf9ff; border-radius: 0 8px 8px 0; }
+blockquote p { margin: 0; color: #444; }
+hr { border: none; border-top: 1px solid #f0f0f0; margin: 28px 0; }
+a { color: #7c3aed; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 56px; padding: 12px 24px; background: #f5f0ff; color: #7c3aed; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: #ede6ff; text-decoration: none; }
+</style>
 </head>
 <body>
 <div class="top-bar">
@@ -51,205 +46,325 @@
     Blueprint Харчевникова
 </div>
 <div class="container">
-    <h1 class="page-title">AI-инфлюенсер: Пошаговый Blueprint по видео Харчевникова</h1>
-    <div class="page-meta">Дата: 2026-02-20 · Источник: транскрипция видео youtu.be/MBMve3D6yNI (28 мин) · ↑12K лайков, 13K engagement</div>
-
-    <h2>📊 Результаты эксперимента (34 дня)</h2>
-    <div class="stats-grid">
-        <div class="stat-card"><span class="value">10K+</span><div class="label">TikTok подписчики</div></div>
-        <div class="stat-card"><span class="value">3M+</span><div class="label">TikTok просмотры</div></div>
-        <div class="stat-card"><span class="value">3K+</span><div class="label">Instagram подписчики</div></div>
-        <div class="stat-card"><span class="value">1.2M+</span><div class="label">Instagram просмотры</div></div>
-        <div class="stat-card"><span class="value">$800+</span><div class="label">Fanvue за неделю</div></div>
-        <div class="stat-card"><span class="value">60–90К</span><div class="label">Офер от бренда (руб)</div></div>
-        <div class="stat-card"><span class="value">~$250</span><div class="label">Затраты на генерацию</div></div>
-        <div class="stat-card"><span class="value">233</span><div class="label">Откликов на вакансии</div></div>
-    </div>
-
-    <h2>🔬 Разбор: что именно делал Харчевников</h2>
-
-    <div class="phase">
-        <div class="phase-title">Фаза 1: Подготовка (до дня 0)</div>
-        <h3>Шаг 1: Изучение ниши</h3>
-        <ul>
-            <li>Нашёл кейс Муэрты (AI-модель): 313K TikTok, 180K Instagram, $43,000 за 3 мес</li>
-            <li>Связался с создателями Муэрты, получил инсайды</li>
-            <li>Убедился что доходы реальные (скрины Fanvue)</li>
-        </ul>
-        <h3>Шаг 2: Создание внешности</h3>
-        <ul>
-            <li><strong>Источник лиц:</strong> Pinterest — ищет фото двух красивых девушек</li>
-            <li><strong>Инструмент:</strong> Nano Banana Pro (на базе Google Gemini)</li>
-            <li><strong>Метод:</strong> загружает 2 фото реальных девушек → просит AI "соединить их внешность"</li>
-            <li>⚠️ <strong>НЕ генерирует с нуля по промпту</strong> — смешивает реальные лица. Это ключ к реалистичности.</li>
-        </ul>
-        <h3>Шаг 3: Тест 4 гипотез по внешности</h3>
-        <p>Создал НЕ одну, а <strong>4 модели</strong> одновременно:</p>
-        <ol>
-            <li><strong>Типичная блондинка</strong> с большой грудью (мейнстрим)</li>
-            <li><strong>Грузинка</strong> с кудрявыми тёмными волосами</li>
-            <li><strong>Азиаточка</strong> похожая на Муэрту (проверенный формат)</li>
-            <li><strong>Диана Зука</strong> — фанатка аниме "Аватар" с родимым пятном (эксперимент)</li>
-        </ol>
-        <p><em>"Всегда залетает то, о чём даже не думаешь" — тестирование гипотез.</em></p>
-        <h3>Шаг 4: Проработка персонажа</h3>
-        <p>Для каждой модели: имя и легенда, биография, визуальная фишка, тональность коммуникации.</p>
-    </div>
-
-    <div class="phase">
-        <div class="phase-title">Фаза 2: Создание контента (дни 1–4)</div>
-        <h3>Шаг 5: Поиск референсов</h3>
-        <ul>
-            <li>Где искать: TikTok — залетевшие видео с девушками (500K+ просмотров)</li>
-            <li>Типы: липсинки, танцы, реакции из чат-рулетки, заигрывающий контент</li>
-        </ul>
-        <h3>Шаг 6: Генерация видео</h3>
-        <ul>
-            <li>Инструмент: ComfyUI + Wan Animate (God Mode V3)</li>
-            <li>Процесс: фото AI-модели + driving video → замена персонажа</li>
-            <li>Фон остаётся живой → реалистичность</li>
-        </ul>
-        <h3>Результат первых 4 дней: ПОЧТИ НИЧЕГО</h3>
-        <p>TikTok давал хоть какие-то показы. Instagram — 100–200 просмотров. "Создалось впечатление что хайп вокруг AI-девочек — лютый фейк"</p>
-    </div>
-
-    <div class="phase">
-        <div class="phase-title">Фаза 3: Прорыв (день 4–5)</div>
-        <div class="highlight">
-            <div class="highlight-title">🔥 Триггер вирального залёта</div>
-            <p>НЕ видео, а <strong>карусель в TikTok</strong> для Дианы Зука:</p>
-            <ol>
-                <li>Фото: Диана в школе с родимым пятном</li>
-                <li>Фото: персонаж Зуко из "Аватара"</li>
-                <li>Фото: Диана взрослая, выглядит "как бомба"</li>
-                <li>Музыка: Tyler The Creator — "Like Him"</li>
-                <li>Описание: история о буллинге в школе и принятии себя</li>
-            </ol>
-        </div>
-        <h3>Почему залетело:</h3>
-        <ul>
-            <li>🎯 <strong>Эмоциональный крючок</strong> — история буллинга → сочувствие → вовлечение</li>
-            <li>🎯 <strong>Нарратив трансформации</strong> — "была странной → стала красоткой"</li>
-            <li>🎯 <strong>Привязка к поп-культуре</strong> — Аватар = огромная фанбаза</li>
-            <li>🎯 <strong>Карусель нетипична</strong> для AI-моделей → выделяется</li>
-            <li>🎯 <strong>Уникальная внешность</strong> — родимое пятно = запоминается</li>
-        </ul>
-        <p><strong>Результат:</strong> 100K просмотров за ночь → 300K+ к вечеру → рост продолжился.</p>
-    </div>
-
-    <div class="phase">
-        <div class="phase-title">Фаза 4: Рост и Instagram (дни 5–14)</div>
-        <div class="highlight">
-            <div class="highlight-title">🔥 Ключевой инсайт: Instagram vs TikTok</div>
-            <p>"Одно видео в Instagram на 400K просмотров принесло в 5 раз больше подписчиков, чем суммарно более миллиона просмотров в TikTok"</p>
-            <p>Instagram аудитория = более платёжеспособная. Лучше конвертируется в Telegram и Fanvue. TikTok даёт объём, Instagram даёт качество.</p>
-        </div>
-    </div>
-
-    <div class="phase">
-        <div class="phase-title">Фаза 5: Монетизация (дни 15–34)</div>
-        <h3>Запуск Fanvue</h3>
-        <ul>
-            <li>Платформа: fanvue.com — официально поддерживает AI-моделей</li>
-            <li>Маркировка "AI-модель" обязательна на профиле</li>
-            <li>Цена подписки: <strong>$9.99/мес</strong></li>
-            <li>Контент: лёгкая эротика (НЕ хардкор 18+)</li>
-            <li>Результат запуска: 3 покупки в первые минуты после анонса</li>
-        </ul>
-        <h3>Чатеринг</h3>
-        <ul>
-            <li>50+ запросов в директ в день</li>
-            <li>20+ переписок с платными подписчиками за неделю</li>
-            <li>Основная аудитория: Саудовская Аравия, ОАЭ, Ирак, Иран</li>
-            <li>Часть отказывалась верить что Диана — AI, несмотря на маркировку</li>
-        </ul>
-        <h3>Внедрение в рынок труда</h3>
-        <table>
-            <tr><th>Канал</th><th>Откликов</th><th>Результат</th></tr>
-            <tr><td>Instagram DM</td><td>67 аккаунтов</td><td>8 ответов, все отказ</td></tr>
-            <tr><td>HH/Авито вакансии</td><td>65 откликов</td><td>8 отказов, 9 приглашений</td></tr>
-            <tr><td>TG чаты/ВК</td><td>много</td><td>мелкие офферы (2К руб за креатив)</td></tr>
-            <tr><td><strong>Всего</strong></td><td><strong>233</strong></td><td><strong>30 позвали на кастинг</strong></td></tr>
-        </table>
-        <p><strong>Финальный офер:</strong> производитель вейп-продукции. 40–60 коротких роликов/мес с продуктом. Оплата: 60–90К руб/мес фикс + премия 30–60К при 1М+ просмотров.</p>
-    </div>
-
-    <h2>🏗 Воронка монетизации</h2>
-    <div class="funnel">TikTok (объём, охваты)
+<h1>AI-инфлюенсер: Пошаговый Blueprint по видео Харчевникова</h1>
+<p><strong>Дата:</strong> 2026-02-20<br />
+<strong>Источник:</strong> Транскрипция видео youtu.be/MBMve3D6yNI (28 мин, Саня Харчевников)<br />
+<strong>Статистика видео:</strong> ↑12K лайков, 13K engagement</p>
+<hr />
+<h2>📊 Результаты эксперимента (34 дня)</h2>
+<pre><code>┌─────────────────────┬──────────────────────┐
+│ Метрика             │ Результат            │
+├─────────────────────┼──────────────────────┤
+│ TikTok подписчики   │ 10,000+              │
+│ TikTok просмотры    │ 3,000,000+           │
+│ Instagram подписчики│ 3,000+               │
+│ Instagram просмотры │ 1,200,000+           │
+│ Fanvue доход        │ $800+ за неделю      │
+│ Платных подписчиков │ 20+                  │
+│ Бесплатных подписч. │ 100+                 │
+│ Офер от бренда      │ 60-90К руб + премия  │
+│ Затраты на генерац. │ ~$250                │
+│ Потенциальный доход │ ~150,000 руб         │
+│ Отклики на вакансии │ 233                  │
+│ Позвали на кастинг  │ 30                   │
+│ Поняли что AI       │ 15                   │
+└─────────────────────┴──────────────────────┘
+</code></pre>
+<hr />
+<h2>🔬 РАЗБОР: Что именно делал Харчевников</h2>
+<h3>Фаза 1: Подготовка (до дня 0)</h3>
+<p><strong>Шаг 1: Изучение ниши</strong><br />
+- Нашёл кейс <strong>Муэрты</strong> (AI-модель): 313K TikTok, 180K Instagram, $43,000 за 3 мес<br />
+- Связался с создателями Муэрты, получил инсайды<br />
+- Убедился что доходы реальные (скрины Fanvue)</p>
+<p><strong>Шаг 2: Создание внешности</strong><br />
+- <strong>Источник лиц:</strong> Pinterest — ищет фото двух красивых девушек<br />
+- <strong>Инструмент:</strong> Nano Banana Pro (на базе Google Gemini)<br />
+- <strong>Метод:</strong> загружает 2 фото реальных девушек → просит AI "соединить их внешность"<br />
+- <strong>Результат:</strong> уникальное лицо, близкое к реальности, но несуществующее<br />
+- ⚠️ <strong>НЕ генерирует с нуля по промпту</strong> — смешивает реальные лица. Это ключ к реалистичности.</p>
+<p><strong>Шаг 3: Тест 4 гипотез по внешности</strong><br />
+Создал НЕ одну, а <strong>4 модели</strong> одновременно:<br />
+1. <strong>Типичная блондинка</strong> с большой грудью (мейнстрим)<br />
+2. <strong>Грузинка</strong> с кудрявыми тёмными волосами (менее типичная)<br />
+3. <strong>Азиаточка</strong> похожая на Муэрту (проверенный формат)<br />
+4. <strong>Диана Зука</strong> — фанатка аниме "Аватар" с родимым пятном (эксперимент)</p>
+<p><strong>Почему 4:</strong> "Всегда залетает то, о чём даже не думаешь" — тестирование гипотез.</p>
+<p><strong>Шаг 4: Проработка персонажа</strong><br />
+Для каждой модели:<br />
+- Имя и легенда<br />
+- Биография (возраст, интересы, история)<br />
+- Визуальная фишка (родимое пятно = узнаваемость)<br />
+- Тональность коммуникации</p>
+<hr />
+<h3>Фаза 2: Создание контента (дни 1-4)</h3>
+<p><strong>Шаг 5: Поиск референсов</strong><br />
+- <strong>Где искать:</strong> TikTok — залетевшие видео с девушками<br />
+- <strong>Критерии:</strong> видео с 500K+ просмотров, трендовые форматы<br />
+- <strong>Типы:</strong> липсинки, танцы, реакции из чат-рулетки, заигрывающий контент<br />
+- Скачивает оригиналы для использования как driving video</p>
+<p><strong>Шаг 6: Генерация видео</strong><br />
+- Инструмент: ComfyUI + Wan Animate (God Mode V3)<br />
+- Процесс: фото AI-модели + driving video → замена персонажа<br />
+- Фон остаётся живой (квартира тиктокерши) → реалистичность<br />
+- ⚠️ Не каждое видео корректно обрабатывается — маска может лечь неправильно</p>
+<p><strong>Шаг 7: Первый постинг</strong><br />
+- Заведены аккаунты для всех 4 моделей в TikTok и Instagram<br />
+- Постили стандартные липсинки + залетающие форматы</p>
+<p><strong>Результат первых 4 дней: ПОЧТИ НИЧЕГО</strong><br />
+- TikTok давал "хоть какие-то показы"<br />
+- Instagram — 100-200 просмотров на видео<br />
+- "Сдалось впечатление что хайп вокруг AI-девочек — лютый фейк"<br />
+- Начали перепроверять статистику успешных кейсов</p>
+<hr />
+<h3>Фаза 3: Прорыв (день 4-5)</h3>
+<p><strong>🔥 ТРИГГЕР ВИРАЛЬНОГО ЗАЛЁТА:</strong></p>
+<p>НЕ видео, а <strong>карусель в TikTok</strong> для Дианы Зука:<br />
+1. Фото: Диана в школе с родимым пятном<br />
+2. Фото: персонаж Зуко из "Аватара"<br />
+3. Фото: Диана взрослая, выглядит "как бомба"<br />
+4. Музыка: Tyler The Creator — "Like Him"<br />
+5. Описание: история о буллинге в школе и принятии себя</p>
+<p><strong>Почему залетело (мой анализ):</strong><br />
+- 🎯 <strong>Эмоциональный крючок</strong> — история буллинга → сочувствие → вовлечение<br />
+- 🎯 <strong>Нарратив трансформации</strong> — "была странной → стала красоткой"<br />
+- 🎯 <strong>Привязка к поп-культуре</strong> — Аватар = огромная фанбаза<br />
+- 🎯 <strong>Формат карусели</strong> — нетипичен для AI-моделей → выделяется<br />
+- 🎯 <strong>Relatability</strong> — "меня булили, но я справилась" = универсальная история<br />
+- 🎯 <strong>Уникальная внешность</strong> — родимое пятно = запоминается</p>
+<p><strong>Результат:</strong> 100K просмотров за ночь → 300K+ к вечеру → рост продолжился</p>
+<hr />
+<h3>Фаза 4: Рост и Instagram (дни 5-14)</h3>
+<p><strong>Шаг 8: Закрепление в TikTok</strong><br />
+- Продолжал постить видео + карусели<br />
+- Несколько тысяч → десятки тысяч просмотров на видео<br />
+- К дню 9: 3,000 подписчиков TikTok<br />
+- Telegram канал Дианы: 50-60 подписчиков (плохая конверсия из TikTok!)</p>
+<p><strong>Шаг 9: Тест Instagram</strong><br />
+- Instagram всю первую неделю давал 100-200 просмотров<br />
+- <strong>Прорыв в Instagram (конец недели 2):</strong> формат с азиатской считалкой + заигрывающий вайб<br />
+- Тот же контент, что не залетел в TikTok → <strong>400K просмотров в Instagram</strong></p>
+<p><strong>🔥 КЛЮЧЕВОЙ ИНСАЙТ:</strong></p>
+<blockquote>
+<p>"Одно видео в Instagram на 400K просмотров принесло в 5 раз больше подписчиков, чем суммарно более миллиона просмотров в TikTok"</p>
+</blockquote>
+<p><strong>Почему Instagram &gt; TikTok для монетизации:</strong><br />
+- Instagram аудитория = более платёжеспособная<br />
+- Лучше конвертируется в Telegram и Fanvue<br />
+- TikTok даёт объём, Instagram даёт качество</p>
+<hr />
+<h3>Фаза 5: Монетизация (дни 15-34)</h3>
+<p><strong>Шаг 10: Запуск Fanvue</strong><br />
+- Платформа: <strong>Fanvue</strong> (fanvue.com) — официально поддерживает AI-моделей<br />
+- Маркировка "AI-модель" обязательна на профиле<br />
+- Цена подписки: <strong>$9.99/мес</strong><br />
+- Контент: лёгкая эротика (НЕ хардкор 18+)<br />
+- Доступ = фото + возможность переписки с "Дианой"</p>
+<p><strong>Результат запуска:</strong> 3 покупки в первые минуты после анонса в Telegram</p>
+<p><strong>Шаг 11: Воронка трафика</strong></p>
+<pre><code>TikTok (объём, охваты)
     ↓
 Instagram (конверсия, платёжеспособность)
     ↓
 Telegram канал (прогрев, тизеры)
     ↓
-Fanvue (подписка $9.99 + PPV + чаевые)</div>
+Fanvue (монетизация: подписка $9.99 + PPV + чаевые)
+</code></pre>
+<p>Дополнительно:<br />
+- Из Instagram → напрямую в Fanvue (через ссылку в профиле)<br />
+- В Telegram: публиковал тизерный контент → ссылка на Fanvue</p>
+<p><strong>Шаг 12: Работа с подписчиками (чатеринг)</strong><br />
+- 50+ запросов в директ в день<br />
+- 20+ переписок с платными подписчиками за неделю<br />
+- Основная аудитория: <strong>Саудовская Аравия, ОАЭ, Ирак, Иран</strong><br />
+- Подписчики предлагали деньги за переход в Instagram ($50+)<br />
+- Часть отказывалась верить что Диана — AI, несмотря на маркировку<br />
+- ⚠️ Чатеринг = отдельное искусство, часто нанимают <strong>чатеров</strong> для этого</p>
+<p><strong>Шаг 13: Внедрение в рынок труда</strong></p>
+<p>Параллельно с приваткой тестировали "трудоустройство":</p>
+<table>
+<thead>
+<tr>
+<th>Канал</th>
+<th>Отклики</th>
+<th>Результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instagram DM</td>
+<td>67 аккаунтов</td>
+<td>8 ответов, все отказ</td>
+</tr>
+<tr>
+<td>HH/Авито вакансии</td>
+<td>65 откликов</td>
+<td>8 отказов, 9 приглашений на собеседование</td>
+</tr>
+<tr>
+<td>TG чаты/ВК</td>
+<td>много</td>
+<td>мелкие оферы (2К руб за креатив)</td>
+</tr>
+<tr>
+<td><strong>Всего</strong></td>
+<td><strong>233</strong></td>
+<td><strong>30 позвали на кастинг</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Финальный офер:</strong> производитель вейп-продукции<br />
+- 40-60 коротких роликов/мес с продуктом<br />
+- Оплата: <strong>60-90К руб/мес фикс</strong><br />
+- Премия: 30-60К при 1М+ или 3М+ просмотров<br />
+- Прошли видео-созвон (Диана без вебки, менеджер с вебкой)<br />
+- ✅ Офер принят</p>
+<p><strong>Дополнительно:</strong><br />
+- "Подслушано" паблики ВК вузов — опубликовали фото "студентки" → все поверили<br />
+- Фотограф предложил создать фотосет нейросетью за 2К руб<br />
+- Предлагали роль в студенческом фильме</p>
+<hr />
+<h2>🏗 ВОРОНКА МОНЕТИЗАЦИИ (полная схема)</h2>
+<pre><code>ЭТАП 1: СОЗДАНИЕ (неделя 0)
+├── Персонаж: внешность + легенда + фишка
+├── Инструменты: Pinterest + Nano Banana Pro
+└── Выход: набор фото AI-модели
 
-    <h2>📋 Пошаговый план действий</h2>
+ЭТАП 2: КОНТЕНТ (недели 1-2)
+├── Референсы: залетевшие TikTok/Reels
+├── Генерация: ComfyUI + Wan Animate
+├── Форматы: липсинки, карусели, тренды
+└── Платформы: TikTok → Instagram
 
-    <h3>Неделя 0: Подготовка</h3>
-    <ul class="checklist">
-        <li>Зайти на Pinterest, найти 2 фото красивых девушек</li>
-        <li>Загрузить в Nano Banana Pro → "соедини внешность этих двух девушек"</li>
-        <li>Создать 4 варианта внешности (тестирование гипотез)</li>
-        <li>Для каждой: имя, легенда, возраст, интересы, визуальная фишка</li>
-        <li>Выбрать яркую отличительную черту (родимое пятно, цвет глаз, веснушки)</li>
-        <li>Зарегистрировать TikTok + Instagram + Telegram для каждой модели</li>
-    </ul>
+ЭТАП 3: РОСТ (недели 2-3)
+├── TikTok: объём, тестирование форматов
+├── Instagram: конверсионные видео
+├── Telegram: канал модели, прогрев
+└── Коллабы: совместные видео с другими AI-моделями
 
-    <h3>Неделя 1–2: Контент и тест гипотез</h3>
-    <ul class="checklist">
-        <li>TikTok: искать видео 500K+ просмотров с девушками → скачивать</li>
-        <li>Генерить 3–5 видео в день на каждую модель (ComfyUI + Wan)</li>
-        <li>Постить в TikTok + Instagram одновременно</li>
-        <li>Обязательно тестировать карусели с эмоциональным крючком</li>
-    </ul>
-
-    <h3>Неделя 2–3: Определение победителя</h3>
-    <ul class="checklist">
-        <li>Какая из 4 моделей набирает больше?</li>
-        <li>Какой формат залетает?</li>
-        <li>Откуда лучше конверсия? Оставляем 1–2 лучших</li>
-    </ul>
-
-    <h3>Неделя 3–4: Монетизация</h3>
-    <ul class="checklist">
-        <li>Регистрация Fanvue (нужен VPN), цена $9.99/мес</li>
-        <li>Чатеринг или найм чатера ($200–500/мес)</li>
-        <li>Писать в Instagram брендам, откликаться на вакансии UGC</li>
-    </ul>
-
-    <h2>🤖 Что может делать Nex</h2>
-    <ul>
-        <li>✅ Парсинг трендов TikTok/Instagram</li>
-        <li>✅ Скачивание референсных видео</li>
-        <li>✅ Написание промптов для генерации</li>
-        <li>✅ Создание легенд/биографий персонажей</li>
-        <li>✅ Контент-план и постинг-расписание</li>
-        <li>✅ Аналитика (просмотры, конверсия, ROI)</li>
-        <li>✅ Тексты для каруселей</li>
-        <li>✅ Подключение к ComfyUI API → полная автоматизация генерации</li>
-    </ul>
-
-    <h2>📌 Чеклист: что нужно от G</h2>
-    <ul class="checklist">
-        <li>Зарегистрироваться на RunPod → пополнить $25</li>
-        <li>Купить Hideout подписку (whop.com/hearmemanai) → $25/мес</li>
-        <li>VPN для Fanvue (если нет)</li>
-        <li>4 телефонных номера для TikTok (или виртуальные)</li>
-        <li>Определиться: 18+ или SFW контент</li>
-        <li>Бюджет на старт: ~$75 (RunPod $25 + Whop $25 + запас $25)</li>
-    </ul>
-
-    <h2>❓ Почему именно Диана Зука залетела</h2>
-    <ol>
-        <li><strong>Уникальность &gt; красота.</strong> Типичная блондинка = одна из тысяч. Девушка с родимым пятном + аниме = незабываемая.</li>
-        <li><strong>Сторителлинг.</strong> У Дианы была ИСТОРИЯ (буллинг → принятие → сила). У других — только внешность.</li>
-        <li><strong>Нишевая аудитория.</strong> Аниме-фанбаза = лояльная, активная, вовлечённая.</li>
-        <li><strong>Карусель ≠ стандартный AI-контент.</strong> Все AI-модели постят липсинки. Карусель — неожиданный формат.</li>
-        <li><strong>Эмоциональный резонанс.</strong> Буллинг = тема, которая касается всех.</li>
-    </ol>
-    <p><strong>Вывод:</strong> Залетает НЕ самая красивая модель, а самая ЗАПОМИНАЮЩАЯСЯ с лучшей ИСТОРИЕЙ.</p>
-
-    <a href="../index.html" class="back-btn">← Назад на главную</a>
+ЭТАП 4: МОНЕТИЗАЦИЯ (недели 3+)
+├── Fanvue: подписка $9.99 + PPV + tips
+├── Чатеринг: переписки с подписчиками
+├── UGC для брендов: 60-90К руб/мес
+├── Пассивы: фонг-треки, посевы
+└── Масштаб: 5-10 моделей параллельно
+</code></pre>
+<hr />
+<h2>📋 ПОШАГОВЫЙ ПЛАН ДЕЙСТВИЙ (для нас)</h2>
+<h3>Неделя 0: Подготовка</h3>
+<p><strong>1. Инструменты генерации (РЕШЕНО)</strong><br />
+- RunPod + God Mode V3 (Whop HearmemanAI $25/мес)<br />
+- GPU: A6000/L40S (48GB VRAM)</p>
+<p><strong>2. Создание персонажа</strong><br />
+- [ ] Зайти на Pinterest, найти 2 фото красивых девушек<br />
+- [ ] Загрузить в Nano Banana Pro → "соедини внешность этих двух девушек"<br />
+- [ ] Создать <strong>4 варианта</strong> внешности (тестирование гипотез)<br />
+- [ ] Для каждой: имя, легенда, возраст, интересы, визуальная фишка<br />
+- [ ] Выбрать <strong>яркую отличительную черту</strong> (родимое пятно, необычный цвет глаз, веснушки и т.д.)<br />
+- <strong>Инструмент:</strong> Nano Banana Pro (бесплатно) или Midjourney ($10/мес)</p>
+<p><strong>3. Регистрация аккаунтов</strong><br />
+- [ ] TikTok — 4 аккаунта (по одному на модель)<br />
+- [ ] Instagram — 4 аккаунта<br />
+- [ ] Telegram — 4 канала<br />
+- <strong>VPN:</strong> нужен для Fanvue (недоступен в РФ)<br />
+- <strong>Телефоны:</strong> можно виртуальные номера для регистрации</p>
+<h3>Неделя 1-2: Контент и тест гипотез</h3>
+<p><strong>4. Поиск референсов</strong><br />
+- [ ] TikTok: искать видео 500K+ просмотров с девушками<br />
+- [ ] Форматы: липсинки, танцы, чат-рулетка реакции, заигрывающий контент<br />
+- [ ] Скачивать: SnapTik, SaveTT, или yt-dlp<br />
+- <strong>Nex может:</strong> парсить TikTok тренды, скачивать видео, анализировать что залетает</p>
+<p><strong>5. Генерация и постинг</strong><br />
+- [ ] Генерить 3-5 видео в день на каждую модель<br />
+- [ ] Постить в TikTok + Instagram одновременно<br />
+- [ ] Тестировать: видео, карусели, фото<br />
+- [ ] Отслеживать: что набирает просмотры, что нет</p>
+<p><strong>6. Обязательно тестировать карусели</strong><br />
+- Карусель = сторителлинг через фото + музыка + текст<br />
+- Эмоциональный крючок: трансформация, буллинг, принятие себя<br />
+- Привязка к поп-культуре (аниме, фильмы, музыка)</p>
+<h3>Неделя 2-3: Определение победителя</h3>
+<p><strong>7. Анализ результатов</strong><br />
+- [ ] Какая из 4 моделей набирает больше?<br />
+- [ ] Какой формат залетает?<br />
+- [ ] Откуда лучше конверсия? (TikTok vs Instagram)<br />
+- [ ] Оставляем 1-2 лучших, остальные закрываем</p>
+<p><strong>8. Масштабирование победителя</strong><br />
+- [ ] Telegram канал: тизерный контент + ссылка на Fanvue<br />
+- [ ] Instagram: фокус на конверсионных видео<br />
+- [ ] TikTok: объём + тренды</p>
+<h3>Неделя 3-4: Монетизация</h3>
+<p><strong>9. Запуск Fanvue</strong><br />
+- [ ] Регистрация: fanvue.com (нужен VPN)<br />
+- [ ] Верификация: паспорт/ID создателя (не модели)<br />
+- [ ] Выбрать: AI Creator → указать тип контента<br />
+- [ ] Цена подписки: $9.99/мес (стандарт ниши)<br />
+- [ ] Контент: лёгкая эротика + возможность переписки</p>
+<p><strong>10. Чатеринг</strong><br />
+- [ ] Отвечать в DM (Instagram/Fanvue)<br />
+- [ ] Вариант: нанять чатера ($200-500/мес) для масштабирования<br />
+- [ ] AI-чатбот как дополнение (но не замена — люди чувствуют)</p>
+<p><strong>11. Поиск брендов</strong><br />
+- [ ] Писать в Instagram брендам (косметика, одежда, аксессуары)<br />
+- [ ] Откликаться на вакансии UGC-креаторов (HH, Авито, TG чаты)<br />
+- [ ] Предлагать пробные креативы бесплатно → конвертировать в оплату</p>
+<hr />
+<h2>❓ Почему именно Диана Зука залетела (а не 3 другие)</h2>
+<ol>
+<li><strong>Уникальность &gt; красота.</strong> Типичная блондинка = одна из тысяч. Девушка с родимым пятном + аниме = незабываемая.</li>
+<li><strong>Сторителлинг.</strong> У Дианы была ИСТОРИЯ (буллинг → принятие → сила). У других моделей — только внешность.</li>
+<li><strong>Нишевая аудитория.</strong> Аниме-фанбаза = лояльная, активная, вовлечённая.</li>
+<li><strong>Карусель ≠ стандартный AI-контент.</strong> Все AI-модели постят липсинки. Карусель — неожиданный формат.</li>
+<li><strong>Эмоциональный резонанс.</strong> Буллинг = тема, которая касается ВСЕХ. Лайки/комменты = алгоритм продвигает.</li>
+</ol>
+<p><strong>Вывод:</strong> Залетает НЕ самая красивая модель, а самая ЗАПОМИНАЮЩАЯСЯ с лучшей ИСТОРИЕЙ.</p>
+<hr />
+<h2>🤖 Что может делать Nex в этом проекте</h2>
+<h3>Автоматизация</h3>
+<ul>
+<li>✅ Парсинг трендов TikTok/Instagram</li>
+<li>✅ Скачивание референсных видео</li>
+<li>✅ Написание промптов для генерации</li>
+<li>✅ Создание легенд/биографий персонажей</li>
+<li>✅ Контент-план и постинг-расписание</li>
+<li>✅ Аналитика (просмотры, конверсия, ROI)</li>
+<li>✅ Написание текстов для каруселей</li>
+<li>✅ Скрипты для чат-рулетки ответов</li>
+<li>✅ Поиск брендов для коллабораций</li>
+</ul>
+<h3>Подключение к RunPod API</h3>
+<p><strong>Да, можно.</strong> ComfyUI имеет REST API:<br />
+- Endpoint: <code>POST /prompt</code> — отправить workflow на генерацию<br />
+- WebSocket: <code>/ws</code> — отслеживать прогресс в реальном времени<br />
+- <code>GET /history</code> — получить результаты<br />
+- Nex может через <code>curl</code> отправлять задачи напрямую</p>
+<p><strong>Схема:</strong></p>
+<pre><code>Nex (curl) → RunPod IP:8188/prompt → ComfyUI обрабатывает
+                                          ↓
+Nex (curl) ← RunPod IP:8188/history ← результат (видео)
+</code></pre>
+<p>Для этого нужно:<br />
+1. Задеплоить RunPod pod<br />
+2. Открыть порт 8188 (HTTP API ComfyUI)<br />
+3. Nex подключается по IP:8188<br />
+4. Загружает reference image + driving video через API<br />
+5. Запускает workflow<br />
+6. Забирает готовое видео</p>
+<p><strong>Полная автоматизация без браузера.</strong> ✅</p>
+<hr />
+<h2>📌 Чеклист: что нужно от G</h2>
+<ul>
+<li>[ ] Зарегистрироваться на RunPod (runpod.io) → пополнить $25</li>
+<li>[ ] Купить Hideout подписку (whop.com/hearmemanai) → $25/мес</li>
+<li>[ ] VPN для Fanvue (если нет)</li>
+<li>[ ] 4 телефонных номера для TikTok аккаунтов (или виртуальные)</li>
+<li>[ ] Определиться: 18+ контент или SFW (safe for work)</li>
+<li>[ ] Бюджет на старт: ~$75 (RunPod $25 + Whop $25 + запас $25)</li>
+</ul>
+<hr />
+<p><em>Подготовлено: Nex | 2026-02-20</em><br />
+<em>Источник: полная транскрипция видео Харчевникова + ресёрч</em></p>
+<a href="../index.html" class="back-btn">← Назад на главную</a>
 </div>
 </body>
 </html>
