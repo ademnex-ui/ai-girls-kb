@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI OFM — Глубокое исследование — AI Girls</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .article-meta { display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center; margin-bottom:1.25rem; }
+    .tag { background:rgba(74,158,255,0.08); color:rgb(74,158,255); border:1px solid rgba(74,158,255,0.2); padding:0.15rem 0.55rem; border-radius:3px; font-size:0.75rem; }
+    .date { color:rgb(85,85,85); font-size:0.8rem; }
+    .lead { font-size:0.95rem; color:rgb(170,170,170); line-height:1.7; margin-bottom:1.5rem; }
+    .callout { background:rgb(18,18,18); border-left:3px solid rgb(74,158,255); padding:1rem 1.25rem; border-radius:0 6px 6px 0; margin:1.25rem 0; font-size:0.9rem; color:rgb(136,136,136); }
+    .callout strong { color:rgb(204,204,204); }
+    .toc { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:1rem 1.25rem; margin:1.5rem 0; }
+    .toc-title { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:rgb(85,85,85); margin-bottom:0.75rem; }
+    .toc ol { padding-left:1.25rem; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:0 1rem; }
+    @media(max-width:600px){ .toc ol { grid-template-columns:1fr; } }
+    .toc li { padding:0.2rem 0; }
+    .toc a { color:rgb(102,102,102); font-size:0.82rem; }
+    .toc a:hover { color:rgb(74,158,255); }
+    .section-num { display:inline-block; background:rgba(74,158,255,0.12); color:rgb(74,158,255); border:1px solid rgba(74,158,255,0.2); border-radius:3px; padding:0.1rem 0.5rem; font-size:0.75rem; margin-bottom:0.4rem; }
+    .top-badge { display:inline-block; background:rgba(255,180,50,0.1); color:rgb(255,180,50); border:1px solid rgba(255,180,50,0.25); border-radius:3px; padding:0.1rem 0.5rem; font-size:0.72rem; margin-left:6px; vertical-align:middle; }
+    .funnel-block { background:rgb(10,10,10); border:1px solid rgb(26,26,26); border-radius:6px; padding:1rem 1.25rem; margin:1rem 0; overflow-x:auto; }
+    .funnel-block pre { margin:0; font-size:0.82rem; color:rgb(153,153,153); line-height:1.8; }
+    .persona-card { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:1rem 1.25rem; margin:0.75rem 0; }
+    .persona-card h4 { color:rgb(74,158,255); font-size:0.9rem; margin-bottom:0.5rem; }
+    .persona-card ul { margin:0; padding-left:1.2rem; }
+    .persona-card li { font-size:0.85rem; color:rgb(136,136,136); padding:2px 0; }
+    .divider { border:none; border-top:1px solid rgb(26,26,26); margin:2rem 0; }
+    .sources { font-size:0.75rem; color:rgb(68,68,68); font-style:italic; margin-top:0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="site-header">
+      <a href="../index.html" class="logo">AI GIRLS</a>
+      <div class="site-tagline">База знаний проекта — исследования, мануалы, стратегия</div>
+      <nav class="site-nav">
+        <a href="index.html" class="active">Исследования</a>
+        <a href="../manuals/index.html">Мануалы</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Инструменты</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Стратегия</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="breadcrumbs">
+        <a href="../index.html">Главная</a>
+        <span class="sep">/</span>
+        <a href="index.html">Исследования</a>
+        <span class="sep">/</span>
+        <span>AI OFM — Глубокое исследование</span>
+      </div>
+
+      <a href="index.html" class="back-btn">← Назад к исследованиям</a>
+
+      <article>
+        <div class="article-meta">
+          <span class="tag">Исследование</span>
+          <span class="tag">AI OFM</span>
+          <span class="tag">13 разделов</span>
+          <span class="date">25 февраля 2026</span>
+        </div>
+
+        <h1 style="font-size:1.4rem;color:rgb(220,220,220);margin-bottom:0.5rem;">AI OFM — Глубокое исследование</h1>
+        <p class="lead">Анализ 10 YouTube-транскрипций (2025–2026). Авторы: Tommy Bradshaw, Dorian, Jimmy Denero, Tom Voltt, Filip, AI Influencer Expert, Ivanich, Griffin (GriffinOFM).</p>
+
+        <div class="toc">
+          <div class="toc-title">Содержание — 13 разделов</div>
+          <ol>
+            <li><a href="#s1">Монетизация</a></li>
+            <li><a href="#s2">Воронки</a></li>
+            <li><a href="#s3">Создание персонажа</a></li>
+            <li><a href="#s4">Выбор целевой аудитории</a></li>
+            <li><a href="#s5">Продвижение</a></li>
+            <li><a href="#s6">Стек для видео</a></li>
+            <li><a href="#s7">Стек для фото</a></li>
+            <li><a href="#s8">Команда</a></li>
+            <li><a href="#s9">Расходы на запуск</a></li>
+            <li><a href="#s10">Статистика запусков</a></li>
+            <li><a href="#s11">Количество контента</a></li>
+            <li><a href="#s12">Доход с персонажа</a></li>
+            <li><a href="#s13">ТОП-10 персонажей</a></li>
+          </ol>
+        </div>
+
+        <div class="content-body">
+
+          <!-- 1. Монетизация -->
+          <h2 id="s1"><span class="section-num">01</span> Монетизация</h2>
+
+          <h3>Все способы монетизации</h3>
+          <table>
+            <thead><tr><th>Способ</th><th>Платформа</th><th>Описание</th></tr></thead>
+            <tbody>
+              <tr><td>Платная подписка</td><td>FanView, Boost, Patreon</td><td>$3–50/мес, recurring</td></tr>
+              <tr><td>PPV (pay-per-view)</td><td>FanView</td><td>Фото $3–100, видео $3–500+</td></tr>
+              <tr><td>Чаттинг (продажа контента в диалоге)</td><td>FanView DMs</td><td>Основной источник дохода</td></tr>
+              <tr><td>Tips / трибуты</td><td>FanView</td><td>Произвольные донаты от «китов»</td></tr>
+              <tr><td>Продажа контента за Telegram Stars</td><td>Telegram</td><td>550 звёзд ≈ $7.50</td></tr>
+              <tr><td>Telegram-подписка (broadcast)</td><td>Telegram</td><td>Ведёт к FanView</td></tr>
+              <tr><td>AI-чатбот (Cupid Bot)</td><td>Telegram / Instagram</td><td>Тест провалился (AI Influencer Expert)</td></tr>
+              <tr><td>Mass DM automation</td><td>Twitter/X</td><td>450 DM/аккаунт/день (Dorian)</td></tr>
+              <tr><td>Бесплатная страница + платный контент</td><td>FanView</td><td>Стратегия входа (Jimmy, Dorian, Tommy)</td></tr>
+              <tr><td>Курс / платная группа</td><td>Discord, Telegram</td><td>Сопутствующий бизнес авторов</td></tr>
+            </tbody>
+          </table>
+
+          <h3>ТОП-5 способов <span class="top-badge">TOP 5</span></h3>
+          <ol>
+            <li><strong>Чаттинг + PPV</strong> — «Подписки это 10–20% дохода. Большие деньги — в чаттинге» (Dorian). «High traffic + weak chats = $0. Strong chats + average traffic = money» (Tommy Bradshaw)</li>
+            <li><strong>Платная подписка FanView</strong> — базовый recurring-доход, снижает давление на ежедневные продажи</li>
+            <li><strong>Telegram broadcast → ретаргет → FanView</strong> — перехватывает тех, кто не конвертился напрямую (AI Influencer Expert: $5,205 за 30 дней)</li>
+            <li><strong>Mass DM/PPV automation (Twitter/X)</strong> — 450 DM/аккаунт/день, тысячи аккаунтов параллельно (Dorian: 26,000 подписчиков за 30 дней)</li>
+            <li><strong>«Кит»-стратегия</strong> — найти топ-спендеров и увеличивать средний чек через воронку ($3 → $100 → $500 → $2,000+). «80% денег приходит от китов» (Jimmy Denero)</li>
+          </ol>
+
+          <h3>Полная логика воронки монетизации</h3>
+          <div class="funnel-block">
+            <pre>Соцсеть (Instagram / TikTok / Threads / Twitter)
+    ↓ просмотры контента
+Профиль → Bio ссылка (нельзя прямо → Bridge Page или дочерний аккаунт)
+    ↓ клик
+Bridge Page (who.bio / Linktree / LinkMe / GetAllMyLinks)
+    ↓ клик
+FanView (бесплатная подписка или $3–7 trial)
+    ↓ подписка
+Приветственное сообщение → начало чата
+    ↓ чаттинг
+Бесплатные фото (1–5 шт) → разогрев
+    ↓
+Teasing видео $3–15 → продажа
+    ↓
+Более горячий контент $20–50 → upsell
+    ↓
+Hard content $50–100 → upsell
+    ↓
+Custom/extreme $100–$2,000+ → «кит»
+    ↓ параллельно
+Mass PPV/DM → реактивация спящих подписчиков</pre>
+          </div>
+
+          <hr class="divider">
+
+          <!-- 2. Воронки -->
+          <h2 id="s2"><span class="section-num">02</span> Воронки</h2>
+
+          <h3>Все воронки</h3>
+          <ol>
+            <li>Instagram → Bridge Page → FanView (основная, все авторы)</li>
+            <li>TikTok → Instagram → Bridge Page → FanView (Tommy Bradshaw, Tom Voltt, Ivanich)</li>
+            <li>Threads → Telegram → FanView (Tommy Bradshaw)</li>
+            <li>Twitter Mass DM/Post → FanView (Dorian — automation)</li>
+            <li>Instagram → Telegram Broadcast → FanView (AI Influencer Expert — ретаргет)</li>
+            <li>Dating Apps (Hinge/Tinder) → FanView (Jimmy Denero, tier 1 без денег)</li>
+            <li>Instagram Story → Telegram Channel (AI Influencer Expert)</li>
+            <li>Telegram → FanView прямая ссылка (Tommy Bradshaw)</li>
+            <li>Mother-Daughter аккаунты Instagram (Tommy Bradshaw — защита от банов)</li>
+          </ol>
+
+          <h3>ТОП-3 воронки <span class="top-badge">TOP 3</span></h3>
+
+          <div class="persona-card">
+            <h4>Воронка 1: Instagram → Bridge Page → FanView (основная)</h4>
+            <p style="font-size:0.85rem;color:rgb(136,136,136);margin-bottom:0.75rem;">Используют все авторы. Лучшее качество трафика.</p>
+            <div class="funnel-block" style="margin:0">
+              <pre>Шаг 1: Instagram аккаунт → прогрев 2–4 недели (без NSFW, имитация живого)
+Шаг 2: Reels + фото + Stories каждый день
+        Триггер: красота, lifestyle, storytelling в подписях
+Шаг 3: Bio → тег дочернего аккаунта (Mother-Daughter)
+        Дочерний держит ссылку на Bridge Page
+        Триггер: Curiosity + эмоциональный крючок → клик на профиль
+Шаг 4: Bridge Page (who.bio / Linktree)
+        Триггер: Социальное доказательство, реалистичность
+Шаг 5: FanView — free trial 3–7 дней или подписка $3
+        Триггер: «Бесплатно», низкий барьер входа
+Шаг 6: Приветственное сообщение → чаттинг → продажа PPV
+Деньги: PPV $3–$2,000+, чаттинг китов</pre>
+            </div>
+          </div>
+
+          <div class="persona-card">
+            <h4>Воронка 2: Instagram → Telegram Broadcast → FanView (AI Influencer Expert — $5,205/мес)</h4>
+            <div class="funnel-block" style="margin:0">
+              <pre>Шаг 1: Instagram Stories — тизер:
+        «Instagram удалил слишком откровенное фото, оно теперь в Telegram»
+        Триггер: FOMO, любопытство, низкий барьер (Telegram бесплатен)
+Шаг 2: Подписчик вступает в Telegram broadcast channel
+Шаг 3: Контент заранее запланирован на год вперёд
+        Триггер: пуш-уведомление в нужный момент — человек один
+Шаг 4: Периодически — «Жду тебя тут» + ссылка на FanView
+        Триггер: Момент одиночества → конверсия
+Шаг 5: Параллельно — продажа контента за Stars прямо в Telegram
+Деньги: FanView subscriptions + Telegram Stars ($50–$100/мес пассивно)</pre>
+            </div>
+          </div>
+
+          <div class="persona-card">
+            <h4>Воронка 3: TikTok + Threads → Instagram → FanView (стартовая, без денег)</h4>
+            <div class="funnel-block" style="margin:0">
+              <pre>Шаг 1: TikTok slideshows — крюк «He's a 10...» + раскрытие на след. слайде
+        Threads — rage bait + живые посты «Somebody FaceTime me? Скучаю»
+        Триггер TikTok: одинокие мужчины проваливаются в контент
+        Триггер Threads: мужчины верят, комментируют, подписываются
+Шаг 2: TikTok Bio → Instagram аккаунт; Threads Bio → Telegram/FanView прямо
+Шаг 3: Instagram набирает 50–100 фолловеров через перелив → активно ведём
+Шаг 4: Instagram Stories с CTA → FanView через Bridge Page
+Деньги: те же — подписка + PPV + чаттинг</pre>
+            </div>
+          </div>
+
+          <h3>Триггеры на каждом этапе</h3>
+          <table>
+            <thead><tr><th>Этап</th><th>Триггер</th></tr></thead>
+            <tbody>
+              <tr><td>Просмотр контента</td><td>Красота, curiosity hooks, storytelling, rage bait</td></tr>
+              <tr><td>Клик на профиль</td><td>«Хочу узнать больше» — незавершённость</td></tr>
+              <tr><td>Переход на Bridge Page</td><td>Реалистичный профиль, похож на настоящего инфлюэнсера</td></tr>
+              <tr><td>Подписка FanView</td><td>«Бесплатно», low barrier, FOMO</td></tr>
+              <tr><td>Первый платёж</td><td>Личная связь через чат, «она написала лично мне»</td></tr>
+              <tr><td>Повторные платежи</td><td>Паразоциальные отношения, upsell через воронку</td></tr>
+              <tr><td>Возврат спящих</td><td>Пуш-уведомления Telegram, mass DM «Ты в беде»</td></tr>
+            </tbody>
+          </table>
+
+          <hr class="divider">
+
+          <!-- 3. Создание персонажа -->
+          <h2 id="s3"><span class="section-num">03</span> Создание персонажа</h2>
+
+          <h3>На что обращают внимание</h3>
+          <ul>
+            <li><strong>Тема / идентичность (Theme):</strong> «В 2026 году просто красивая девушка без темы не работает» (Tommy Bradshaw). Примеры: студентка, фермерша, бортпроводница, стоматолог, gym girl, trucker girl.</li>
+            <li><strong>Реалистичность:</strong> «Когда ты красивая, женщина, и люди реально верят что ты настоящая — они дают деньги» (Jimmy Denero). Качество важнее количества.</li>
+            <li><strong>Нет AI-артефактов:</strong> Апскейл 4x generative (Dorian: «сырой AI-вид убивает конверсию»). Фотошоп обязателен.</li>
+            <li><strong>Контент для всех этапов:</strong> 30–50 фото для FanView, 9+ для Instagram, Stories, Reels (Dorian). Контент всегда в запасе.</li>
+            <li><strong>Character Bible:</strong> Имя, возраст, знак зодиака, город, хобби, питомцы, ценности, предыстория, личность. Кто делает фото — всегда подруга (Filip).</li>
+            <li><strong>Визуал соответствует нише:</strong> Gym girl → gym фото, не Lamborghini в Дубае (Filip).</li>
+            <li><strong>Одна тема → один Instagram аккаунт:</strong> Не смешивать несколько персонажей.</li>
+          </ul>
+
+          <h3>ТОП-5 принципов <span class="top-badge">TOP 5</span></h3>
+          <ol>
+            <li><strong>Реалистичность прежде всего</strong> — Tommy Bradshaw, Jimmy Denero, Filip, Dorian: реалистичный аккаунт конвертирует, AI-артефакты убивают продажи. «Garbage in = garbage out» (Jimmy).</li>
+            <li><strong>Тема/идентичность обязательна в 2026</strong> — Tommy Bradshaw, Filip: «Themes are a must». Тема = характер, к которому прилипают фаны.</li>
+            <li><strong>Character Bible — детальная история персонажа</strong> — Filip: клиенты строят паразоциальные отношения, проверяют детали. Рассинхрон = потеря доверия = потеря денег.</li>
+            <li><strong>Апскейл + Фотошоп каждого изображения</strong> — Dorian, Jimmy Denero: из 100 генераций 1–2 пригодны, и их ещё нужно дорабатывать. Экономить на качестве = убивать конверсию.</li>
+            <li><strong>«Подруга делает фото», не мужчина</strong> — Filip: если есть намёк на бойфренда → фаны теряют надежду → теряют деньги. Всегда = подруга снимает.</li>
+          </ol>
+
+          <hr class="divider">
+
+          <!-- 4. ЦА -->
+          <h2 id="s4"><span class="section-num">04</span> Выбор целевой аудитории</h2>
+
+          <h3>Логика выбора ЦА под персонажа</h3>
+          <ul>
+            <li><strong>ЦА = одинокие мужчины</strong> — Dorian: «Он одинок или застрял в плохих отношениях, постоянно ищет дофаминовые хиты». Весь контент строится под этот психотип.</li>
+            <li><strong>Возраст:</strong> TikTok — моложе; Threads/Instagram — взрослее и платёжеспособнее (Ivanich). Threads: мужчины 40+.</li>
+            <li><strong>Тема → ЦА:</strong> Gym girl → фитнес-аудитория, farm girl → любители природы и сельского lifestyle.</li>
+            <li><strong>Гео:</strong> Приоритет — США, Западная Европа. Ivanich: «Работаем на зарубежный сегмент».</li>
+            <li><strong>Нативный язык = нишевое преимущество</strong> — Filip: «Если английский не родной — работай на своём языке. В чаттинге сможешь делать нишевые вещи для своей страны».</li>
+            <li><strong>Griffin (контраргумент):</strong> ЦА в реальном OFM платит значительно больше AI OFM — «реальные связи = деньги».</li>
+          </ul>
+
+          <h3>ТОП-5 инсайтов по ЦА <span class="top-badge">TOP 5</span></h3>
+          <ol>
+            <li><strong>80% денег = 20% подписчиков («киты»)</strong> — Jimmy Denero, Dorian, Tommy: «80% денег приходит от китов». Ищи их, удерживай, не снижай им цену.</li>
+            <li><strong>ЦА не знает что это AI</strong> — Filip: «90% обычных людей не в курсе AI-инфлюэнсеров. И те, кто покупает контент — тоже не в курсе».</li>
+            <li><strong>Паразоциальные отношения движут деньгами</strong> — Filip, Tommy Bradshaw: клиент строит эмоциональную связь с персонажем. Character Bible это поддерживает.</li>
+            <li><strong>«Одиночество → момент слабости → конверсия»</strong> — AI Influencer Expert: Telegram даёт пуш-уведомление в нужный момент, когда человек один и готов тратить.</li>
+            <li><strong>Внимание, отношения, опыт — бесценны</strong> — Jimmy Denero: «Content is a commodity. But attention, relationship, experience — that is infinite, and it scales with the bank accounts of your customers». Поэтому NSFW необязателен.</li>
+          </ol>
+
+          <hr class="divider">
+
+          <!-- 5. Продвижение -->
+          <h2 id="s5"><span class="section-num">05</span> Продвижение персонажа</h2>
+
+          <h3>Все способы продвижения</h3>
+          <table>
+            <thead><tr><th>Платформа</th><th>Метод</th><th>Характеристика</th></tr></thead>
+            <tbody>
+              <tr><td>Instagram</td><td>Органика (Reels + фото + Stories)</td><td>Лучшее качество трафика, сложный старт</td></tr>
+              <tr><td>TikTok</td><td>Slideshows + Reels</td><td>Много трафика, молодая аудитория</td></tr>
+              <tr><td>Threads</td><td>Rage bait + живые посты</td><td>Быстрый старт, взрослая аудитория</td></tr>
+              <tr><td>Twitter/X</td><td>Mass automation (DM + posts)</td><td>450 DM/аккаунт/день, тысячи аккаунтов (Dorian)</td></tr>
+              <tr><td>Telegram</td><td>Broadcast channel</td><td>Ретаргет, страховка от банов</td></tr>
+              <tr><td>Dating Apps</td><td>Ручные (Hinge, Tinder)</td><td>Tier 1 без денег (Jimmy Denero)</td></tr>
+              <tr><td>Reddit</td><td>Упоминается, не рекомендуется</td><td>«Не пытайся Reddit — проиграешь» (Jimmy)</td></tr>
+              <tr><td>Платная реклама</td><td>Instagram promotions $10–15/пост</td><td>Быстрый рост, риск «promotional slave» (Filip)</td></tr>
+              <tr><td>Promo-закупки</td><td>Платно у блогеров</td><td>Tier 2 маркетинг</td></tr>
+              <tr><td>Cross-promo Telegram</td><td>Анонс новых аккаунтов своей аудитории</td><td>«2000 фолловеров нажатием одной кнопки» (AI Influencer Expert)</td></tr>
+            </tbody>
+          </table>
+
+          <h3>ТОП-3 способа <span class="top-badge">TOP 3</span></h3>
+
+          <div class="persona-card">
+            <h4>1. Instagram — Mother-Daughter система (Tommy Bradshaw, Filip)</h4>
+            <ul>
+              <li>Main аккаунт (Mother) — только контент, НЕТ прямых ссылок</li>
+              <li>Daughter аккаунт тегается в Bio матери → держит bridge page link</li>
+              <li>Daughter банится → создаётся новая, мать продолжает накапливать охваты</li>
+              <li>Контент: 3–5 Reels/день, фото + карусели, Stories ежедневно</li>
+              <li>Прогрев: 2–4 недели без NSFW, имитация реального поведения, скроллинг от лица аккаунта</li>
+              <li>Хэштеги: в первые 30 секунд после поста, в комментарии (не в пост)</li>
+            </ul>
+            <p class="sources">Результат: Tom Voltt — 3,000 фолловеров за 60 дней. Dorian — 26,000 подписчиков FanView за 30 дней.</p>
+          </div>
+
+          <div class="persona-card">
+            <h4>2. TikTok Slideshows (Tommy Bradshaw, Ivanich, Jimmy Denero)</h4>
+            <ul>
+              <li>Формат: слайды с крюком («He's a 10...» → следующий слайд с раскрытием)</li>
+              <li>Таргет на одиноких мужчин через эмоциональный контент</li>
+              <li>В Bio — Instagram аккаунт (TikTok не разрешает adult-ссылки)</li>
+              <li>После перелива 50–100 человек в Instagram → активно вести его</li>
+            </ul>
+            <p class="sources">Результат: «Некоторые получают 50K просмотров, некоторые миллионы» (Tommy Bradshaw)</p>
+          </div>
+
+          <div class="persona-card">
+            <h4>3. Threads Rage Bait (Tommy Bradshaw, Filip, Ivanich)</h4>
+            <ul>
+              <li>Создать аккаунт в Threads — первый пост сразу получает охваты</li>
+              <li>Rage bait: «Who the fuck would work at McDonald's? Just get money from your parents» → поток комментариев → фолловеры</li>
+              <li>Живые посты: «Somebody FaceTime me. I'm bored» → мужчины верят</li>
+              <li>В Bio: Telegram ссылка или прямая ссылка на FanView (Threads менее ограничен)</li>
+              <li>Аудитория: взрослые мужчины 40+, платёжеспособные</li>
+            </ul>
+            <p class="sources">Результат: «Threads — самый быстрый первый старт, первый пост уже получает охваты» (Tommy Bradshaw)</p>
+          </div>
+
+          <hr class="divider">
+
+          <!-- 6. Стек видео -->
+          <h2 id="s6"><span class="section-num">06</span> Стек для генерации ВИДЕО</h2>
+
+          <h3>Все сервисы для видео</h3>
+          <ul>
+            <li><strong>Kling</strong> — face swap на видео, image editing (inpaint, expand, remove)</li>
+            <li><strong>Cidream (Cdream V4 / WaveSpeed)</strong> — видео + фото, API для автоматизации (Tom Voltt)</li>
+            <li><strong>Hailuo</strong> — генерация видео (Tommy Bradshaw)</li>
+            <li><strong>OneAnimate (ComfyUI)</strong> — фото модели + референсное видео → видео с движениями референса но лицом модели (Ivanich: версия 2.1)</li>
+            <li><strong>ComfyUI (RunPod)</strong> — мощная масштабируемая генерация, $0.60–$0.69/час GPU (Jimmy Denero, Filip)</li>
+            <li><strong>Z-IMAGE</strong> — новая китайская модель, секунды vs минут, поддержка текста на объектах (Filip)</li>
+          </ul>
+
+          <h3>ТОП-5 стеков для видео <span class="top-badge">TOP 5</span></h3>
+
+          <div class="persona-card">
+            <h4>Стек 1: ComfyUI + OneAnimate (Ivanich — рекомендован для новичков)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>Фото модели → ComfyUI (OneAnimate 2.1) + Референсное видео
+→ Генерация: лицо модели + движения/обстановка референса
+→ Реалистичное видео с «твоей» моделью</pre>
+            </div>
+            <p class="sources">Инструменты: ComfyUI на RunPod ($0.69/час), OneAnimate 2.1</p>
+          </div>
+
+          <div class="persona-card">
+            <h4>Стек 2: Kling + Photoshop (Jimmy Denero — практик $40K/мес)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>AI-лицо (высокое качество)
+→ Kling Face Swap на видео реальной модели
+→ Kling Image Editing (inpaint/expand/remove для дочистки)
+→ Photoshop (liquify, generative fill, remove tool)
+→ Публикация</pre>
+            </div>
+            <p class="sources">Принцип: «Garbage in = garbage out», из 100 — 1–2 годных, дочищать в Фотошопе</p>
+          </div>
+
+          <div class="persona-card">
+            <h4>Стек 3: Cidream API + Airtable (Tom Voltt — автоматизация)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>Cidream (Cdream V4 / WaveSpeed) API
+→ Интеграция с Airtable (Jimmy-автоматизация)
+→ Автоматическая пакетная генерация видео
+→ Расписание публикации</pre>
+            </div>
+            <p class="sources">Применение: массовая генерация без ручного труда</p>
+          </div>
+
+          <div class="persona-card">
+            <h4>Стек 4: Hailuo + Kling (Tommy Bradshaw — $60K/мес)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>FLUX/Midjourney → сгенерировать консистентный образ
+→ Hailuo или Kling → анимировать
+→ Reels/Stories контент</pre>
+            </div>
+          </div>
+
+          <div class="persona-card">
+            <h4>Стек 5: Z-IMAGE + ComfyUI (Filip — новейший, 2025–2026)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>Grok (промпт-генератор без цензуры из Discord)
+→ Z-IMAGE через ComfyUI (RunPod: 40GB container + 120GB volume)
+→ Установка bash-скриптом (автоустановка моделей/VAE/nodes)
+→ Drag&amp;drop JSON workflow → генерация за секунды
+→ Z-IMAGE LoRA → суперконсистентный персонаж</pre>
+            </div>
+            <p class="sources">Преимущество: секунды vs минуты, «свежий» стиль — не умеют определять как AI (Filip)</p>
+          </div>
+
+          <hr class="divider">
+
+          <!-- 7. Стек фото -->
+          <h2 id="s7"><span class="section-num">07</span> Стек для генерации ФОТО</h2>
+
+          <h3>Все сервисы для фото</h3>
+          <ul>
+            <li><strong>MySnapFace.com</strong> — 3 режима: pure AI / mix AI+real / advanced (Dorian)</li>
+            <li><strong>OpenArt AI</strong> — создание базового облика (Tom Voltt)</li>
+            <li><strong>Midjourney</strong> — базовая генерация (Tommy Bradshaw)</li>
+            <li><strong>FLUX</strong> — базовая генерация (Tommy Bradshaw, Filip)</li>
+            <li><strong>Cidream / Cdream V4 (WaveSpeed)</strong> — 3–4 референса → одна консистентная модель (Ivanich, Tom Voltt)</li>
+            <li><strong>ComfyUI (RunPod)</strong> — LoRA, массовая генерация (Jimmy Denero, Filip)</li>
+            <li><strong>Higsfield AI (Higsfield Soul)</strong> — Instagram-эстетика, простой инструмент (Jimmy Denero)</li>
+            <li><strong>Kling</strong> — face swap фото, image editing (Jimmy Denero)</li>
+            <li><strong>Picasso</strong> — face swap фото, онлайн (Jimmy Denero)</li>
+            <li><strong>Z-IMAGE</strong> — ультра-реализм, NSFW, секундная генерация (Filip)</li>
+            <li><strong>ChatGPT / Grok</strong> — извлечение промптов из референсных фото (ракурс, свет, объектив) (Ivanich)</li>
+            <li><strong>Hugging Face → Joy Caption</strong> — детальное описание одежды для промптов (Ivanich)</li>
+            <li><strong>Pinterest</strong> — референсы для вдохновения (Filip, AI Influencer Expert)</li>
+            <li><strong>Photoshop</strong> — финальная дочистка каждого фото (Jimmy Denero)</li>
+            <li><strong>Upscale 4x generative</strong> (MySnapFace встроенный) — убрать AI-вид (Dorian)</li>
+          </ul>
+
+          <h3>ТОП-5 стеков для фото <span class="top-badge">TOP 5</span></h3>
+
+          <div class="persona-card">
+            <h4>Стек 1: Cdream V4 + ChatGPT/Grok + Joy Caption (Ivanich)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>Pinterest/реальное фото
+→ Joy Caption (HuggingFace) → промпт одежды/обстановки
+→ ChatGPT/Grok → извлечение ракурса, света, объектива
+→ 3–4 референса → Cdream V4 (WaveSpeed)
+→ Одна консистентная модель → готовое фото</pre>
+            </div>
+          </div>
+
+          <div class="persona-card">
+            <h4>Стек 2: AI-лицо → Face Swap → Photoshop (Jimmy Denero — $40K/мес)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>AI-лицо (скриншот из AI-генератора, высокое качество)
+→ Instagram модели (Mass Downloader Chrome ext → скачать 20+ фото)
+→ Kling / Picasso — face swap на 20 фото реальной модели
+→ Photoshop (remove tool, liquify, generative fill)
+→ 20 character images — база для LoRA и контента</pre>
+            </div>
+            <p class="sources">Правило: плохое референс-фото = плохой результат. Только модели без фильтров, с реальными фото.</p>
+          </div>
+
+          <div class="persona-card">
+            <h4>Стек 3: ComfyUI LoRA + RunPod (Jimmy Denero / Filip — масштаб)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>20 character images → тренировка LoRA в ComfyUI
+→ RunPod GPU ($0.60–0.69/час)
+→ Массовая генерация вариаций персонажа
+→ Из 100 генераций — 1–2 годных → Photoshop дочистка</pre>
+            </div>
+          </div>
+
+          <div class="persona-card">
+            <h4>Стек 4: MySnapFace + Upscale 4x (Dorian — $100K за 4 мес)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>MySnapFace.com (режим mix AI+real)
+→ Настройка внешности (молодая, стройная, белые волосы, большие губы и т.д.)
+→ Генерация изображений
+→ Три точки → Upscale → 4x generative (убрать AI-вид)
+→ Стили: Instagram (lifestyle) / Stories (любительские селфи) / FanView (NSFW)
+Нужно: 30–50 фото FanView, 9+ Instagram, Stories</pre>
+            </div>
+          </div>
+
+          <div class="persona-card">
+            <h4>Стек 5: Z-IMAGE + ComfyUI + Grok промпты (Filip — новейший 2026)</h4>
+            <div class="funnel-block" style="margin:0.5rem 0 0">
+              <pre>Grok (промпт-генератор без цензуры из Discord) → 5 готовых промптов
+→ Z-IMAGE Turbo в ComfyUI (RunPod: 40GB container + 120GB volume)
+→ Установка bash-скриптом (автоматически качает модели/VAE/text encoders)
+→ Drag&amp;drop JSON workflow → генерация за секунды
+→ (опционально) Z-IMAGE LoRA → суперконсистентный персонаж</pre>
+            </div>
+            <p class="sources">«Старые модели (Flux, Seedream) уже узнают. Z-IMAGE — свежий стиль» (Filip)</p>
+          </div>
+
+          <hr class="divider">
+
+          <!-- 8. Команда -->
+          <h2 id="s8"><span class="section-num">08</span> Команда</h2>
+
+          <h3>Сколько человек</h3>
+          <ul>
+            <li><strong>Начало:</strong> 1 человек (сам автор + всё) — стандарт для большинства</li>
+            <li><strong>Рабочая модель:</strong> 1–3 чаттера на смену, 3–4 смены/день = 3–12 человек (Dorian)</li>
+            <li><strong>$60K/мес (Tommy Bradshaw):</strong> «Несколько виртуальных сотрудников» — 2–3 часа работы автора в день</li>
+            <li><strong>$40K/мес (Jimmy Denero):</strong> Строит иерархию постепенно — сначала сам, потом 1–2 чаттера, потом менеджер найма</li>
+          </ul>
+
+          <h3>Роли и навыки</h3>
+          <table>
+            <thead><tr><th>Роль</th><th>Функция</th><th>Навыки</th></tr></thead>
+            <tbody>
+              <tr><td>Основатель / Оператор</td><td>Стратегия, создание модели, маркетинг, контент</td><td>Всё сразу на старте</td></tr>
+              <tr><td>Чаттер</td><td>24/7 диалоги с подписчиками, продажа PPV</td><td>Эмпатия, английский, знание скриптов, понимание воронки</td></tr>
+              <tr><td>VA (Virtual Assistant)</td><td>Постинг, scheduling, мелкие задачи</td><td>Базовые соцсети</td></tr>
+              <tr><td>Менеджер чаттеров</td><td>Найм, обучение, контроль команды</td><td>OFM опыт, управленческие навыки</td></tr>
+              <tr><td>Создатель контента</td><td>Генерация фото/видео</td><td>ComfyUI, Photoshop, промпт-инжиниринг</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Найм / аутсорс / автоматизация</h3>
+          <ul>
+            <li><strong>Чаттеры с Филиппин или других стран</strong> — низкая оплата, высокая эффективность (Tom Voltt)</li>
+            <li><strong>Комиссия 10–15% с продаж</strong> — стандарт оплаты чаттера (Dorian)</li>
+            <li><strong>Upwork + Telegram OFM-группы</strong> — площадки найма (Dorian)</li>
+            <li><strong>3 месяца боли</strong> — нанимаешь 1–2 чаттера, они «отстой», увольняешь, нанимаешь снова (Jimmy Denero)</li>
+            <li><strong>SOP обязателен</strong> — создать инструкцию → обучить → делегировать (Dorian, Tommy Bradshaw)</li>
+            <li><strong>Automation (mass DM, mass posting)</strong> — Twitter/X automation для тысяч аккаунтов (Dorian)</li>
+            <li><strong>Airtable + Jimmy API + Cidream</strong> — полная автоматизация генерации и публикации (Tom Voltt)</li>
+          </ul>
+
+          <hr class="divider">
+
+          <!-- 9. Расходы -->
+          <h2 id="s9"><span class="section-num">09</span> Расходы на запуск 1 персонажа</h2>
+
+          <table>
+            <thead><tr><th>Категория</th><th>Инструмент / Расход</th><th>Стоимость</th></tr></thead>
+            <tbody>
+              <tr><td>Генерация фото</td><td>MySnapFace, OpenArt AI, Midjourney, Flux</td><td>$10–30/мес</td></tr>
+              <tr><td>Генерация фото (мощный)</td><td>ComfyUI на RunPod</td><td>$0.60–0.69/час</td></tr>
+              <tr><td>Генерация видео</td><td>Kling, Hailuo, Cidream, OneAnimate</td><td>$20–50/мес</td></tr>
+              <tr><td>GPU аренда</td><td>RunPod (ComfyUI)</td><td>$0.60–0.69/час</td></tr>
+              <tr><td>Антидетект браузер</td><td>Vision (платный)</td><td>$29/мес</td></tr>
+              <tr><td>Антидетект браузер</td><td>Dolphin (бесплатный)</td><td>$0 (5 профилей)</td></tr>
+              <tr><td>Bridge Page</td><td>who.bio / Linktree / LinkMe</td><td>$0–10/мес</td></tr>
+              <tr><td>FanView комиссия</td><td>Платформа</td><td>20% с продаж</td></tr>
+              <tr><td>Прогрев аккаунта</td><td>Новый телефон + SIM</td><td>$50–200 (опционально)</td></tr>
+              <tr><td>Продвижение Instagram</td><td>Promotions</td><td>$10–15/пост</td></tr>
+              <tr><td>AI-чатбот (Cupid Bot)</td><td>После trial</td><td>$0.12/диалог</td></tr>
+              <tr><td>Photoshop / editing</td><td>Adobe</td><td>$20/мес</td></tr>
+              <tr><td>Чаттер</td><td>Комиссия</td><td>10–15% с продаж</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            <strong>Итоговая оценка:</strong> $50–200/мес на инструменты при старте. При масштабировании: + зарплата чаттеров (10–15% от дохода). Jimmy Denero: «Dirt cheap» — $50–100/мес на инструменты. Маржа Tommy Bradshaw: ~80%.
+          </div>
+
+          <hr class="divider">
+
+          <!-- 10. Статистика -->
+          <h2 id="s10"><span class="section-num">10</span> Статистика запусков</h2>
+
+          <h3>Конкретные данные из видео</h3>
+          <table>
+            <thead><tr><th>Автор</th><th>Ситуация</th><th>Результат</th></tr></thead>
+            <tbody>
+              <tr><td>Tom Voltt студент</td><td>1-я модель — флоп, 2-я — правильный подход</td><td>$5,600 за 60 дней</td></tr>
+              <tr><td>AI Influencer Expert</td><td>1 новая модель, чистая органика</td><td>$5,205 за 30 дней</td></tr>
+              <tr><td>Dorian</td><td>Первый месяц новой модели</td><td>$19,000 / мес</td></tr>
+              <tr><td>Dorian (вторая)</td><td>Долгосрочная + automation</td><td>~$100K за 4 мес</td></tr>
+              <tr><td>Tommy Bradshaw</td><td>0 → работник ресторана → за 4 мес</td><td>$60K+/мес</td></tr>
+              <tr><td>Jimmy Denero</td><td>0 → 2 месяца с нуля</td><td>$40K/мес</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Процент залетающих персонажей</h3>
+          <ul>
+            <li><strong>Tom Voltt:</strong> 1 из 2 = 50% при правильном подходе (первая — флоп из-за ошибок)</li>
+            <li><strong>Griffin (контрарный взгляд):</strong> «AI хайп уничтожит 90% фейковых OFM агентств» — 10% выживают</li>
+            <li><strong>Большинство авторов:</strong> начать с одной модели и довести до результата — тогда 1/1</li>
+          </ul>
+
+          <h3>Сколько нужно запустить</h3>
+          <ul>
+            <li>Tommy Bradshaw: «Сначала первая → $10K/мес → потом вторая, третья...»</li>
+            <li>Jimmy Denero: «Один канал → доведи до результата → потом расширяй»</li>
+            <li>Масштаб через объём: «1M просмотров = $10K → 2M = $20K» (Dorian)</li>
+          </ul>
+
+          <hr class="divider">
+
+          <!-- 11. Контент -->
+          <h2 id="s11"><span class="section-num">11</span> Количество и соотношение контента</h2>
+
+          <h3>Сколько контента в день</h3>
+          <table>
+            <thead><tr><th>Платформа</th><th>Количество</th><th>Источник</th></tr></thead>
+            <tbody>
+              <tr><td>Instagram Reels</td><td>3–5 в день, без пропусков</td><td>Dorian, Tommy Bradshaw</td></tr>
+              <tr><td>Instagram Stories</td><td>2–3 в день минимум</td><td>Tom Voltt, Filip</td></tr>
+              <tr><td>Instagram фото/карусели</td><td>1–3 в день (алгоритм буустит)</td><td>Tom Voltt</td></tr>
+              <tr><td>TikTok</td><td>День 1–3: по 1–2 ролика; с 4–5 дня: 3–4/день</td><td>Ivanich</td></tr>
+              <tr><td>Threads</td><td>Несколько постов в день</td><td>Tommy Bradshaw</td></tr>
+              <tr><td>Twitter/X (mass)</td><td>1–5/аккаунт/день × тысячи аккаунтов</td><td>Dorian</td></tr>
+              <tr><td>Telegram</td><td>Ежедневно, запланировано на год вперёд</td><td>AI Influencer Expert</td></tr>
+              <tr><td>FanView</td><td>1 платный пост всегда доступен + PPV в чате</td><td>Tommy Bradshaw</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Соотношение по платформам (рекомендации)</h3>
+          <table>
+            <thead><tr><th>Платформа</th><th>Приоритет</th><th>% усилий</th></tr></thead>
+            <tbody>
+              <tr><td>Instagram</td><td>#1 — лучший трафик + конверсия</td><td>50–60%</td></tr>
+              <tr><td>TikTok</td><td>#2 — много трафика, молодая аудитория</td><td>20–30%</td></tr>
+              <tr><td>Threads</td><td>#3 — быстрый старт, взрослые мужчины 40+</td><td>10–20%</td></tr>
+              <tr><td>Telegram</td><td>Параллельно всему — страховка и ретаргет</td><td>—</td></tr>
+              <tr><td>Twitter/X</td><td>Только при масштабировании через automation</td><td>—</td></tr>
+            </tbody>
+          </table>
+
+          <hr class="divider">
+
+          <!-- 12. Доход -->
+          <h2 id="s12"><span class="section-num">12</span> Доход с 1 персонажа</h2>
+
+          <h3>Средний доход (по авторам)</h3>
+          <table>
+            <thead><tr><th>Автор</th><th>Доход / период</th><th>Примечание</th></tr></thead>
+            <tbody>
+              <tr><td>AI Influencer Expert</td><td>$5,205 / 30 дней</td><td>Новая модель, чистая органика, Telegram-воронка</td></tr>
+              <tr><td>Tom Voltt (студент)</td><td>$5,600 / 60 дней</td><td>Первый опыт, 2 топ-спендера = 60% дохода</td></tr>
+              <tr><td>Dorian</td><td>$19,000 / 30 дней</td><td>Первый месяц новой модели</td></tr>
+              <tr><td>Dorian (вторая)</td><td>~$100K / 4 мес</td><td>С automation Twitter</td></tr>
+              <tr><td>Tommy Bradshaw</td><td>$56K–$61K / мес</td><td>4 месяца опыта, маржа ~80%, 2–3 ч/день</td></tr>
+              <tr><td>Jimmy Denero</td><td>$32K–$40K / мес</td><td>2 месяца с нуля, две модели суммарно</td></tr>
+              <tr><td>Tommy Bradshaw (ориентир)</td><td>$5K–$10K/мес</td><td>Цель для новичка за 60 дней</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Сроки</h3>
+          <ul>
+            <li><strong>До первых денег:</strong> 1–2 недели после первых подписчиков</li>
+            <li><strong>До $1K–5K/мес:</strong> 1–3 месяца (стандарт)</li>
+            <li><strong>До $10K/мес:</strong> «60 дней — реалистично при правильном исполнении» (Tommy Bradshaw)</li>
+            <li><strong>Scalability:</strong> «Если можно сделать 1 до $10K → можно сделать 2, 3, 4, 5» (Tommy Bradshaw)</li>
+            <li><strong>Ivanich:</strong> «Либо зарабатываете много, либо ещё больше — качелей нет»</li>
+          </ul>
+
+          <hr class="divider">
+
+          <!-- 13. ТОП персонажи -->
+          <h2 id="s13"><span class="section-num">13</span> ТОП-10 персонажей которые залетели</h2>
+
+          <div class="callout">Большинство авторов не называют точных имён аккаунтов (конкурентная защита). Ниже — всё что упоминается явно или описательно.</div>
+
+          <div class="persona-card">
+            <h4>1. Безымянная модель — AI Influencer Expert</h4>
+            <ul>
+              <li><strong>Платформа:</strong> Instagram (14.6M просмотров/мес) + FanView + Telegram</li>
+              <li><strong>ЦА:</strong> Мужчины, преимущественно US East Coast</li>
+              <li><strong>Доход:</strong> $5,205 за 30 дней</li>
+              <li><strong>Успех:</strong> Telegram-воронка для ретаргета + бесплатная страница + чистая органика без рекламы</li>
+            </ul>
+          </div>
+
+          <div class="persona-card">
+            <h4>2. Модель студента Tom Voltt</h4>
+            <ul>
+              <li><strong>Платформа:</strong> Instagram + FanView</li>
+              <li><strong>Доход:</strong> $5,600 за 60 дней</li>
+              <li><strong>Успех:</strong> Личный чаттинг 4–6 часов в день. «Двое потратили 60% всего дохода» ($2,500 один)</li>
+              <li><strong>Стек:</strong> OpenArt AI + Cidream + Clink, фото на реальных фонах</li>
+            </ul>
+          </div>
+
+          <div class="persona-card">
+            <h4>3. Модель Dorian #1 (сентябрь 2025)</h4>
+            <ul>
+              <li><strong>Платформа:</strong> FanView + Instagram</li>
+              <li><strong>Внешность:</strong> Молодая, стройная, нестандартный цвет волос (белые), большие губы — создана на MySnapFace</li>
+              <li><strong>ЦА:</strong> Одинокие мужчины</li>
+              <li><strong>Доход:</strong> $19,000 за первый месяц</li>
+              <li><strong>Успех:</strong> Агрессивный чаттинг, воронка от KYC до «китов», ежедневные Reels без пропусков</li>
+            </ul>
+          </div>
+
+          <div class="persona-card">
+            <h4>4. Модель Dorian #2 (долгосрочная)</h4>
+            <ul>
+              <li><strong>Платформа:</strong> FanView + Instagram + Twitter mass automation</li>
+              <li><strong>Доход:</strong> ~$100K за 4 месяца</li>
+              <li><strong>Успех:</strong> Mass automation Twitter (26,000 подписчиков FanView за 30 дней), 24/7 команда чаттеров</li>
+            </ul>
+          </div>
+
+          <div class="persona-card">
+            <h4>5–6. Две модели Jimmy Denero (июль 2025)</h4>
+            <ul>
+              <li><strong>Платформа:</strong> FanView + Instagram + TikTok</li>
+              <li><strong>Внешность:</strong> «Realistic hot girl» — главная ниша. Реалистичная привлекательная девушка без нишевания</li>
+              <li><strong>Доход:</strong> $32,000–$40,000/мес суммарно с двух моделей</li>
+              <li><strong>Успех:</strong> «Реалистичность = деньги». ComfyUI LoRA, Face swap на реальные Instagram-модели, 80% денег от китов без NSFW</li>
+            </ul>
+          </div>
+
+          <div class="persona-card">
+            <h4>7. Модели Tommy Bradshaw (4 месяца, февраль 2026)</h4>
+            <ul>
+              <li><strong>Платформа:</strong> FanView + Instagram + TikTok</li>
+              <li><strong>Темы:</strong> Студентка, farm girl, trucker girl (упомянуты как примеры)</li>
+              <li><strong>Доход:</strong> $56K–$61K/мес суммарно</li>
+              <li><strong>Успех:</strong> Правильные темы-идентичности, Mother-Daughter система Instagram, tracking links, масштаб через несколько персонажей</li>
+            </ul>
+          </div>
+
+          <div class="persona-card">
+            <h4>8. «Gym Girl» (архетип — Tommy Bradshaw, Filip)</h4>
+            <ul>
+              <li><strong>Платформа:</strong> Instagram + TikTok</li>
+              <li><strong>Внешность:</strong> Спортивная, gym-эстетика, натуральный образ</li>
+              <li><strong>ЦА:</strong> Фитнес-аудитория + широкая мужская</li>
+              <li><strong>Успех:</strong> Тема создаёт образ жизни, к которому аудитория прилипает. Stories с тренировками, селфи в зале.</li>
+            </ul>
+          </div>
+
+          <div class="persona-card">
+            <h4>9. «Threads girl» — Tommy Bradshaw</h4>
+            <ul>
+              <li><strong>Платформа:</strong> Threads + Telegram + FanView</li>
+              <li><strong>Формат:</strong> Живые посты «Somebody FaceTime me. I'm bored.» → мужчины верят</li>
+              <li><strong>ЦА:</strong> Взрослые мужчины 40+ в Threads</li>
+              <li><strong>Успех:</strong> Threads даёт охваты с первого поста. Посты имитируют живое общение.</li>
+            </ul>
+          </div>
+
+          <div class="persona-card">
+            <h4>10. Модель на Z-IMAGE + LoRA (Filip, конец 2025–2026)</h4>
+            <ul>
+              <li><strong>Платформа:</strong> Instagram</li>
+              <li><strong>Внешность:</strong> Любая (gamer girl с чёрными волосами, рыжая — примеры)</li>
+              <li><strong>Успех:</strong> Z-IMAGE — стиль ещё не умеют распознавать как AI. Генерация за секунды. Grok-промпты без цензуры. LoRA = суперконсистентный персонаж.</li>
+            </ul>
+          </div>
+
+          <hr class="divider">
+
+          <!-- Итоговая сводка -->
+          <h2>Ключевые разногласия авторов</h2>
+          <table>
+            <thead><tr><th>Тема</th><th>Мнение 1</th><th>Мнение 2</th></tr></thead>
+            <tbody>
+              <tr><td>AI OFM vs реальный OFM</td><td>Будущее индустрии (Tommy, Dorian, Jimmy)</td><td>«Просто ещё одна фаза» (Griffin)</td></tr>
+              <tr><td>NSFW обязателен</td><td>Без него не заработать больших денег</td><td>«$40K/мес без NSFW, 80% = киты» (Jimmy Denero)</td></tr>
+              <tr><td>Нишевание</td><td>«Темы — must в 2026» (Tommy Bradshaw)</td><td>«Ниша — отвлечение. Главное реалистичность» (Jimmy)</td></tr>
+              <tr><td>Чатбот (Cupid Bot)</td><td>Не работает при AI OFM (AI Influencer Expert)</td><td>Может работать при hybrid OFM</td></tr>
+              <tr><td>Новый телефон/SIM</td><td>Нужен для нескольких аккаунтов</td><td>Не нужен на старте (Filip)</td></tr>
+              <tr><td>Масштаб</td><td>Сначала 1 → $10K → потом следующая (Tommy)</td><td>Масштаб объёма рабочей формулы (Dorian)</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout" style="margin-top:2rem;">
+            <strong>Источники:</strong> 10 транскрипций YouTube-видео (2025–2026). Все факты, цифры и цитаты верифицированы по первоисточникам. Tommy Bradshaw, Dorian, Jimmy Denero, Tom Voltt, Filip (AI Influencer Expert), Ivanich, Griffin (GriffinOFM).
+          </div>
+
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer-bottom">
+      <p>AI Girls — внутренняя база знаний проекта · 25 февраля 2026</p>
+    </footer>
+
+  </div>
+</body>
+</html>
