@@ -4,201 +4,108 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RunPod + ComfyUI — AI-персонаж для Fanvue — AI Girls</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/style.css">
   <style>
-    .step-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 48px 0 16px;
-    }
-    .step-num {
-      background: var(--accent);
-      color: #000;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 4px 10px;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-    .step-header h2 {
-      margin: 0;
-      font-size: 1.2rem;
-      color: var(--text-primary);
-    }
-    .arch-block {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 8px;
-      padding: 20px 24px;
-      margin: 24px 0;
-      overflow-x: auto;
-    }
-    .arch-block pre {
-      margin: 0;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: #ccc;
-      line-height: 1.7;
-    }
-    .cost-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 20px 0;
-    }
-    @media (max-width: 600px) { .cost-grid { grid-template-columns: 1fr; } }
-    .cost-card {
-      background: #111;
-      border: 1px solid #1e3a5f;
-      border-radius: 8px;
-      padding: 16px;
-      text-align: center;
-    }
-    .cost-card .label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
-    .cost-card .value { font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent); font-weight: 700; }
-    .checklist { list-style: none; padding: 0; }
-    .checklist li {
-      padding: 8px 0 8px 28px;
-      position: relative;
-      border-bottom: 1px solid #1a1a1a;
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-    }
-    .checklist li::before {
-      content: "□";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-family: var(--font-mono);
-    }
-    .checklist li:last-child { border-bottom: none; }
-    .day-block {
-      background: #0d1117;
-      border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 16px 0;
-    }
-    .day-block h4 {
-      margin: 0 0 12px;
-      color: var(--accent);
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-    }
-    .warning-box {
-      background: #1a1200;
-      border: 1px solid #4a3800;
-      border-radius: 8px;
-      padding: 14px 18px;
-      margin: 16px 0;
-      font-size: 0.9rem;
-      color: #c8a44a;
-    }
-    .warning-box strong { color: #e8c060; }
-    .info-box {
-      background: #0a1628;
-      border: 1px solid #1e3a5f;
-      border-radius: 8px;
-      padding: 14px 18px;
-      margin: 16px 0;
-      font-size: 0.9rem;
-      color: #7ab3e0;
-    }
-    .info-box strong { color: var(--accent); }
-    .links-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 20px 0;
-    }
-    @media (max-width: 600px) { .links-grid { grid-template-columns: 1fr; } }
-    .link-card {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 8px;
-      padding: 12px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      text-decoration: none;
-      transition: border-color 0.2s;
-    }
-    .link-card:hover { border-color: var(--accent); }
-    .link-card .lc-label { font-size: 0.8rem; color: var(--text-muted); }
-    .link-card .lc-url { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); word-break: break-all; }
-    .params-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
-    .params-table th { background: #111; color: var(--text-muted); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid #222; }
-    .params-table td { padding: 9px 14px; border-bottom: 1px solid #1a1a1a; color: var(--text-secondary); vertical-align: top; }
-    .params-table tr:last-child td { border-bottom: none; }
-    .params-table td:first-child { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-primary); }
-    .params-table td:nth-child(2) { color: var(--accent); font-family: var(--font-mono); }
-    .angle-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
-    .angle-table th { background: #111; color: var(--text-muted); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid #222; }
-    .angle-table td { padding: 9px 14px; border-bottom: 1px solid #1a1a1a; color: var(--text-secondary); }
-    .angle-table tr:last-child td { border-bottom: none; }
-    .angle-table td:last-child { font-family: var(--font-mono); color: var(--accent); text-align: right; }
-    .badge { display: inline-block; background: #0a1628; border: 1px solid #1e3a5f; border-radius: 4px; padding: 2px 8px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
-    .toc { background: #0d1117; border: 1px solid #1e3a5f; border-radius: 8px; padding: 20px 24px; margin: 32px 0; }
-    .toc h3 { margin: 0 0 12px; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .toc ol { margin: 0; padding-left: 20px; }
-    .toc li { padding: 4px 0; }
-    .toc a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
-    .toc a:hover { color: var(--accent); }
-    .new-badge { display: inline-block; background: #0d2b0d; border: 1px solid #1a5c1a; border-radius: 3px; padding: 1px 6px; font-size: 0.7rem; color: #4caf50; margin-left: 8px; vertical-align: middle; font-family: var(--font-mono); }
+    .article-meta { display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center; margin-bottom:1.25rem; }
+    .tag { background:rgba(74,158,255,0.08); color:rgb(74,158,255); border:1px solid rgba(74,158,255,0.2); padding:0.15rem 0.55rem; border-radius:3px; font-size:0.75rem; }
+    .tag-green { background:rgba(74,200,100,0.08); color:rgb(74,200,100); border-color:rgba(74,200,100,0.2); }
+    .date { color:rgb(85,85,85); font-size:0.8rem; }
+    .lead { font-size:1rem; color:rgb(170,170,170); line-height:1.7; margin-bottom:1.5rem; }
+    .callout { background:rgb(18,18,18); border-left:3px solid rgb(74,158,255); padding:1rem 1.25rem; border-radius:0 6px 6px 0; margin:1.25rem 0; font-size:0.9rem; color:rgb(136,136,136); }
+    .callout-warning { border-left-color:rgb(200,164,74); }
+    .callout strong { color:rgb(204,204,204); }
+    .toc { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:1rem 1.25rem; margin:1.5rem 0; }
+    .toc-title { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:rgb(85,85,85); margin-bottom:0.75rem; }
+    .toc ol { padding-left:1.25rem; margin:0; }
+    .toc li { padding:0.25rem 0; }
+    .toc a { color:rgb(102,102,102); font-size:0.85rem; }
+    .toc a:hover { color:rgb(74,158,255); }
+    .new-badge { display:inline-block; background:rgba(74,200,100,0.1); border:1px solid rgba(74,200,100,0.25); border-radius:3px; padding:1px 6px; font-size:0.68rem; color:rgb(74,200,100); margin-left:6px; vertical-align:middle; }
+    .step-label { display:inline-block; background:rgba(74,158,255,0.12); color:rgb(74,158,255); border:1px solid rgba(74,158,255,0.2); border-radius:3px; padding:0.1rem 0.5rem; font-size:0.75rem; margin-bottom:0.5rem; }
+    .arch-block { background:rgb(10,10,10); border:1px solid rgb(26,26,26); border-radius:6px; padding:1rem 1.25rem; margin:1rem 0; overflow-x:auto; }
+    .arch-block pre { margin:0; font-size:0.83rem; color:rgb(153,153,153); line-height:1.7; }
+    .cost-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:1rem 0; }
+    @media(max-width:600px){ .cost-grid{grid-template-columns:1fr;} }
+    .cost-card { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:14px; text-align:center; }
+    .cost-card .cc-label { font-size:0.75rem; color:rgb(85,85,85); margin-bottom:4px; }
+    .cost-card .cc-value { font-size:1rem; color:rgb(74,158,255); font-weight:600; }
+    .checklist { list-style:none; padding:0; margin:0; }
+    .checklist li { padding:7px 0 7px 22px; position:relative; border-bottom:1px solid rgb(22,22,22); font-size:0.88rem; color:rgb(136,136,136); }
+    .checklist li:last-child { border-bottom:none; }
+    .checklist li::before { content:"□"; position:absolute; left:0; color:rgb(74,158,255); }
+    .day-block { background:rgb(13,16,13); border-left:2px solid rgb(74,158,255); border-radius:0 6px 6px 0; padding:14px 18px; margin:12px 0; }
+    .day-block h4 { font-size:0.8rem; color:rgb(74,158,255); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; }
+    .links-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:1rem 0; }
+    @media(max-width:600px){ .links-grid{grid-template-columns:1fr;} }
+    .link-card { background:rgb(16,16,16); border:1px solid rgb(26,26,26); border-radius:6px; padding:10px 14px; text-decoration:none; display:flex; flex-direction:column; gap:3px; transition:border-color 0.15s; }
+    .link-card:hover { border-color:rgb(74,158,255); text-decoration:none; }
+    .link-card .lc-name { font-size:0.82rem; color:rgb(170,170,170); }
+    .link-card .lc-url { font-size:0.78rem; color:rgb(74,158,255); word-break:break-all; }
   </style>
 </head>
 <body>
   <div class="container">
-    <nav class="breadcrumb">
-      <a href="../index.html">AI Girls KB</a>
-      <span>/</span>
-      <a href="index.html">Мануалы</a>
-      <span>/</span>
-      <span>RunPod + ComfyUI</span>
-    </nav>
 
-    <div class="page-header">
-      <div class="meta-line">
-        <span class="badge">Мануал</span>
-        <span class="badge">Пошаговая инструкция</span>
-        <span class="date">24 февраля 2026</span>
+    <header class="site-header">
+      <a href="../index.html" class="logo">AI GIRLS</a>
+      <div class="site-tagline">База знаний проекта — исследования, мануалы, стратегия</div>
+      <nav class="site-nav">
+        <a href="../research/index.html">Исследования</a>
+        <a href="index.html" class="active">Мануалы</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Инструменты</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Стратегия</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="breadcrumbs">
+        <a href="../index.html">Главная</a>
+        <span class="sep">/</span>
+        <a href="index.html">Мануалы</a>
+        <span class="sep">/</span>
+        <span>RunPod + ComfyUI</span>
       </div>
-      <h1>RunPod + ComfyUI<br><span style="color:var(--text-muted);font-size:0.7em;font-weight:400">AI-персонаж для Fanvue</span></h1>
-      <p class="subtitle">От регистрации на RunPod до публикации готового контента. Для новичков — без опыта с ComfyUI.</p>
-    </div>
 
-    <!-- TOC -->
-    <div class="toc">
-      <h3>Содержание</h3>
-      <ol>
-        <li><a href="#arch">Архитектура стека</a></li>
-        <li><a href="#step0">Шаг 0 — Подготовка RunPod</a></li>
-        <li><a href="#step1">Шаг 1 — Разворачиваем ComfyUI</a></li>
-        <li><a href="#step2">Шаг 2 — Скачиваем модели</a></li>
-        <li><a href="#step3">Шаг 3 — Создание персонажа (200 ракурсов)</a></li>
-        <li><a href="#step4">Шаг 4 — Обучение LoRA (Kohya_ss)</a></li>
-        <li><a href="#step5">Шаг 5 — Генерация контента</a></li>
-        <li><a href="#step6">Шаг 6 — Анимация видео (Wan 2.2)</a></li>
-        <li><a href="#step7">Шаг 7 — Face Swap (ReActor)</a></li>
-        <li><a href="#step8">Шаг 8 — CivitAI верификация 18+ <span class="new-badge">NEW</span></a></li>
-        <li><a href="#step9">Шаг 9 — Установка Wan 2.2 нод <span class="new-badge">NEW</span></a></li>
-        <li><a href="#step10">Шаг 10 — Публикация на Fanvue <span class="new-badge">NEW</span></a></li>
-        <li><a href="#costs">Расчёт затрат</a></li>
-        <li><a href="#plan">Порядок действий (по дням)</a></li>
-        <li><a href="#links">Все ключевые ссылки</a></li>
-      </ol>
-    </div>
+      <article>
+        <div class="article-meta">
+          <span class="tag">Мануал</span>
+          <span class="tag">Пошаговая инструкция</span>
+          <span class="tag tag-green">Для новичков</span>
+          <span class="date">24 февраля 2026 · v2</span>
+        </div>
 
-    <!-- ARCH -->
-    <div id="arch">
-      <div class="step-header">
-        <span class="step-num">СТЕК</span>
-        <h2>Архитектура</h2>
-      </div>
-      <div class="arch-block">
-        <pre>RunPod (арендованный GPU)
+        <h1 style="font-size:1.4rem;color:rgb(220,220,220);margin-bottom:0.5rem;">RunPod + ComfyUI — AI-персонаж для Fanvue</h1>
+        <p class="lead">От регистрации на RunPod до публикации готового контента. Без опыта с ComfyUI — пошагово.</p>
+
+        <div class="toc">
+          <div class="toc-title">Содержание</div>
+          <ol>
+            <li><a href="#arch">Архитектура стека</a></li>
+            <li><a href="#step0">Шаг 0 — Подготовка RunPod</a></li>
+            <li><a href="#step1">Шаг 1 — Разворачиваем ComfyUI</a></li>
+            <li><a href="#step2">Шаг 2 — Скачиваем модели</a></li>
+            <li><a href="#step3">Шаг 3 — Создание персонажа (200 ракурсов)</a></li>
+            <li><a href="#step4">Шаг 4 — Обучение LoRA (Kohya_ss)</a></li>
+            <li><a href="#step5">Шаг 5 — Генерация контента</a></li>
+            <li><a href="#step6">Шаг 6 — Анимация (Wan 2.2)</a></li>
+            <li><a href="#step7">Шаг 7 — Face Swap (ReActor)</a></li>
+            <li><a href="#step8">Шаг 8 — CivitAI верификация 18+ <span class="new-badge">NEW</span></a></li>
+            <li><a href="#step9">Шаг 9 — Установка Wan 2.2 нод <span class="new-badge">NEW</span></a></li>
+            <li><a href="#step10">Шаг 10 — Публикация на Fanvue <span class="new-badge">NEW</span></a></li>
+            <li><a href="#costs">Расчёт затрат</a></li>
+            <li><a href="#plan">Порядок действий по дням</a></li>
+            <li><a href="#links">Все ссылки</a></li>
+          </ol>
+        </div>
+
+        <div class="content-body">
+
+          <!-- ARCH -->
+          <h2 id="arch">🏗️ Архитектура стека</h2>
+          <div class="arch-block">
+            <pre>RunPod (арендованный GPU)
 ├── Pod 1: ComfyUI — генерация фото + анимация видео
 │   ├── Z-Image Turbo NSFW checkpoint (генерация персонажа)
 │   ├── FLUX 2 (face swap, финальное качество)
@@ -209,441 +116,368 @@
 
 Network Volume (постоянное хранилище $0.07/GB/мес)
 └── Все модели, воркфлоу, датасеты — сохраняются между сессиями</pre>
-      </div>
-      <div class="cost-grid">
-        <div class="cost-card">
-          <div class="label">Pod 1: ComfyUI</div>
-          <div class="value">RTX 4090</div>
-          <div class="label" style="margin-top:4px">~$0.74/час</div>
-        </div>
-        <div class="cost-card">
-          <div class="label">Pod 2: Kohya_ss</div>
-          <div class="value">RTX 3090</div>
-          <div class="label" style="margin-top:4px">~$0.44/час</div>
-        </div>
-        <div class="cost-card">
-          <div class="label">Network Volume</div>
-          <div class="value">100 GB</div>
-          <div class="label" style="margin-top:4px">~$7/мес</div>
-        </div>
-      </div>
-    </div>
+          </div>
+          <div class="cost-grid">
+            <div class="cost-card"><div class="cc-label">Pod 1: ComfyUI</div><div class="cc-value">RTX 4090</div><div class="cc-label" style="margin-top:4px">~$0.74/час</div></div>
+            <div class="cost-card"><div class="cc-label">Pod 2: Kohya_ss</div><div class="cc-value">RTX 3090</div><div class="cc-label" style="margin-top:4px">~$0.44/час</div></div>
+            <div class="cost-card"><div class="cc-label">Network Volume</div><div class="cc-value">100 GB</div><div class="cc-label" style="margin-top:4px">~$7/мес</div></div>
+          </div>
 
-    <!-- STEP 0 -->
-    <div id="step0">
-      <div class="step-header">
-        <span class="step-num">ШАГ 0</span>
-        <h2>Подготовка RunPod (один раз)</h2>
-      </div>
-      <h3>0.1 Регистрация</h3>
-      <ol>
-        <li>Идёшь на <a href="https://runpod.io" target="_blank">runpod.io</a></li>
-        <li>Sign Up → вводишь email + пароль</li>
-        <li>Пополняешь баланс: <strong>Billing → Add Credits</strong> → минимум $25-50 для старта</li>
-      </ol>
-      <div class="info-box">
-        <strong>Оплата из РФ:</strong> крипта (USDT/BTC) — самый надёжный вариант. Подробнее в <a href="#step10-pay">Шаге 10.7</a>.
-      </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-      <h3>0.2 Создание Network Volume <em>(делается ДО Pod)</em></h3>
-      <div class="info-box">
-        <strong>Network Volume</strong> = твой жёсткий диск в облаке. Модели скачиваются <strong>ОДИН РАЗ</strong> и остаются навсегда — даже когда Pod выключен.
-      </div>
-      <ol>
-        <li>В меню слева: <strong>Storage → Network Volumes</strong></li>
-        <li>Кнопка <strong>+ Network Volume</strong></li>
-        <li>Name: <code>ai-girls-storage</code> | Size: <strong>100 GB</strong></li>
-        <li>Region: тот же что и для Pod (EU-RO-1 или US-TX-3)</li>
-        <li>Create → стоит ~$7/мес постоянно</li>
-      </ol>
-    </div>
+          <!-- STEP 0 -->
+          <h2 id="step0"><span class="step-label">ШАГ 0</span><br>Подготовка RunPod (один раз)</h2>
 
-    <!-- STEP 1 -->
-    <div id="step1">
-      <div class="step-header">
-        <span class="step-num">ШАГ 1</span>
-        <h2>Разворачиваем ComfyUI на RunPod</h2>
-      </div>
-      <h3>1.1 Создание Pod</h3>
-      <ol>
-        <li>Pods → <strong>+ Deploy</strong></li>
-        <li>GPU: ищи <strong>RTX 4090</strong> (~$0.74/час). Если недоступна → RTX A6000 (48GB) ~$0.79/час</li>
-        <li>Template: в поиске пиши <code>ComfyUI</code> → выбери официальный <strong>"RunPod ComfyUI"</strong></li>
-        <li>Edit Template: Container Disk = 20 GB | Volume Disk = 0</li>
-        <li><strong>Attach Network Volume:</strong> выбери <code>ai-girls-storage</code></li>
-        <li>Expose Ports: добавь <code>8188</code></li>
-        <li><strong>Deploy On-Demand</strong> → Pod запустится за ~2-3 минуты</li>
-      </ol>
+          <h3>0.1 Регистрация</h3>
+          <ol>
+            <li>Идёшь на <a href="https://runpod.io" target="_blank">runpod.io</a></li>
+            <li>Sign Up → email + пароль</li>
+            <li>Billing → Add Credits → минимум $25-50 для старта</li>
+          </ol>
+          <div class="callout">
+            <strong>Оплата из РФ:</strong> крипта (USDT/BTC) — самый надёжный вариант. Подробнее в <a href="#step10-pay">Шаге 10.7</a>.
+          </div>
 
-      <h3>1.2 Подключение к ComfyUI</h3>
-      <ol>
-        <li>Pod запустился → кнопка <strong>Connect</strong></li>
-        <li>Нажми <strong>HTTP Service [Port 8188]</strong> → откроется ComfyUI в браузере</li>
-        <li>Видишь визуальный редактор нод = ComfyUI работает ✅</li>
-      </ol>
-    </div>
+          <h3>0.2 Создание Network Volume <em>(делается ДО Pod)</em></h3>
+          <div class="callout">
+            <strong>Network Volume</strong> = жёсткий диск в облаке. Модели скачиваются <strong>ОДИН РАЗ</strong> и остаются навсегда — даже когда Pod выключен.
+          </div>
+          <ol>
+            <li>Storage → Network Volumes → <strong>+ Network Volume</strong></li>
+            <li>Name: <code>ai-girls-storage</code> | Size: <strong>100 GB</strong></li>
+            <li>Region: тот же что и для Pod (EU-RO-1 или US-TX-3)</li>
+            <li>Create → ~$7/мес постоянно</li>
+          </ol>
 
-    <!-- STEP 2 -->
-    <div id="step2">
-      <div class="step-header">
-        <span class="step-num">ШАГ 2</span>
-        <h2>Скачиваем модели</h2>
-      </div>
-      <div class="warning-box">
-        <strong>⚠️ Перед скачиванием NSFW моделей с CivitAI</strong> — обязательно пройди верификацию 18+ и получи API-ключ. Без этого wget вернёт ошибку 401. Подробно в <a href="#step8">Шаге 8</a>.
-      </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-      <h3>2.1 Открываем терминал Pod</h3>
-      <p>В RunPod: <strong>Connect → Start Web Terminal</strong> (или SSH)</p>
+          <!-- STEP 1 -->
+          <h2 id="step1"><span class="step-label">ШАГ 1</span><br>Разворачиваем ComfyUI на RunPod</h2>
 
-      <h3>2.2 Z-Image Turbo NSFW checkpoint</h3>
-      <p>Основная модель генерации персонажа. <a href="https://civitai.com/models/2221503" target="_blank">ZImage Turbo NSFW by Stable Yogi</a> — 4500+ скачиваний, топ рейтинг.</p>
-      <pre><code>cd /workspace/ComfyUI/models/checkpoints
+          <h3>1.1 Создание Pod</h3>
+          <ol>
+            <li>Pods → <strong>+ Deploy</strong></li>
+            <li>GPU: <strong>RTX 4090</strong> (~$0.74/час). Если нет → RTX A6000 ~$0.79/час</li>
+            <li>Template: <code>ComfyUI</code> → официальный <strong>"RunPod ComfyUI"</strong></li>
+            <li>Edit Template: Container Disk = 20 GB | Volume Disk = 0</li>
+            <li><strong>Attach Network Volume:</strong> <code>ai-girls-storage</code></li>
+            <li>Expose Ports: добавь <code>8188</code></li>
+            <li>Deploy On-Demand → Pod запустится за ~2-3 мин</li>
+          </ol>
+
+          <h3>1.2 Подключение к ComfyUI</h3>
+          <ol>
+            <li>Pod запустился → кнопка <strong>Connect</strong></li>
+            <li><strong>HTTP Service [Port 8188]</strong> → ComfyUI открывается в браузере ✅</li>
+          </ol>
+
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
+
+          <!-- STEP 2 -->
+          <h2 id="step2"><span class="step-label">ШАГ 2</span><br>Скачиваем модели</h2>
+
+          <div class="callout callout-warning">
+            <strong>⚠️ Перед скачиванием NSFW с CivitAI</strong> — сначала пройди верификацию 18+ и получи API-ключ (<a href="#step8">Шаг 8</a>). Без этого wget вернёт ошибку 401.
+          </div>
+
+          <h3>2.1 Открываем терминал Pod</h3>
+          <p>Connect → <strong>Start Web Terminal</strong> (или SSH)</p>
+
+          <h3>2.2 Z-Image Turbo NSFW checkpoint</h3>
+          <p>Основная модель. <a href="https://civitai.com/models/2221503" target="_blank">ZImage Turbo NSFW by Stable Yogi</a> — 4500+ скачиваний.</p>
+          <pre><code>cd /workspace/ComfyUI/models/checkpoints
 
 wget --header="Authorization: Bearer ВАШ_CIVITAI_API_KEY" \
   -O "zimage-turbo-nsfw.safetensors" \
   "https://civitai.com/api/download/models/2221503?type=Model&format=SafeTensor"</code></pre>
-      <p>Альтернатива: <a href="https://civitai.com/models/2237711" target="_blank">Z-Image Turbo NSFW Photorealistic [ZiT]</a></p>
-      <pre><code>wget --header="Authorization: Bearer ВАШ_CIVITAI_API_KEY" \
+          <p>Альтернатива: <a href="https://civitai.com/models/2237711" target="_blank">Z-Image Turbo NSFW Photorealistic [ZiT]</a></p>
+          <pre><code>wget --header="Authorization: Bearer ВАШ_CIVITAI_API_KEY" \
   -O "zimage-turbo-nsfw-zit.safetensors" \
   "https://civitai.com/api/download/models/2237711"</code></pre>
 
-      <h3>2.3 FLUX 2</h3>
-      <pre><code>cd /workspace/ComfyUI/models/checkpoints
+          <h3>2.3 FLUX 2</h3>
+          <pre><code>cd /workspace/ComfyUI/models/checkpoints
 wget -O "flux1-dev.safetensors" \
   "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors"</code></pre>
 
-      <h3>2.4 Wan 2.2 Animate</h3>
-      <pre><code>cd /workspace/ComfyUI/models/
+          <h3>2.4 Wan 2.2 Animate</h3>
+          <pre><code>cd /workspace/ComfyUI/models/
 mkdir -p wan && cd wan
 wget "https://huggingface.co/Wan-AI/Wan2.2-Animate-14B/resolve/main/wan2.2_animate_14B_bf16.safetensors"</code></pre>
 
-      <h3>2.5 ReActor (face swap нода)</h3>
-      <pre><code>cd /workspace/ComfyUI/custom_nodes
+          <h3>2.5 ReActor (face swap нода)</h3>
+          <pre><code>cd /workspace/ComfyUI/custom_nodes
 git clone https://github.com/Gourieff/comfyui-reactor-node
 cd comfyui-reactor-node
 pip install -r requirements.txt</code></pre>
 
-      <h3>2.6 Перезапускаем ComfyUI</h3>
-      <pre><code>pkill -f "python main.py"
+          <h3>2.6 Перезапуск ComfyUI</h3>
+          <pre><code>pkill -f "python main.py"
 cd /workspace/ComfyUI
 python main.py --listen 0.0.0.0 --port 8188 &</code></pre>
-    </div>
 
-    <!-- STEP 3 -->
-    <div id="step3">
-      <div class="step-header">
-        <span class="step-num">ШАГ 3</span>
-        <h2>Создание персонажа (100-200 ракурсов)</h2>
-      </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-      <h3>3.1 Загружаем workflow</h3>
-      <p>Лучший NSFW workflow для Z-Image с upscale + face detailer:<br>
-      👉 <a href="https://civitai.com/models/2169381" target="_blank">Donut Z-Image Turbo Workflow (upscale + face detailer + nsfw fix)</a></p>
-      <p>Скачай JSON файл → в ComfyUI нажми <strong>Load</strong> → выбери файл</p>
+          <!-- STEP 3 -->
+          <h2 id="step3"><span class="step-label">ШАГ 3</span><br>Создание персонажа (100-200 ракурсов)</h2>
 
-      <h3>3.2 Настройки KSampler</h3>
-      <table class="params-table">
-        <thead><tr><th>Параметр</th><th>Значение</th><th>Пояснение</th></tr></thead>
-        <tbody>
-          <tr><td>Steps</td><td>8</td><td>Z-Image Turbo оптимален на 8 шагах</td></tr>
-          <tr><td>CFG</td><td>3.5–4.5</td><td>Меньше = свободнее, больше = точнее промпту</td></tr>
-          <tr><td>Sampler</td><td>euler</td><td></td></tr>
-          <tr><td>Scheduler</td><td>beta</td><td></td></tr>
-          <tr><td>Размер</td><td>1024×1024</td><td></td></tr>
-        </tbody>
-      </table>
+          <h3>3.1 Загружаем workflow</h3>
+          <p>👉 <a href="https://civitai.com/models/2169381" target="_blank">Donut Z-Image Turbo Workflow (upscale + face detailer + nsfw fix)</a><br>
+          Скачай JSON → в ComfyUI: <strong>Load</strong> → выбери файл</p>
 
-      <h3>3.3 Промпты</h3>
-      <p><strong>Позитивный:</strong></p>
-      <pre><code>photorealistic portrait of a beautiful young woman, 25 years old,
-[описание: цвет волос, глаз, черты лица],
+          <h3>3.2 Настройки KSampler</h3>
+          <table>
+            <thead><tr><th>Параметр</th><th>Значение</th><th>Пояснение</th></tr></thead>
+            <tbody>
+              <tr><td>Steps</td><td>8</td><td>Z-Image Turbo оптимален на 8 шагах</td></tr>
+              <tr><td>CFG</td><td>3.5–4.5</td><td>Меньше = свободнее, больше = точнее промпту</td></tr>
+              <tr><td>Sampler</td><td>euler</td><td></td></tr>
+              <tr><td>Scheduler</td><td>beta</td><td></td></tr>
+              <tr><td>Размер</td><td>1024×1024</td><td></td></tr>
+            </tbody>
+          </table>
+
+          <h3>3.3 Промпты</h3>
+          <p><strong>Позитивный:</strong></p>
+          <pre><code>photorealistic portrait of a beautiful young woman, 25 years old,
+[цвет волос, глаз, черты лица],
 professional studio lighting, sharp focus, 8k, highly detailed skin texture,
 facing camera directly, neutral expression, white background</code></pre>
-      <p><strong>Негативный:</strong></p>
-      <pre><code>deformed, bad anatomy, disfigured, poorly drawn face, mutation,
+          <p><strong>Негативный:</strong></p>
+          <pre><code>deformed, bad anatomy, disfigured, poorly drawn face, mutation,
 extra limbs, ugly, blurry, bad proportions, watermark, text</code></pre>
 
-      <h3>3.4 Таблица ракурсов (200 изображений)</h3>
-      <table class="angle-table">
-        <thead><tr><th>Ракурс</th><th>Добавь в промпт</th><th>Кол-во</th></tr></thead>
-        <tbody>
-          <tr><td>Фронталь</td><td><code>front view, looking at camera</code></td><td>40 шт</td></tr>
-          <tr><td>3/4 левый</td><td><code>three quarter view, facing left</code></td><td>30 шт</td></tr>
-          <tr><td>3/4 правый</td><td><code>three quarter view, facing right</code></td><td>30 шт</td></tr>
-          <tr><td>Профиль</td><td><code>side profile view</code></td><td>20 шт</td></tr>
-          <tr><td>Сзади</td><td><code>back view, looking away</code></td><td>15 шт</td></tr>
-          <tr><td>Крупный план</td><td><code>close up face portrait, extreme detail</code></td><td>20 шт</td></tr>
-          <tr><td>Выражения</td><td><code>smiling / serious / laughing</code></td><td>30 шт</td></tr>
-          <tr><td>Освещение</td><td><code>natural light / studio light / golden hour</code></td><td>15 шт</td></tr>
-        </tbody>
-      </table>
-      <div class="info-box">Меняй <strong>seed</strong> для каждого изображения — это даёт разнообразие при одинаковом персонаже.</div>
-    </div>
+          <h3>3.4 Таблица ракурсов (200 изображений)</h3>
+          <table>
+            <thead><tr><th>Ракурс</th><th>Добавь в промпт</th><th>Кол-во</th></tr></thead>
+            <tbody>
+              <tr><td>Фронталь</td><td><code>front view, looking at camera</code></td><td>40 шт</td></tr>
+              <tr><td>3/4 левый</td><td><code>three quarter view, facing left</code></td><td>30 шт</td></tr>
+              <tr><td>3/4 правый</td><td><code>three quarter view, facing right</code></td><td>30 шт</td></tr>
+              <tr><td>Профиль</td><td><code>side profile view</code></td><td>20 шт</td></tr>
+              <tr><td>Сзади</td><td><code>back view, looking away</code></td><td>15 шт</td></tr>
+              <tr><td>Крупный план</td><td><code>close up face portrait, extreme detail</code></td><td>20 шт</td></tr>
+              <tr><td>Выражения</td><td><code>smiling / serious / laughing</code></td><td>30 шт</td></tr>
+              <tr><td>Освещение</td><td><code>natural light / studio light / golden hour</code></td><td>15 шт</td></tr>
+            </tbody>
+          </table>
+          <div class="callout">Меняй <strong>seed</strong> для каждого изображения — это даёт разнообразие при одинаковом персонаже.</div>
 
-    <!-- STEP 4 -->
-    <div id="step4">
-      <div class="step-header">
-        <span class="step-num">ШАГ 4</span>
-        <h2>Обучение LoRA персонажа (Kohya_ss)</h2>
-      </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-      <h3>4.1 Создаём второй Pod</h3>
-      <ol>
-        <li>Pods → Deploy</li>
-        <li>GPU: RTX 3090 ~$0.44/час или A40 ~$0.76/час</li>
-        <li>Template: <code>Kohya</code> → "Kohya LoRA Training" (или RunPod PyTorch + ручная установка)</li>
-        <li>Подключи тот же Network Volume <code>ai-girls-storage</code></li>
-      </ol>
+          <!-- STEP 4 -->
+          <h2 id="step4"><span class="step-label">ШАГ 4</span><br>Обучение LoRA персонажа (Kohya_ss)</h2>
 
-      <h3>4.2 Установка Kohya_ss</h3>
-      <pre><code>cd /workspace
+          <h3>4.1 Создаём второй Pod</h3>
+          <ol>
+            <li>Pods → Deploy | GPU: RTX 3090 ~$0.44/час или A40 ~$0.76/час</li>
+            <li>Template: <code>Kohya</code> → "Kohya LoRA Training"</li>
+            <li>Подключи тот же Network Volume <code>ai-girls-storage</code></li>
+          </ol>
+
+          <h3>4.2 Установка Kohya_ss</h3>
+          <pre><code>cd /workspace
 git clone https://github.com/bmaltais/kohya_ss
 cd kohya_ss
 pip install -r requirements.txt
 python kohya_gui.py --listen 0.0.0.0 --server_port 7860 &</code></pre>
-      <p>Открываешь порт 7860 → веб-интерфейс Kohya</p>
+          <p>Порт 7860 → веб-интерфейс Kohya</p>
 
-      <h3>4.3 Подготовка датасета</h3>
-      <pre><code>mkdir -p /workspace/dataset/10_mygirl</code></pre>
-      <p>Все 200 фото из шага 3 → в папку <code>/workspace/dataset/10_mygirl/</code><br>
-      Число <strong>"10"</strong> = количество повторений на эпоху (стандарт для 200 фото)</p>
+          <h3>4.3 Подготовка датасета</h3>
+          <pre><code>mkdir -p /workspace/dataset/10_mygirl</code></pre>
+          <p>Все 200 фото из шага 3 → в <code>/workspace/dataset/10_mygirl/</code><br>
+          Число <strong>"10"</strong> = повторений на эпоху (стандарт для 200 фото)</p>
 
-      <h3>4.4 Автоматический капшенинг</h3>
-      <ol>
-        <li>Utilities → <strong>BLIP Captioning</strong></li>
-        <li>Image folder: <code>/workspace/dataset/10_mygirl</code></li>
-        <li>Prefix caption: <code>mygirl,</code> (trigger word)</li>
-        <li>Run Captioning → к каждому фото создастся .txt с тегами</li>
-      </ol>
+          <h3>4.4 Капшенинг</h3>
+          <p>Utilities → <strong>BLIP Captioning</strong> | Image folder: путь к датасету | Prefix: <code>mygirl,</code> → Run</p>
 
-      <h3>4.5 Настройки обучения</h3>
-      <table class="params-table">
-        <thead><tr><th>Параметр</th><th>Значение</th><th>Пояснение</th></tr></thead>
-        <tbody>
-          <tr><td>Base model</td><td>zimage-turbo-nsfw.safetensors</td><td>базовая модель</td></tr>
-          <tr><td>Output name</td><td>mygirl_v1</td><td>имя файла LoRA</td></tr>
-          <tr><td>Training steps</td><td>2000–3000</td><td>для 200 фото</td></tr>
-          <tr><td>Learning rate</td><td>0.0001</td><td>стандарт</td></tr>
-          <tr><td>Network Dim</td><td>32</td><td>размер LoRA</td></tr>
-          <tr><td>Network Alpha</td><td>16</td><td>половина от Dim</td></tr>
-          <tr><td>Batch size</td><td>2</td><td>на 24GB VRAM</td></tr>
-          <tr><td>Resolution</td><td>1024,1024</td><td>под Z-Image</td></tr>
-          <tr><td>Save every N</td><td>500</td><td>промежуточные сохранения</td></tr>
-        </tbody>
-      </table>
-      <p>Нажми <strong>Train</strong> → ~2-4 часа</p>
+          <h3>4.5 Настройки обучения LoRA</h3>
+          <table>
+            <thead><tr><th>Параметр</th><th>Значение</th><th>Пояснение</th></tr></thead>
+            <tbody>
+              <tr><td>Base model</td><td>zimage-turbo-nsfw.safetensors</td><td>базовая модель</td></tr>
+              <tr><td>Output name</td><td>mygirl_v1</td><td>имя файла</td></tr>
+              <tr><td>Training steps</td><td>2000–3000</td><td>для 200 фото</td></tr>
+              <tr><td>Learning rate</td><td>0.0001</td><td>стандарт</td></tr>
+              <tr><td>Network Dim</td><td>32</td><td>размер LoRA</td></tr>
+              <tr><td>Network Alpha</td><td>16</td><td>половина от Dim</td></tr>
+              <tr><td>Batch size</td><td>2</td><td>на 24GB VRAM</td></tr>
+              <tr><td>Resolution</td><td>1024,1024</td><td>под Z-Image</td></tr>
+              <tr><td>Save every N</td><td>500</td><td>промежуточные сохранения</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Train</strong> → ~2-4 часа. Результат: <code>mygirl_v1.safetensors</code> (~50-150 МБ)</p>
+          <p>Копируй в <code>/workspace/ComfyUI/models/loras/</code> на Pod 1.</p>
 
-      <h3>4.6 Результат</h3>
-      <p>В папке output появится <code>mygirl_v1.safetensors</code> (~50-150 МБ) — это твой персонаж.<br>
-      Копируй в <code>/workspace/ComfyUI/models/loras/</code> на первом Pod.</p>
-    </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-    <!-- STEP 5 -->
-    <div id="step5">
-      <div class="step-header">
-        <span class="step-num">ШАГ 5</span>
-        <h2>Генерация контента с персонажем</h2>
-      </div>
+          <!-- STEP 5 -->
+          <h2 id="step5"><span class="step-label">ШАГ 5</span><br>Генерация контента с персонажем</h2>
 
-      <h3>5.1 Тест LoRA</h3>
-      <p>В ComfyUI → нода <strong>Load LoRA</strong>:</p>
-      <ul>
-        <li>LoRA: <code>mygirl_v1.safetensors</code></li>
-        <li>Strength: <strong>0.8–1.0</strong></li>
-        <li>В промпте обязательно: <code>mygirl,</code> (trigger word)</li>
-      </ul>
+          <h3>5.1 Тест LoRA</h3>
+          <p>ComfyUI → нода <strong>Load LoRA</strong>: файл <code>mygirl_v1.safetensors</code> | Strength: 0.8–1.0<br>
+          В промпте обязательно: <code>mygirl,</code> (trigger word)</p>
 
-      <h3>5.2 NSFW сцены</h3>
-      <p>Z-Image Turbo NSFW checkpoint уже разблокирован — не нужны специальные ключевые слова. Просто описывай сцену в промпте.</p>
-    </div>
+          <h3>5.2 NSFW сцены</h3>
+          <p>Z-Image Turbo NSFW уже разблокирован — специальные ключевые слова не нужны. Просто описывай сцену в промпте.</p>
 
-    <!-- STEP 6 -->
-    <div id="step6">
-      <div class="step-header">
-        <span class="step-num">ШАГ 6</span>
-        <h2>Анимация видео (Wan 2.2 Animate)</h2>
-      </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-      <div class="warning-box">
-        <strong>⚠️ Перед этим шагом</strong> — обязательно установи кастомные ноды Wan 2.2 (Шаг 9). Без них workflow не загрузится в ComfyUI.
-      </div>
+          <!-- STEP 6 -->
+          <h2 id="step6"><span class="step-label">ШАГ 6</span><br>Анимация видео (Wan 2.2 Animate)</h2>
 
-      <h3>6.1 Скачиваем видео-референс</h3>
-      <p>На своей машине:</p>
-      <ul>
-        <li><a href="https://snaptik.app" target="_blank">SnapTik.app</a> или <a href="https://ssstik.io" target="_blank">SSSTik.io</a> → вставь ссылку TikTok → скачай без водяного знака</li>
-        <li>Нужно видео с движениями тела без крупного плана лица (танец, походка)</li>
-      </ul>
+          <div class="callout callout-warning">
+            <strong>⚠️ Сначала установи ноды Wan 2.2</strong> из <a href="#step9">Шага 9</a> — без них workflow не загрузится.
+          </div>
 
-      <h3>6.2 Workflow для Wan 2.2</h3>
-      <p>👉 <a href="https://github.com/Wan-Video/Wan2.2/tree/main/examples" target="_blank">github.com/Wan-Video/Wan2.2/tree/main/examples</a></p>
-      <ol>
-        <li>Load → загрузи Wan 2.2 workflow</li>
-        <li><strong>Reference Image</strong> → сгенерированное фото персонажа</li>
-        <li><strong>Reference Video</strong> → скачанное видео с движениями</li>
-        <li>Generate → персонаж повторяет движения</li>
-      </ol>
-      <div class="info-box">Время генерации: ~5-15 минут на RTX 4090 для клипа 3-5 секунд.</div>
-    </div>
+          <h3>6.1 Скачиваем видео-референс</h3>
+          <p><a href="https://snaptik.app" target="_blank">SnapTik.app</a> или <a href="https://ssstik.io" target="_blank">SSSTik.io</a> → вставь ссылку TikTok → скачай без водяного знака.<br>
+          Нужно видео с движениями тела без крупного плана лица (танец, походка).</p>
 
-    <!-- STEP 7 -->
-    <div id="step7">
-      <div class="step-header">
-        <span class="step-num">ШАГ 7</span>
-        <h2>Face Swap (опционально)</h2>
-      </div>
-      <p>Хочешь взять реальное видео и заменить лицо на AI-персонажа:</p>
-      <p>В ComfyUI → нода <strong>ReActor</strong>:</p>
-      <ul>
-        <li><strong>Source Face:</strong> фото AI-персонажа (крупный план лица)</li>
-        <li><strong>Target:</strong> видео или фото где нужно заменить лицо</li>
-        <li><strong>Face Index:</strong> 0 (первое лицо в кадре)</li>
-        <li><strong>Upscaler:</strong> GFPGAN или CodeFormer</li>
-      </ul>
-    </div>
+          <h3>6.2 Workflow</h3>
+          <p>👉 <a href="https://github.com/Wan-Video/Wan2.2/tree/main/examples" target="_blank">github.com/Wan-Video/Wan2.2/tree/main/examples</a></p>
+          <ol>
+            <li>Load → Wan 2.2 workflow</li>
+            <li>Reference Image → фото персонажа</li>
+            <li>Reference Video → видео с движениями</li>
+            <li>Generate → персонаж повторяет движения</li>
+          </ol>
+          <div class="callout">~5-15 минут на RTX 4090 для клипа 3-5 секунд.</div>
 
-    <!-- STEP 8 — NEW -->
-    <div id="step8">
-      <div class="step-header">
-        <span class="step-num">ШАГ 8</span>
-        <h2>CivitAI: верификация 18+ <span class="new-badge">NEW</span></h2>
-      </div>
-      <div class="warning-box">
-        <strong>Обязательно перед скачиванием NSFW моделей.</strong> Без верификации NSFW контент скрыт, API-ссылки вернут ошибку <code>401 Unauthorized</code>.
-      </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-      <h3>8.1 Включить Mature Content</h3>
-      <ol>
-        <li>Регистрируешься на <a href="https://civitai.com" target="_blank">civitai.com</a></li>
-        <li>Профиль → <strong>Settings → Account</strong></li>
-        <li>Раздел <strong>Content Preferences → Mature Content</strong></li>
-        <li>Ставишь галочку: <strong>Show mature content (18+)</strong></li>
-        <li>Подтверждаешь возраст (просто галочка, без документов)</li>
-        <li>Сохраняешь</li>
-      </ol>
+          <!-- STEP 7 -->
+          <h2 id="step7"><span class="step-label">ШАГ 7</span><br>Face Swap (опционально)</h2>
+          <p>Нода <strong>ReActor</strong> в ComfyUI:</p>
+          <ul>
+            <li>Source Face: фото AI-персонажа (крупный план лица)</li>
+            <li>Target: видео или фото с нужным лицом</li>
+            <li>Face Index: 0</li>
+            <li>Upscaler: GFPGAN или CodeFormer</li>
+          </ul>
 
-      <h3>8.2 API-ключ для скачивания через wget</h3>
-      <ol>
-        <li>Профиль → <strong>Account Settings → API Keys → Add API Key</strong></li>
-        <li>Называешь ключ (например, <code>runpod</code>) → копируешь</li>
-        <li>Используешь во всех wget командах:</li>
-      </ol>
-      <pre><code>wget --header="Authorization: Bearer ВАШ_API_КЛЮЧ" \
-  -O "zimage-turbo-nsfw.safetensors" \
-  "https://civitai.com/api/download/models/2221503?type=Model&format=SafeTensor"</code></pre>
-    </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-    <!-- STEP 9 — NEW -->
-    <div id="step9">
-      <div class="step-header">
-        <span class="step-num">ШАГ 9</span>
-        <h2>Установка Wan 2.2 нод в ComfyUI <span class="new-badge">NEW</span></h2>
-      </div>
-      <div class="warning-box">
-        <strong>Этот шаг обязателен перед Шагом 6.</strong> Без кастомных нод workflow Wan 2.2 просто не откроется в ComfyUI — будут ошибки "unknown node type".
-      </div>
+          <!-- STEP 8 — NEW -->
+          <h2 id="step8"><span class="step-label">ШАГ 8</span><br>CivitAI: верификация 18+ <span class="new-badge">NEW</span></h2>
 
-      <p>В терминале Pod 1 (ComfyUI):</p>
-      <pre><code>cd /workspace/ComfyUI/custom_nodes
+          <div class="callout callout-warning">
+            <strong>Обязательно перед скачиванием NSFW моделей.</strong> Без верификации NSFW скрыт, API вернёт <code>401 Unauthorized</code>.
+          </div>
 
-# ComfyUI-WanVideoWrapper — основной пакет нод для Wan 2.2
+          <h3>8.1 Включить Mature Content</h3>
+          <ol>
+            <li>Регистрация на <a href="https://civitai.com" target="_blank">civitai.com</a></li>
+            <li>Профиль → Settings → Account</li>
+            <li>Content Preferences → <strong>Show mature content (18+)</strong></li>
+            <li>Подтвердить (просто галочка, документы не нужны) → Сохранить</li>
+          </ol>
+
+          <h3>8.2 API-ключ для wget</h3>
+          <ol>
+            <li>Account Settings → <strong>API Keys → Add API Key</strong></li>
+            <li>Называешь ключ (например <code>runpod</code>) → копируешь</li>
+            <li>Добавляешь во все wget команды:</li>
+          </ol>
+          <pre><code>wget --header="Authorization: Bearer ВАШ_API_КЛЮЧ" \
+  -O "model.safetensors" \
+  "https://civitai.com/api/download/models/XXXXXX"</code></pre>
+
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
+
+          <!-- STEP 9 — NEW -->
+          <h2 id="step9"><span class="step-label">ШАГ 9</span><br>Установка Wan 2.2 нод в ComfyUI <span class="new-badge">NEW</span></h2>
+
+          <div class="callout callout-warning">
+            <strong>Обязателен перед Шагом 6.</strong> Без нод workflow Wan 2.2 не откроется — ошибка "unknown node type".
+          </div>
+          <pre><code>cd /workspace/ComfyUI/custom_nodes
+
+# Основной пакет нод Wan 2.2
 git clone https://github.com/kijai/ComfyUI-WanVideoWrapper
 cd ComfyUI-WanVideoWrapper
 pip install -r requirements.txt
 
-# VideoHelperSuite — для работы с видео (загрузка, сохранение клипов)
+# Для работы с видео (загрузка, сохранение)
 cd /workspace/ComfyUI/custom_nodes
 git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite
 cd ComfyUI-VideoHelperSuite
 pip install -r requirements.txt</code></pre>
-
-      <p>Перезапускаем ComfyUI:</p>
-      <pre><code>pkill -f "python main.py"
+          <p>Перезапускаем ComfyUI:</p>
+          <pre><code>pkill -f "python main.py"
 cd /workspace/ComfyUI
 python main.py --listen 0.0.0.0 --port 8188 &</code></pre>
-      <div class="info-box">После перезапуска в ComfyUI появятся новые ноды в категории <strong>WanVideo</strong> и <strong>VideoHelperSuite</strong>.</div>
-    </div>
+          <div class="callout">После перезапуска в ComfyUI появятся ноды в категориях <strong>WanVideo</strong> и <strong>VideoHelperSuite</strong>.</div>
 
-    <!-- STEP 10 — NEW -->
-    <div id="step10">
-      <div class="step-header">
-        <span class="step-num">ШАГ 10</span>
-        <h2>Публикация на Fanvue <span class="new-badge">NEW</span></h2>
-      </div>
-      <div class="info-box">
-        <strong>Fanvue</strong> — OnlyFans-альтернатива, официально разрешающая AI-generated контент. Комиссия 15% (против 20% у OnlyFans).
-      </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-      <h3>10.1 Регистрация аккаунта создателя</h3>
-      <ol>
-        <li>Идёшь на <a href="https://fanvue.com" target="_blank">fanvue.com</a></li>
-        <li>Sign Up → выбираешь <strong>Creator</strong> (не Fan)</li>
-        <li>Email + пароль + username (выбирай имя персонажа — менять сложно)</li>
-        <li>Верификация email</li>
-      </ol>
+          <!-- STEP 10 — NEW -->
+          <h2 id="step10"><span class="step-label">ШАГ 10</span><br>Публикация на Fanvue <span class="new-badge">NEW</span></h2>
 
-      <h3>10.2 Верификация личности (обязательно для выплат)</h3>
-      <ul>
-        <li>Загружаешь паспорт/права (верификация на тебя как владельца, не на персонажа)</li>
-        <li>Selfie с документом</li>
-        <li>Срок проверки: 1-3 рабочих дня</li>
-      </ul>
+          <div class="callout">
+            <strong>Fanvue</strong> — OnlyFans-альтернатива, официально разрешающая AI-контент. Комиссия <strong>15%</strong> (у OnlyFans 20%).
+          </div>
 
-      <h3>10.3 Настройка профиля персонажа</h3>
-      <ul>
-        <li><strong>Profile photo:</strong> лучшее сгенерированное фото (кроп лица)</li>
-        <li><strong>Cover photo:</strong> широкий кадр 1920×1080</li>
-        <li><strong>Bio:</strong> пишешь от лица персонажа (имя, история, характер)</li>
-        <li><strong>Subscription price:</strong> $9.99–14.99/мес для старта</li>
-        <li><strong>Важно:</strong> в bio укажи что контент создан AI — Fanvue этого требует</li>
-      </ul>
+          <h3>10.1 Регистрация</h3>
+          <ol>
+            <li><a href="https://fanvue.com" target="_blank">fanvue.com</a> → Sign Up → <strong>Creator</strong></li>
+            <li>Username = имя персонажа (менять сложно, выбирай сразу)</li>
+            <li>Верификация email</li>
+          </ol>
 
-      <h3>10.4 Стратегия первого контента</h3>
-      <ul>
-        <li>Загружай <strong>минимум 10-15 фото</strong> перед первой публикацией</li>
-        <li>Первые 3-5 постов — <strong>бесплатные</strong> (видны всем, для привлечения)</li>
-        <li>Остальное — за подпиской</li>
-        <li>Добавляй <strong>watermark</strong> с username на все фото</li>
-      </ul>
+          <h3>10.2 Верификация личности (для выплат)</h3>
+          <p>Загружаешь паспорт/права + selfie. Срок: 1-3 рабочих дня.<br>
+          Верификация на тебя как владельца — не на AI-персонажа.</p>
 
-      <h3>10.5 Форматы контента</h3>
-      <table class="params-table">
-        <thead><tr><th>Тип</th><th>Формат</th><th>Рекомендации</th></tr></thead>
-        <tbody>
-          <tr><td>Фото</td><td>JPG/PNG, макс 50MB</td><td>Портреты, сцены, образы</td></tr>
-          <tr><td>Видео</td><td>MP4, макс 2GB</td><td>Wan 2.2 клипы 5-30 сек</td></tr>
-          <tr><td>Галерея</td><td>До 20 фото</td><td>Тематические подборки</td></tr>
-        </tbody>
-      </table>
+          <h3>10.3 Настройка профиля</h3>
+          <ul>
+            <li><strong>Profile photo:</strong> лучший кроп лица персонажа</li>
+            <li><strong>Cover:</strong> широкий кадр 1920×1080</li>
+            <li><strong>Bio:</strong> от лица персонажа (имя, история, характер)</li>
+            <li><strong>Цена подписки:</strong> $9.99–14.99/мес для старта</li>
+            <li><strong>Важно:</strong> укажи в bio что контент создан AI — Fanvue требует</li>
+          </ul>
 
-      <h3>10.6 Выплаты</h3>
-      <ul>
-        <li>Комиссия Fanvue: <strong>15%</strong></li>
-        <li>Минимальная выплата: <strong>$20</strong></li>
-        <li>Периодичность: <strong>еженедельно</strong> на банковскую карту или крипту</li>
-        <li>Из РФ: крипто-вывод (USDT → Binance P2P → рубли)</li>
-      </ul>
+          <h3>10.4 Первый контент</h3>
+          <ul>
+            <li>Загрузи минимум <strong>10-15 фото</strong> перед публикацией</li>
+            <li>Первые 3-5 постов — <strong>бесплатные</strong> (для привлечения)</li>
+            <li>Остальное — за подпиской</li>
+            <li>Добавляй watermark с username на все фото</li>
+          </ul>
 
-      <h3 id="step10-pay">10.7 Оплата RunPod из РФ</h3>
-      <table class="params-table">
-        <thead><tr><th>Вариант</th><th>Способ</th><th>Сложность</th></tr></thead>
-        <tbody>
-          <tr><td>Рекомендуется</td><td>USDT на Binance P2P → пополнить RunPod криптой</td><td>Низкая</td></tr>
-          <tr><td>Альтернатива</td><td>cryptocloud.plus — виртуальная карта через крипту</td><td>Средняя</td></tr>
-          <tr><td>Запасной</td><td>Карта знакомого из другой страны + перевод</td><td>Требует договорённости</td></tr>
-        </tbody>
-      </table>
-    </div>
+          <h3>10.5 Форматы</h3>
+          <table>
+            <thead><tr><th>Тип</th><th>Формат</th><th>Рекомендации</th></tr></thead>
+            <tbody>
+              <tr><td>Фото</td><td>JPG/PNG, макс 50MB</td><td>Портреты, сцены, образы</td></tr>
+              <tr><td>Видео</td><td>MP4, макс 2GB</td><td>Wan 2.2 клипы 5-30 сек</td></tr>
+              <tr><td>Галерея</td><td>До 20 фото</td><td>Тематические подборки</td></tr>
+            </tbody>
+          </table>
 
-    <!-- COSTS -->
-    <div id="costs">
-      <div class="step-header">
-        <span class="step-num">БЮДЖЕТ</span>
-        <h2>Расчёт затрат</h2>
-      </div>
-      <div class="arch-block">
-        <pre>Network Volume 100GB:          $7/мес (постоянно)
+          <h3>10.6 Выплаты</h3>
+          <ul>
+            <li>Комиссия: <strong>15%</strong> | Минимум: <strong>$20</strong> | Еженедельно</li>
+            <li>Из РФ: USDT → Binance P2P → рубли</li>
+          </ul>
+
+          <h3 id="step10-pay">10.7 Оплата RunPod из РФ</h3>
+          <table>
+            <thead><tr><th>Вариант</th><th>Способ</th></tr></thead>
+            <tbody>
+              <tr><td>✅ Рекомендуется</td><td>USDT на Binance P2P → пополнить RunPod криптой</td></tr>
+              <tr><td>Альтернатива</td><td>cryptocloud.plus — виртуальная карта через крипту</td></tr>
+              <tr><td>Запасной</td><td>Карта знакомого из другой страны + перевод</td></tr>
+            </tbody>
+          </table>
+
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
+
+          <!-- COSTS -->
+          <h2 id="costs">💰 Расчёт затрат</h2>
+          <div class="arch-block">
+            <pre>Network Volume 100GB:          $7/мес (постоянно)
 
 Генерация 200 фото:            ~2 часа × $0.74 = $1.5
 Обучение LoRA:                 ~3 часа × $0.44 = $1.3
@@ -654,135 +488,133 @@ python main.py --listen 0.0.0.0 --port 8188 &</code></pre>
 ─────────────────────────────────────────
 Итого старт (первый месяц):    ~$32
 Итого потом:                   ~$29/мес</pre>
-      </div>
-    </div>
+          </div>
 
-    <!-- PLAN -->
-    <div id="plan">
-      <div class="step-header">
-        <span class="step-num">ПЛАН</span>
-        <h2>Порядок действий (первый запуск)</h2>
-      </div>
-      <div class="day-block">
-        <h4>ДЕНЬ 1</h4>
-        <ul class="checklist">
-          <li>Регистрация на CivitAI + верификация 18+ + API-ключ</li>
-          <li>Регистрация RunPod + пополнение $50</li>
-          <li>Создание Network Volume 100GB</li>
-          <li>Deploy Pod с ComfyUI (RTX 4090)</li>
-          <li>Установка нод: ReActor + WanVideoWrapper + VideoHelperSuite</li>
-          <li>Скачать Z-Image Turbo NSFW checkpoint</li>
-          <li>Загрузить NSFW workflow с CivitAI</li>
-          <li>Сгенерировать 20 тестовых фото персонажа</li>
-        </ul>
-      </div>
-      <div class="day-block">
-        <h4>ДЕНЬ 2</h4>
-        <ul class="checklist">
-          <li>Сгенерировать полные 200 ракурсов</li>
-          <li>Deploy Pod с Kohya_ss</li>
-          <li>Подготовить датасет + запустить обучение LoRA</li>
-          <li>Выключить Kohya Pod (экономия)</li>
-        </ul>
-      </div>
-      <div class="day-block">
-        <h4>ДЕНЬ 3</h4>
-        <ul class="checklist">
-          <li>Загрузить обученную LoRA в ComfyUI</li>
-          <li>Тест: генерация сцен с персонажем</li>
-          <li>Скачать 2-3 TikTok видео-референса</li>
-          <li>Тест Wan 2.2 Animate</li>
-        </ul>
-      </div>
-      <div class="day-block">
-        <h4>ДЕНЬ 4 — Регистрация Fanvue</h4>
-        <ul class="checklist">
-          <li>Регистрация аккаунта создателя на Fanvue</li>
-          <li>Верификация личности (подать документы)</li>
-          <li>Настройка профиля персонажа</li>
-          <li>Загрузить первые 10-15 фото</li>
-          <li>Опубликовать 3-5 бесплатных постов</li>
-        </ul>
-      </div>
-      <div class="day-block">
-        <h4>ДЕНЬ 5+</h4>
-        <ul class="checklist">
-          <li>Ежедневная генерация контента для Fanvue</li>
-          <li>Выключать Pod когда не работаешь</li>
-          <li>Масштабирование: создание 2-го, 3-го персонажа</li>
-        </ul>
-      </div>
-    </div>
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
 
-    <!-- LINKS -->
-    <div id="links">
-      <div class="step-header">
-        <span class="step-num">ССЫЛКИ</span>
-        <h2>Все ключевые ресурсы</h2>
-      </div>
-      <div class="links-grid">
-        <a class="link-card" href="https://runpod.io" target="_blank">
-          <span class="lc-label">Платформа GPU</span>
-          <span class="lc-url">runpod.io</span>
-        </a>
-        <a class="link-card" href="https://civitai.com/models/2221503" target="_blank">
-          <span class="lc-label">Z-Image NSFW checkpoint #1</span>
-          <span class="lc-url">civitai.com/models/2221503</span>
-        </a>
-        <a class="link-card" href="https://civitai.com/models/2237711" target="_blank">
-          <span class="lc-label">Z-Image NSFW checkpoint #2</span>
-          <span class="lc-url">civitai.com/models/2237711</span>
-        </a>
-        <a class="link-card" href="https://civitai.com/models/2169381" target="_blank">
-          <span class="lc-label">NSFW workflow (Donut)</span>
-          <span class="lc-url">civitai.com/models/2169381</span>
-        </a>
-        <a class="link-card" href="https://huggingface.co/black-forest-labs" target="_blank">
-          <span class="lc-label">FLUX на HuggingFace</span>
-          <span class="lc-url">huggingface.co/black-forest-labs</span>
-        </a>
-        <a class="link-card" href="https://huggingface.co/Wan-AI/Wan2.2-Animate-14B" target="_blank">
-          <span class="lc-label">Wan 2.2 Animate</span>
-          <span class="lc-url">huggingface.co/Wan-AI/Wan2.2</span>
-        </a>
-        <a class="link-card" href="https://github.com/Gourieff/comfyui-reactor-node" target="_blank">
-          <span class="lc-label">ReActor нода</span>
-          <span class="lc-url">github.com/Gourieff/comfyui-reactor-node</span>
-        </a>
-        <a class="link-card" href="https://github.com/kijai/ComfyUI-WanVideoWrapper" target="_blank">
-          <span class="lc-label">WanVideoWrapper ноды</span>
-          <span class="lc-url">github.com/kijai/ComfyUI-WanVideoWrapper</span>
-        </a>
-        <a class="link-card" href="https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" target="_blank">
-          <span class="lc-label">VideoHelperSuite</span>
-          <span class="lc-url">github.com/Kosinkadink/ComfyUI-VideoHelperSuite</span>
-        </a>
-        <a class="link-card" href="https://github.com/bmaltais/kohya_ss" target="_blank">
-          <span class="lc-label">Kohya_ss (LoRA training)</span>
-          <span class="lc-url">github.com/bmaltais/kohya_ss</span>
-        </a>
-        <a class="link-card" href="https://github.com/comfyanonymous/ComfyUI" target="_blank">
-          <span class="lc-label">ComfyUI</span>
-          <span class="lc-url">github.com/comfyanonymous/ComfyUI</span>
-        </a>
-        <a class="link-card" href="https://civitai.com/models?types=Workflows" target="_blank">
-          <span class="lc-label">CivitAI Workflows</span>
-          <span class="lc-url">civitai.com/models?types=Workflows</span>
-        </a>
-        <a class="link-card" href="https://snaptik.app" target="_blank">
-          <span class="lc-label">Скачать TikTok без водяного знака</span>
-          <span class="lc-url">snaptik.app</span>
-        </a>
-        <a class="link-card" href="https://fanvue.com" target="_blank">
-          <span class="lc-label">Fanvue (платформа)</span>
-          <span class="lc-url">fanvue.com</span>
-        </a>
-      </div>
-    </div>
+          <!-- PLAN -->
+          <h2 id="plan">⚡ Порядок действий по дням</h2>
 
-    <div style="margin-top:48px;padding-top:24px;border-top:1px solid #1a1a1a;color:var(--text-muted);font-size:0.8rem;font-family:var(--font-mono);">
-      Обновлено: 24 февраля 2026 · v2 (добавлены: CivitAI верификация, Wan 2.2 ноды, Fanvue)
-    </div>
+          <div class="day-block">
+            <h4>День 1</h4>
+            <ul class="checklist">
+              <li>CivitAI: регистрация + верификация 18+ + API-ключ</li>
+              <li>RunPod: регистрация + пополнение $50</li>
+              <li>Создание Network Volume 100GB</li>
+              <li>Deploy Pod с ComfyUI (RTX 4090)</li>
+              <li>Установка нод: ReActor + WanVideoWrapper + VideoHelperSuite</li>
+              <li>Скачать Z-Image Turbo NSFW + NSFW workflow с CivitAI</li>
+              <li>Сгенерировать 20 тестовых фото персонажа</li>
+            </ul>
+          </div>
+          <div class="day-block">
+            <h4>День 2</h4>
+            <ul class="checklist">
+              <li>Сгенерировать полные 200 ракурсов</li>
+              <li>Deploy Pod с Kohya_ss</li>
+              <li>Подготовить датасет + запустить обучение LoRA</li>
+              <li>Выключить Kohya Pod (экономия)</li>
+            </ul>
+          </div>
+          <div class="day-block">
+            <h4>День 3</h4>
+            <ul class="checklist">
+              <li>Загрузить обученную LoRA в ComfyUI</li>
+              <li>Тест генерации сцен с персонажем</li>
+              <li>Скачать 2-3 TikTok видео-референса</li>
+              <li>Тест Wan 2.2 Animate</li>
+            </ul>
+          </div>
+          <div class="day-block">
+            <h4>День 4 — Fanvue</h4>
+            <ul class="checklist">
+              <li>Регистрация Creator аккаунта на Fanvue</li>
+              <li>Подать документы на верификацию</li>
+              <li>Настроить профиль персонажа</li>
+              <li>Загрузить первые 10-15 фото</li>
+              <li>Опубликовать 3-5 бесплатных постов</li>
+            </ul>
+          </div>
+          <div class="day-block">
+            <h4>День 5+</h4>
+            <ul class="checklist">
+              <li>Ежедневная генерация контента для Fanvue</li>
+              <li>Выключать Pod когда не работаешь</li>
+              <li>Масштабирование: 2-й, 3-й персонаж</li>
+            </ul>
+          </div>
+
+          <hr style="border:none;border-top:1px solid rgb(26,26,26);margin:2rem 0;">
+
+          <!-- LINKS -->
+          <h2 id="links">🔗 Все ключевые ссылки</h2>
+          <div class="links-grid">
+            <a class="link-card" href="https://runpod.io" target="_blank">
+              <span class="lc-name">RunPod — аренда GPU</span>
+              <span class="lc-url">runpod.io</span>
+            </a>
+            <a class="link-card" href="https://civitai.com/models/2221503" target="_blank">
+              <span class="lc-name">Z-Image NSFW checkpoint #1</span>
+              <span class="lc-url">civitai.com/models/2221503</span>
+            </a>
+            <a class="link-card" href="https://civitai.com/models/2237711" target="_blank">
+              <span class="lc-name">Z-Image NSFW checkpoint #2 (ZiT)</span>
+              <span class="lc-url">civitai.com/models/2237711</span>
+            </a>
+            <a class="link-card" href="https://civitai.com/models/2169381" target="_blank">
+              <span class="lc-name">NSFW workflow (Donut)</span>
+              <span class="lc-url">civitai.com/models/2169381</span>
+            </a>
+            <a class="link-card" href="https://huggingface.co/black-forest-labs" target="_blank">
+              <span class="lc-name">FLUX.1-dev (HuggingFace)</span>
+              <span class="lc-url">huggingface.co/black-forest-labs</span>
+            </a>
+            <a class="link-card" href="https://huggingface.co/Wan-AI/Wan2.2-Animate-14B" target="_blank">
+              <span class="lc-name">Wan 2.2 Animate</span>
+              <span class="lc-url">huggingface.co/Wan-AI/Wan2.2</span>
+            </a>
+            <a class="link-card" href="https://github.com/Gourieff/comfyui-reactor-node" target="_blank">
+              <span class="lc-name">ReActor нода</span>
+              <span class="lc-url">github.com/Gourieff/comfyui-reactor-node</span>
+            </a>
+            <a class="link-card" href="https://github.com/kijai/ComfyUI-WanVideoWrapper" target="_blank">
+              <span class="lc-name">WanVideoWrapper ноды</span>
+              <span class="lc-url">github.com/kijai/ComfyUI-WanVideoWrapper</span>
+            </a>
+            <a class="link-card" href="https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite" target="_blank">
+              <span class="lc-name">VideoHelperSuite</span>
+              <span class="lc-url">github.com/Kosinkadink/ComfyUI-VideoHelperSuite</span>
+            </a>
+            <a class="link-card" href="https://github.com/bmaltais/kohya_ss" target="_blank">
+              <span class="lc-name">Kohya_ss (LoRA training)</span>
+              <span class="lc-url">github.com/bmaltais/kohya_ss</span>
+            </a>
+            <a class="link-card" href="https://civitai.com/models?types=Workflows" target="_blank">
+              <span class="lc-name">CivitAI Workflows</span>
+              <span class="lc-url">civitai.com/models?types=Workflows</span>
+            </a>
+            <a class="link-card" href="https://snaptik.app" target="_blank">
+              <span class="lc-name">SnapTik — скачать TikTok</span>
+              <span class="lc-url">snaptik.app</span>
+            </a>
+            <a class="link-card" href="https://fanvue.com" target="_blank">
+              <span class="lc-name">Fanvue — платформа</span>
+              <span class="lc-url">fanvue.com</span>
+            </a>
+            <a class="link-card" href="https://github.com/comfyanonymous/ComfyUI" target="_blank">
+              <span class="lc-name">ComfyUI</span>
+              <span class="lc-url">github.com/comfyanonymous/ComfyUI</span>
+            </a>
+          </div>
+
+        </div><!-- /content-body -->
+      </article>
+    </main>
+
+    <footer class="site-footer-bottom">
+      <p>AI Girls — внутренняя база знаний проекта · обновлено 24 февраля 2026</p>
+    </footer>
+
   </div>
 </body>
 </html>
