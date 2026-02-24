@@ -10,12 +10,14 @@ body {
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
   overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
 .container {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 3rem;
+  min-height: 100vh;
 }
 
 a { color: rgb(74, 158, 255); text-decoration: none; }
