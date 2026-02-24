@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSFW AI-пайплайн для OnlyFans/Fanvue — AI Girls</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <header class="site-header">
+      <a href="../index.html" class="logo">AI GIRLS</a>
+      <div class="site-tagline">База знаний проекта — исследования, мануалы, стратегия</div>
+      <nav class="site-nav">
+        <a href="index.html" class="active">Исследования</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Мануалы</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Инструменты</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Стратегия</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="breadcrumbs">
+        <a href="../index.html">Главная</a>
+        <span class="sep">/</span>
+        <a href="index.html">Исследования</a>
+        <span class="sep">/</span>
+        <span>NSFW AI-пайплайн</span>
+      </div>
+
+      <article class="research-article">
+        <div class="article-meta">
+          <span class="tag">Исследование</span>
+          <span class="tag tag-accent">Технический разбор</span>
+          <span class="date">24 февраля 2026</span>
+        </div>
+
+        <h1>🔬 NSFW AI-контент для OnlyFans/Fanvue — Полное исследование</h1>
+
+        <p class="lead"><strong>Источник:</strong> Разбор комментария с YouTube (видео Харчевникова)</p>
+
+        <div class="callout callout-warning">
+          <strong>Исходный комментарий (дословно):</strong><br><br>
+          "wan 2.2 animate для копирования танцулек и любого движений. А для фанси и онлика нужно откровенного контента накрутить. Wan 2.2 + nfsw лоры генерация зависит от вашей сисемы, воркфлоу валом с лорами на civilai, уже давно все это делаем, палева почти не заметно, если хорошо все настроить и протестить. Создается форма бабы через Z image формата nsfw, дальше делается много разных ракурсов, кидается все в датасет на обучение этой лоры (девушки) и все у нас есть готовая форма из которой можно лепить любой сюжет (если вы понимаете о чем я) Если хотите можно делать фейс свап через flux2. Вы с всякими клингами, гроками или бананами ничего такого не сделаете блок стоит почти на все, обходы есть но хрен вам там покажут клубничку, максимум 16+ типа сисек, да и кредитов потратите пока нормальный промт напишите. Короче говоря, вы не заработаете а заработают на вас те, кто продает дебильные курсы по нееросетях, сейчас это тренд для инфоцыган."
+        </div>
+
+        <hr>
+
+        <h2>1. WAN 2.2 ANIMATE</h2>
+
+        <p><strong>Простыми словами:</strong> Open-source AI-модель от Alibaba — берёт фото персонажа + видео с движениями → создаёт видео где персонаж с фото повторяет эти движения (motion transfer).</p>
+
+        <p><strong>Два режима:</strong></p>
+        <ul>
+          <li><strong>Animate</strong> — фото оживает по движениям из видео-референса</li>
+          <li><strong>Replace</strong> — заменяет персонажа в существующем видео</li>
+        </ul>
+
+        <p><strong>Технически:</strong></p>
+        <ul>
+          <li>Модель: Wan2.2-Animate-14B (14B параметров)</li>
+          <li>720P, 24fps</li>
+          <li>Архитектура MoE (Mixture of Experts) — первая такая в видео-диффузии</li>
+          <li>Open-source, веса на HuggingFace</li>
+          <li>Выпущена 28 июля 2025, Alibaba/Tongyi Lab</li>
+        </ul>
+
+        <p><strong>Чем лучше Wan 2.1:</strong></p>
+        <ul>
+          <li>MoE архитектура: 27B параметров, активируются только 14B за шаг</li>
+          <li>+65% больше обучающих изображений, +83% видео</li>
+          <li>Добавлена функция Animate (в 2.1 не было)</li>
+          <li>Лучше temporal consistency (меньше "прыжков" между кадрами)</li>
+        </ul>
+
+        <p><strong>Ссылки:</strong></p>
+        <ul>
+          <li><a href="https://huggingface.co/Wan-AI/Wan2.2-Animate-14B" target="_blank">HuggingFace: Wan2.2-Animate-14B</a></li>
+          <li><a href="https://github.com/Wan-Video/Wan2.2" target="_blank">GitHub официальный</a></li>
+          <li><a href="https://create.wan.video" target="_blank">Онлайн демо</a></li>
+          <li><a href="https://wavespeed.ai/models/wavespeed-ai/wan-2.2/animate" target="_blank">WaveSpeed API</a></li>
+          <li><a href="https://blog.fal.ai/wan-2-2-vs-wan-2-1-whats-new-and-how-to-upgrade-your-video-pipeline/" target="_blank">Сравнение Wan 2.1 vs 2.2</a></li>
+        </ul>
+
+        <hr>
+
+        <h2>2. NSFW LoRA</h2>
+
+        <p><strong>Что такое LoRA (Low-Rank Adaptation):</strong><br>
+        Способ дообучить большую AI-модель под конкретную задачу не переобучая всю модель. Маленький файл (.safetensors, 20-200 МБ) — "шпаргалка" которую добавляют к базовой модели.</p>
+
+        <p><strong>Аналогия:</strong> Базовая модель = художник-универсал. LoRA = шпаргалка с примерами "рисуй вот так".</p>
+
+        <p><strong>Технически:</strong></p>
+        <ul>
+          <li>Замораживает оригинальные веса</li>
+          <li>Добавляет матрицы низкого ранга к трансформерным блокам</li>
+          <li>Вместо 7B параметров обучается только 1-10M дополнительных</li>
+          <li>Вес применения: 0.5-1.5 (чем выше — тем сильнее влияние)</li>
+          <li><a href="https://arxiv.org/abs/2106.09685" target="_blank">Arxiv paper</a></li>
+        </ul>
+
+        <p><strong>Два типа NSFW LoRA:</strong></p>
+        <ol>
+          <li><strong>Стилистическая</strong> — учит модель рисовать откровенный контент в стиле (реализм, аниме...)</li>
+          <li><strong>Персонажная (Character LoRA)</strong> — учит воспроизводить конкретного персонажа/человека</li>
+        </ol>
+
+        <p><strong>Где берут:</strong> CivitAI, Tensor.Art, самообучение через Kohya_ss</p>
+
+        <hr>
+
+        <h2>3. CIVITAI</h2>
+
+        <p><strong>Что это:</strong> Крупнейший хаб для Stable Diffusion и похожих моделей. "GitHub для AI-моделей" с соцсетью и рейтингами.</p>
+
+        <p><strong>Что там есть:</strong></p>
+        <ul>
+          <li>Checkpoints (базовые модели: SDXL, FLUX, Pony, Illustrious...)</li>
+          <li>LoRA (тысячи — стили, персонажи, NSFW)</li>
+          <li>Embeddings, ControlNet, VAE</li>
+          <li>Workflows для ComfyUI</li>
+          <li>Встроенный генератор (без установки ПО)</li>
+        </ul>
+
+        <p><strong>NSFW на CivitAI:</strong> После верификации возраста (18+) и включения фильтра — тысячи NSFW LoRA. Теги: <code>realistic nsfw</code>, <code>photorealistic explicit</code>, <code>nude</code>.</p>
+
+        <p><strong>Ссылки:</strong></p>
+        <ul>
+          <li><a href="https://civitai.com" target="_blank">civitai.com</a></li>
+          <li><a href="https://civitai.com/articles/17339/comfyui-image-workflows-guide" target="_blank">Workflow guide</a></li>
+        </ul>
+
+        <hr>
+
+        <h2>4. WORKFLOW С ЛОРАМИ (ComfyUI)</h2>
+
+        <p><strong>ComfyUI</strong> — open-source визуальный редактор нод для Stable Diffusion. Каждый шаг генерации = нода. Все ноды вместе = workflow. Сохраняется как JSON, можно делиться.</p>
+
+        <p><strong>Типичные ноды NSFW workflow:</strong></p>
+        <ul>
+          <li><code>Load Checkpoint</code> → базовая модель</li>
+          <li><code>Load LoRA</code> × N → несколько LoRA одновременно</li>
+          <li><code>CLIPTextEncode</code> → промпты (позитивный + негативный)</li>
+          <li><code>KSampler</code> → сам процесс диффузии</li>
+          <li><code>ControlNet Apply</code> → контроль позы</li>
+          <li><code>UltimateSDUpscale</code> → апскейл</li>
+          <li><code>FaceDetailer</code> → улучшение деталей лица</li>
+          <li><code>ReActor</code> → face swap</li>
+        </ul>
+
+        <p>На CivitAI в разделе Workflows публикуют готовые JSON под конкретные задачи.</p>
+
+        <p><strong>Ссылки:</strong></p>
+        <ul>
+          <li><a href="https://github.com/comfyanonymous/ComfyUI" target="_blank">ComfyUI на GitHub</a></li>
+          <li><a href="https://civitai.com/models?types=Workflows" target="_blank">Workflows на CivitAI</a></li>
+        </ul>
+
+        <hr>
+
+        <h2>5. Z-IMAGE</h2>
+
+        <p><strong>Что это:</strong> Open-source AI-модель для генерации изображений от Alibaba (Tongyi Lab). Полное название: ZaoXiang (造像 — "создание образов").</p>
+
+        <p><strong>Почему популярна для NSFW:</strong></p>
+        <ul>
+          <li>Открытые веса → запускается локально</li>
+          <li>Без цензуры, без ограничений</li>
+          <li>Полный контроль над генерацией</li>
+        </ul>
+
+        <p><strong>Технически:</strong></p>
+        <ul>
+          <li>6B параметров</li>
+          <li>Архитектура S3-DiT (Single-Stream Diffusion Transformer)</li>
+          <li>Требования: от 6-8 GB VRAM</li>
+          <li>Z-Image-Turbo: генерирует 1024×1024 за секунды на consumer GPU</li>
+        </ul>
+
+        <p><strong>Варианты:</strong> Turbo (быстро), Base (детальнее), Pro (лучшее качество)</p>
+
+        <p><strong>Ссылки:</strong></p>
+        <ul>
+          <li><a href="https://z-image.ai" target="_blank">z-image.ai</a></li>
+          <li><a href="https://www.cometapi.com/how-to-use-z-image-to-create-nsfw-content/" target="_blank">NSFW туториал</a></li>
+        </ul>
+
+        <hr>
+
+        <h2>6. «ФОРМА ДЕВУШКИ» — что это технически</h2>
+
+        <p>Создание <strong>консистентного визуального образа персонажа</strong> через серию изображений с разных ракурсов. Цель — датасет для обучения персональной LoRA.</p>
+
+        <p><strong>Почему много ракурсов:</strong><br>
+        При обучении LoRA нейросеть должна "понять" как персонаж выглядит с разных точек зрения.</p>
+
+        <p><strong>Стандартный набор:</strong></p>
+        <ul>
+          <li>Фронталь (прямо) — 30-40%</li>
+          <li>3/4 (немного сбоку) — 30%</li>
+          <li>Профиль (сбоку) — 15%</li>
+          <li>Сзади — 10%</li>
+          <li>Снизу/сверху — 5%</li>
+          <li>Крупный план лица — отдельно</li>
+        </ul>
+
+        <p><strong>Для NSFW добавляют:</strong> разные позы тела, выражения, освещение, фон (чтобы фон не запомнился как часть персонажа).</p>
+
+        <hr>
+
+        <h2>7. ДАТАСЕТ ДЛЯ ОБУЧЕНИЯ LORA</h2>
+
+        <p><strong>Что такое датасет:</strong> Набор изображений + текстовые описания (captions). Каждому фото → .txt файл с тегами.</p>
+
+        <p><strong>Сколько изображений нужно:</strong></p>
+        <table class="data-table">
+          <thead>
+            <tr><th>Цель</th><th>Минимум</th><th>Оптимум</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Быстрый тест</td><td>15-20</td><td>—</td></tr>
+            <tr><td>Нормальный персонаж</td><td>30-50</td><td>60-80</td></tr>
+            <tr><td>Высокое качество</td><td>80-100</td><td>100-150</td></tr>
+            <tr><td>NSFW персонаж</td><td>50+</td><td>100-200</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Пошаговая подготовка:</strong></p>
+        <ol>
+          <li>Сбор изображений (генерация через Z-Image или реальные фото)</li>
+          <li>Кадрирование до квадрата (512×512, 1024×1024)</li>
+          <li>Автокапшенинг (WD14 Tagger, BLIP2, Florence-2)</li>
+          <li>Ручная правка тегов + trigger word</li>
+          <li>Структура папок: <code>10_triggername/</code></li>
+        </ol>
+
+        <p><strong>Инструменты обучения:</strong></p>
+        <ul>
+          <li><strong>Kohya_ss</strong> — самый популярный: <a href="https://github.com/bmaltais/kohya_ss" target="_blank">github.com/bmaltais/kohya_ss</a></li>
+          <li><strong>SimpleTuner</strong> — проще, для FLUX: <a href="https://github.com/bghira/SimpleTuner" target="_blank">github.com/bghira/SimpleTuner</a></li>
+          <li><strong>EveryDream2</strong> — хорошая документация: <a href="https://github.com/victorchall/EveryDream2trainer" target="_blank">github.com/victorchall/EveryDream2trainer</a></li>
+        </ul>
+
+        <p><strong>Ресурсы:</strong></p>
+        <ul>
+          <li><a href="https://civitai.com/articles/4/what-is-lora-training-a-complete-beginners-guide" target="_blank">Руководство по датасетам (CivitAI)</a></li>
+          <li><a href="https://rentry.org/59xed3" target="_blank">Kohya LoRA guide</a></li>
+        </ul>
+
+        <hr>
+
+        <h2>8. «ГОТОВАЯ ФОРМА ИЗ КОТОРОЙ ЛЕПЯТ СЮЖЕТ»</h2>
+
+        <p>После обучения LoRA ты получаешь файл .safetensors — персонаж "сохранён" в нём. Теперь можешь:</p>
+        <ul>
+          <li>Генерировать любые изображения с этим персонажем</li>
+          <li>Менять сцены, позы, освещение, одежду</li>
+          <li>Комбинировать с другими LoRA</li>
+          <li>Использовать как reference image для видео через Wan 2.2</li>
+        </ul>
+        <p>Персонаж = "актёр", которого можно поместить в любую "сцену".</p>
+
+        <hr>
+
+        <h2>9. FACE SWAP ЧЕРЕЗ FLUX 2</h2>
+
+        <p><strong>Что такое FLUX 2:</strong><br>
+        FLUX.1 (и FLUX 2 / FLUX Pro) — серия диффузионных моделей от Black Forest Labs (команда создателей Stable Diffusion). Считается лучшей open-source моделью для фотореалистичной генерации на 2025-2026 год.</p>
+
+        <p><strong>Face swap через FLUX — два способа:</strong></p>
+
+        <p><strong>Способ 1 — IP-Adapter FaceID:</strong></p>
+        <ul>
+          <li>Берёт референсное лицо → встраивает в генерацию</li>
+          <li>Нода: <code>IP-Adapter FaceID Plus</code> в ComfyUI</li>
+          <li>Сохраняет черты лица при смене сцены/позы</li>
+        </ul>
+
+        <p><strong>Способ 2 — ReActor (постпроцессинг):</strong></p>
+        <ul>
+          <li>Генерирует изображение → заменяет лицо на целевое</li>
+          <li>Использует InsightFace для детекции и замены</li>
+          <li>Работает как нода в ComfyUI</li>
+        </ul>
+
+        <p><strong>Почему FLUX лучше для этого:</strong></p>
+        <ul>
+          <li>Лучше понимает промпты (следование инструкциям)</li>
+          <li>Выше качество деталей кожи и лица</li>
+          <li>Более реалистичное освещение</li>
+        </ul>
+
+        <p><strong>Ссылки:</strong></p>
+        <ul>
+          <li><a href="https://huggingface.co/black-forest-labs" target="_blank">FLUX на HuggingFace</a></li>
+          <li><a href="https://comfyanonymous.github.io/ComfyUI_examples/flux/" target="_blank">ComfyUI FLUX guide</a></li>
+          <li><a href="https://github.com/Gourieff/comfyui-reactor-node" target="_blank">ReActor нода</a></li>
+        </ul>
+
+        <hr>
+
+        <h2>10. ПОЧЕМУ KLING/GROQ/BANANA БЛОКИРУЮТ NSFW</h2>
+
+        <p><strong>Kling (Kuaishou):</strong> Коммерческий SaaS — строгая модерация, блокирует любой откровенный контент на уровне детектора. Нарушение ToS → бан аккаунта.</p>
+
+        <p><strong>Groq:</strong> Это вообще не видеогенератор — это инференс-платформа для LLM (языковых моделей). Автор имел в виду облачные GPU сервисы типа Groq Cloud.</p>
+
+        <p><strong>Banana.dev:</strong> Облачный деплой AI-моделей. Явно запрещает NSFW в ToS. Автоматическая модерация контента.</p>
+
+        <p><strong>Почему коммерческие сервисы блокируют:</strong></p>
+        <ol>
+          <li>Юридические риски (CSAM, авторские права)</li>
+          <li>Репутационные риски</li>
+          <li>Банковский комплаенс (Visa/MC правила для платформ)</li>
+          <li>Регуляторное давление (EU AI Act, US законодательство)</li>
+        </ol>
+
+        <p><strong>Решение — локальный стек:</strong> ComfyUI на своём железе или RunPod (арендованный GPU) — никакой модерации, полный контроль.</p>
+
+        <hr>
+
+        <h2>11. ПОЛНЫЙ ПАЙПЛАЙН</h2>
+
+        <pre><code>ШАГ 1: СОЗДАНИЕ ПЕРСОНАЖА (образ)
+└── Z-Image (локально/RunPod)
+    ├── Генерируем базовый образ девушки
+    ├── NSFW checkpoint (epiCRealism, Pony...)
+    └── Много ракурсов: фронталь, 3/4, профиль, разные позы
+
+ШАГ 2: ОБУЧЕНИЕ LORA (запоминаем персонажа)
+└── Kohya_ss или SimpleTuner
+    ├── Датасет: 50-150 изображений с капшенами
+    ├── Trigger word: например "anya_model"
+    └── Результат: файл anya_model.safetensors
+
+ШАГ 3: ГЕНЕРАЦИЯ ИЗОБРАЖЕНИЙ (сцены)
+└── ComfyUI + FLUX 2
+    ├── Базовая модель + Character LoRA
+    ├── NSFW Style LoRA (из CivitAI)
+    ├── Workflow из CivitAI
+    └── Результат: фото персонажа в любых сценах
+
+ШАГ 4: FACE SWAP (если нужно реальное лицо)
+└── ComfyUI → ReActor нода
+    └── Вставляем реальное лицо в сгенерированное тело
+
+ШАГ 5: АНИМАЦИЯ (видео контент)
+└── ComfyUI + Wan 2.2 Animate
+    ├── Reference image (из шага 3)
+    ├── Видео-референс с движениями (TikTok танцы)
+    └── Результат: видео где персонаж движется
+
+ШАГ 6: ПУБЛИКАЦИЯ
+└── OnlyFans / Fanvue / другие платформы</code></pre>
+
+        <p><strong>Необходимое железо (или RunPod):</strong></p>
+        <ul>
+          <li>Минимум: RTX 3060 12GB (только изображения, без видео)</li>
+          <li>Комфорт: RTX 4090 24GB (всё включая видео)</li>
+          <li>Облако: RunPod RTX 4090 — ~$0.74/час</li>
+        </ul>
+
+        <hr>
+
+        <h2>Вывод автора комментария</h2>
+
+        <p>Автор прав: <strong>коммерческие SaaS не дадут это сделать</strong>. Максимум что они позволят — 16+ контент. Для серьёзного NSFW нужен <strong>локальный open-source стек</strong>:</p>
+
+        <ul>
+          <li>ComfyUI (бесплатно)</li>
+          <li>Z-Image / FLUX (бесплатно, открытые веса)</li>
+          <li>Wan 2.2 Animate (бесплатно, открытые веса)</li>
+          <li>CivitAI LoRA (бесплатно скачать)</li>
+          <li>Kohya_ss для обучения (бесплатно)</li>
+          <li>RunPod для GPU если нет своего (платно, ~$0.74/час)</li>
+        </ul>
+
+        <div class="callout callout-info">
+          <strong>Про инфоцыган:</strong> Продают курсы по Kling/Midjourney зная что там стоят блоки — человек тратит деньги и не получает результат.
+        </div>
+
+      </article>
+    </main>
+
+    <footer class="site-footer-bottom">
+      <p>AI Girls — внутренняя база знаний проекта</p>
+    </footer>
+
+  </div>
+</body>
+</html>
