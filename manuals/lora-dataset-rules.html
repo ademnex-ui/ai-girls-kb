@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Свод правил для датасета LoRA — AI Girls</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .article-meta { display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center; margin-bottom:1.25rem; }
+    .tag { background:rgba(74,158,255,0.08); color:rgb(74,158,255); border:1px solid rgba(74,158,255,0.2); padding:0.15rem 0.55rem; border-radius:3px; font-size:0.75rem; }
+    .tag-green { background:rgba(74,200,100,0.08); color:rgb(74,200,100); border-color:rgba(74,200,100,0.2); }
+    .tag-orange { background:rgba(200,164,74,0.08); color:rgb(200,164,74); border-color:rgba(200,164,74,0.2); }
+    .date { color:rgb(85,85,85); font-size:0.8rem; }
+    .lead { font-size:1rem; color:rgb(170,170,170); line-height:1.7; margin-bottom:1.5rem; }
+    .callout { background:rgb(18,18,18); border-left:3px solid rgb(74,158,255); padding:1rem 1.25rem; border-radius:0 6px 6px 0; margin:1.25rem 0; font-size:0.9rem; color:rgb(136,136,136); }
+    .callout-warning { border-left-color:rgb(200,164,74); }
+    .callout-green { border-left-color:rgb(74,200,100); }
+    .callout-red { border-left-color:rgb(220,60,60); }
+    .callout strong { color:rgb(204,204,204); }
+    .toc { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:1rem 1.25rem; margin:1.5rem 0; }
+    .toc-title { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:rgb(85,85,85); margin-bottom:0.75rem; }
+    .toc ol { padding-left:1.25rem; margin:0; }
+    .toc li { padding:0.25rem 0; }
+    .toc a { color:rgb(102,102,102); font-size:0.85rem; }
+    .toc a:hover { color:rgb(74,158,255); }
+    .step-label { display:inline-block; background:rgba(74,158,255,0.12); color:rgb(74,158,255); border:1px solid rgba(74,158,255,0.2); border-radius:3px; padding:0.1rem 0.5rem; font-size:0.75rem; margin-bottom:0.5rem; }
+    .arch-block { background:rgb(10,10,10); border:1px solid rgb(26,26,26); border-radius:6px; padding:1rem 1.25rem; margin:1rem 0; overflow-x:auto; }
+    .arch-block pre { margin:0; font-size:0.83rem; color:rgb(153,153,153); line-height:1.7; }
+    .rules-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:1rem 0; }
+    @media(max-width:600px){ .rules-grid{grid-template-columns:1fr;} }
+    .rules-card { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:14px 16px; }
+    .rules-card.yes { border-top:2px solid rgb(74,200,100); }
+    .rules-card.no { border-top:2px solid rgb(220,60,60); }
+    .rules-card .rc-title { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px; }
+    .rules-card.yes .rc-title { color:rgb(74,200,100); }
+    .rules-card.no .rc-title { color:rgb(220,60,60); }
+    .rules-card ul { margin:0; padding-left:1.1rem; }
+    .rules-card li { font-size:0.84rem; color:rgb(136,136,136); padding:3px 0; line-height:1.5; }
+    .source-ref { font-size:0.78rem; color:rgb(70,70,70); font-style:italic; margin-top:0.5rem; display:block; }
+    .source-ref a { color:rgb(70,70,70); }
+    .source-ref a:hover { color:rgb(74,158,255); }
+    .checklist-block { background:rgb(13,13,13); border:1px solid rgb(26,26,26); border-radius:6px; padding:1rem 1.25rem; margin:1rem 0; }
+    .checklist-block h4 { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:12px; }
+    .checklist-block.green h4 { color:rgb(74,200,100); }
+    .checklist-block.red h4 { color:rgb(220,60,60); }
+    .checklist { list-style:none; padding:0; margin:0; }
+    .checklist li { padding:7px 0 7px 22px; position:relative; border-bottom:1px solid rgb(22,22,22); font-size:0.86rem; color:rgb(136,136,136); }
+    .checklist li:last-child { border-bottom:none; }
+    .checklist.green li::before { content:"□"; position:absolute; left:0; color:rgb(74,200,100); }
+    .checklist.red li::before { content:"□"; position:absolute; left:0; color:rgb(220,60,60); }
+    .stat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:1rem 0; }
+    @media(max-width:600px){ .stat-grid{grid-template-columns:repeat(2,1fr);} }
+    .stat-card { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:14px; text-align:center; }
+    .stat-card .sc-label { font-size:0.72rem; color:rgb(85,85,85); margin-bottom:4px; }
+    .stat-card .sc-value { font-size:1.1rem; color:rgb(74,158,255); font-weight:600; }
+    .stat-card .sc-sub { font-size:0.7rem; color:rgb(70,70,70); margin-top:2px; }
+    .sources-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.83rem; }
+    .sources-table th { text-align:left; color:rgb(85,85,85); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.07em; padding:8px 10px; border-bottom:1px solid rgb(30,30,30); }
+    .sources-table td { padding:9px 10px; border-bottom:1px solid rgb(22,22,22); color:rgb(119,119,119); vertical-align:top; }
+    .sources-table td:first-child { color:rgb(153,153,153); }
+    .sources-table a { color:rgb(74,158,255); word-break:break-all; }
+    .section-rule { border:none; border-top:1px solid rgb(26,26,26); margin:2rem 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="site-header">
+      <a href="../index.html" class="logo">AI GIRLS</a>
+      <div class="site-tagline">База знаний проекта — исследования, мануалы, стратегия</div>
+      <nav class="site-nav">
+        <a href="../research/index.html">Исследования</a>
+        <a href="index.html" class="active">Мануалы</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Инструменты</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Стратегия</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="breadcrumbs">
+        <a href="../index.html">Главная</a>
+        <span class="sep">/</span>
+        <a href="index.html">Мануалы</a>
+        <span class="sep">/</span>
+        <span>Свод правил для датасета LoRA</span>
+      </div>
+
+      <a href="index.html" class="back-btn">← Назад к мануалам</a>
+
+      <article>
+        <div class="article-meta">
+          <span class="tag">Мануал</span>
+          <span class="tag">LoRA Training</span>
+          <span class="tag tag-orange">Dataset</span>
+          <span class="date">26 февраля 2026</span>
+        </div>
+
+        <h1 style="font-size:1.4rem;color:rgb(220,220,220);margin-bottom:0.5rem;">Свод правил для датасета LoRA — Полный мануал</h1>
+        <p class="lead">Руководство для отбора изображений из массовой генерации под обучение LoRA персонажа. Каждая фотография, попавшая в датасет, должна соответствовать всем правилам ниже.</p>
+
+        <div class="toc">
+          <div class="toc-title">Содержание</div>
+          <ol>
+            <li><a href="#sec1">Количество и состав датасета</a></li>
+            <li><a href="#sec2">Лицо — главный приоритет</a></li>
+            <li><a href="#sec3">Ракурсы и углы</a></li>
+            <li><a href="#sec4">Освещение</a></li>
+            <li><a href="#sec5">Одежда</a></li>
+            <li><a href="#sec6">Фон и окружение</a></li>
+            <li><a href="#sec7">Техническое качество</a></li>
+            <li><a href="#sec8">Критические ошибки</a></li>
+            <li><a href="#sec9">Чеклист для отбора</a></li>
+            <li><a href="#sec10">Идеальный состав датасета на 40 фото</a></li>
+            <li><a href="#sources">Источники</a></li>
+          </ol>
+        </div>
+
+        <div class="callout">
+          <strong>Главное правило:</strong> Качество датасета важнее количества. Лучше 25 идеальных изображений, чем 100 посредственных.<br>
+          <span class="source-ref">Источник: <a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">RunDiffusion Dataset Guide</a></span>
+        </div>
+
+        <div class="content-body">
+
+          <!-- SEC 1 -->
+          <hr class="section-rule">
+          <h2 id="sec1">📐 РАЗДЕЛ 1 — Количество и состав датасета</h2>
+
+          <h3>Оптимальное количество изображений</h3>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="sc-label">Face LoRA — Минимум</div>
+              <div class="sc-value">20</div>
+              <div class="sc-sub">изображений</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Face LoRA — Оптимум</div>
+              <div class="sc-value">25–40</div>
+              <div class="sc-sub">изображений</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">AI-инфлюенсер — Оптимум</div>
+              <div class="sc-value">40–60</div>
+              <div class="sc-sub">изображений</div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-label">Body LoRA — Максимум</div>
+              <div class="sc-value">80</div>
+              <div class="sc-sub">изображений</div>
+            </div>
+          </div>
+
+          <div class="callout">
+            "Dataset quality matters more than quantity, aim for 10–30 diverse, high-resolution images"<br>
+            <span class="source-ref">Apatero Blog — LoRA Training Best Practices 2025</span>
+          </div>
+          <div class="callout">
+            "More Images Doesn't Mean Better LoRA"<br>
+            <span class="source-ref"><a href="https://docs.seaart.ai/guide-1/3-advanced-guide/3-2-lora-training-advance/how-to-create-dataset-for-training" target="_blank">SeaArt Docs</a></span>
+          </div>
+          <div class="callout">
+            "My sweet spot is 20–25 images. Enough diversity to capture the character, not so many that training goes wrong. Focus heavily on faces — that's what matters most for character consistency."<br>
+            <span class="source-ref">Apatero Blog — Train LoRAs for AI Influencer Characters 2025</span>
+          </div>
+
+          <h3>Обязательный состав датасета (для AI-инфлюенсера)</h3>
+          <p style="color:rgb(102,102,102);font-size:0.85rem;">Распределение по типам кадра на 40 изображений:</p>
+
+          <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:0.75rem 0 1.25rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">Тип кадра</th>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">Кол-во</th>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">% от датасета</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(170,170,170);">Портрет (лицо крупно)</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(74,158,255);font-weight:600;">15–18</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(119,119,119);">40%</td></tr>
+              <tr><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(170,170,170);">Полуфигура (до пояса)</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(74,158,255);font-weight:600;">10–12</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(119,119,119);">25–30%</td></tr>
+              <tr><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(170,170,170);">Полный рост</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(74,158,255);font-weight:600;">8–10</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(119,119,119);">20–25%</td></tr>
+              <tr><td style="padding:9px 10px;color:rgb(170,170,170);">Вид сзади / 3/4 сзади</td><td style="padding:9px 10px;color:rgb(74,158,255);font-weight:600;">3–5</td><td style="padding:9px 10px;color:rgb(119,119,119);">10%</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            "Identity (Face): 20 to 40 high-quality images with varied angles and expressions"<br>
+            <span class="source-ref"><a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">RunDiffusion Dataset Guide</a></span>
+          </div>
+          <div class="callout">
+            "You need more quality images for the face than the body because it requires more details to produce"<br>
+            <span class="source-ref">Reddit r/comfyui — Best practices for high-fidelity character LoRA training, Aug 2025</span>
+          </div>
+
+          <!-- SEC 2 -->
+          <hr class="section-rule">
+          <h2 id="sec2">🎯 РАЗДЕЛ 2 — Лицо (главный приоритет)</h2>
+
+          <p style="color:rgb(136,136,136);">Лицо — ключевой идентификатор персонажа. Именно по лицу модель "узнаёт" персонажа при генерации.</p>
+
+          <div class="rules-grid">
+            <div class="rules-card yes">
+              <div class="rc-title">✅ ДОЛЖНО БЫТЬ</div>
+              <ul>
+                <li><strong style="color:rgb(204,204,204);">Лицо занимает 60–80% кадра</strong> в портретных снимках</li>
+                <li>Чёткий фокус на лице — каждая деталь резкая</li>
+                <li><strong style="color:rgb(204,204,204);">Минимум грима</strong> — натуральный мейкап или без него. Лёгкий допустим</li>
+                <li>Чистая кожа без сильных бликов и пересветов</li>
+                <li>Видны оба глаза (кроме профильных снимков)</li>
+                <li>Естественное выражение лица</li>
+                <li>Видны уши (хотя бы частично) — помогает модели выучить форму головы</li>
+                <li>Разные выражения: нейтральное, улыбка, задумчивое, смеющееся</li>
+              </ul>
+            </div>
+            <div class="rules-card no">
+              <div class="rc-title">❌ НЕ ДОЛЖНО БЫТЬ</div>
+              <ul>
+                <li>Сильный/яркий макияж (тёмные губы, smoky eyes, яркие тени) — модель запомнит макияж как часть лица</li>
+                <li>Солнцезащитные очки — скрывают форму глаз</li>
+                <li>Маски, повязки на лице</li>
+                <li>Волосы полностью закрывающие лицо</li>
+                <li>Размытость, блики, пересвет на лице</li>
+                <li>Сильные тени, закрывающие черты лица</li>
+                <li>Фильтры и эффекты (Instagram, Snapchat)</li>
+                <li>Несколько лиц в кадре</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            "Face from different angles, body in different clothing and in different lighting but not too much difference, avoid pics with eye makeup"<br>
+            <span class="source-ref"><a href="https://www.reddit.com/r/StableDiffusion/comments/13dh7ql/" target="_blank">Reddit r/StableDiffusion — "After training 50+ LoRA Models here is what I learned", May 2023</a></span>
+          </div>
+          <div class="callout">
+            "Each image should be 512x512 pixels minimum, with the face occupying 60–80% of the frame"<br>
+            <span class="source-ref"><a href="https://aimensa.com/creating-ai-influencers-lora-z-image-training" target="_blank">Aimensa — Creating AI Influencers Through LoRA for Z-Image Training</a></span>
+          </div>
+          <div class="callout">
+            "Don't use heavily filtered images, extreme angles beyond 45 degrees, or photos with multiple faces"<br>
+            <span class="source-ref"><a href="https://aimensa.com/creating-ai-influencers-lora-z-image-training" target="_blank">Aimensa</a></span>
+          </div>
+
+          <!-- SEC 3 -->
+          <hr class="section-rule">
+          <h2 id="sec3">📐 РАЗДЕЛ 3 — Ракурсы и углы</h2>
+
+          <h3>Обязательный набор ракурсов (для портретов)</h3>
+
+          <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:0.75rem 0 1.25rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">Ракурс</th>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">Кол-во</th>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">Описание</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(170,170,170);">Анфас (прямо)</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(74,158,255);font-weight:600;">8–10</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(102,102,102);">Лицо смотрит прямо в камеру</td></tr>
+              <tr><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(170,170,170);">3/4 (полуоборот)</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(74,158,255);font-weight:600;">8–10</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(102,102,102);">Поворот 30–45 градусов</td></tr>
+              <tr><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(170,170,170);">Профиль (сбоку)</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(74,158,255);font-weight:600;">4–6</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(102,102,102);">Поворот 80–90 градусов</td></tr>
+              <tr><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(170,170,170);">Взгляд вниз/вверх</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(74,158,255);font-weight:600;">3–4</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(102,102,102);">Голова слегка наклонена</td></tr>
+              <tr><td style="padding:9px 10px;color:rgb(170,170,170);">3/4 сзади</td><td style="padding:9px 10px;color:rgb(74,158,255);font-weight:600;">3–5</td><td style="padding:9px 10px;color:rgb(102,102,102);">Лицо повёрнуто от камеры на 3/4</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout callout-warning">
+            <strong>Правило "сладкой точки":</strong> Один и тот же ракурс — не более 3–6 раз в датасете. Иначе модель начнёт "застревать" на одном угле при генерации.<br>
+            <span class="source-ref"><a href="https://docs.seaart.ai/guide-1/3-advanced-guide/3-2-lora-training-advance/how-to-create-dataset-for-training" target="_blank">SeaArt Docs</a></span>
+          </div>
+
+          <div class="callout">
+            "Front-facing shots (40% of dataset), three-quarter angles (30%), profile views (20%), and varied expressions (10%)"<br>
+            <span class="source-ref"><a href="https://aimensa.com/creating-ai-influencers-lora-z-image-training" target="_blank">Aimensa</a></span>
+          </div>
+          <div class="callout">
+            "Avoid too many close ups and include a couple of full body. This helps to make the trained model flexible."<br>
+            <span class="source-ref"><a href="https://www.reddit.com/r/StableDiffusion/comments/1gti80j/" target="_blank">Reddit r/StableDiffusion — Standard for creating an optimal person LoRA dataset, Nov 2024</a></span>
+          </div>
+
+          <div class="callout callout-red">
+            <strong>Ракурсы под запретом:</strong>
+            <ul style="margin:8px 0 0;padding-left:1.2rem;">
+              <li>Угол наклона более 45–60 градусов от прямого (экстремальные ракурсы снизу/сверху)</li>
+              <li>Ракурс при котором лицо не видно совсем (чисто спина)</li>
+              <li>Рыбий глаз / сильное искажение объективом</li>
+            </ul>
+            <span class="source-ref">"LoRA training for Z-Image works best for frontal and near-frontal face generation. Extreme angles (beyond 60 degrees) may show reduced consistency" — <a href="https://aimensa.com/creating-ai-influencers-lora-z-image-training" target="_blank">Aimensa</a></span>
+          </div>
+
+          <!-- SEC 4 -->
+          <hr class="section-rule">
+          <h2 id="sec4">💡 РАЗДЕЛ 4 — Освещение</h2>
+
+          <div class="rules-grid">
+            <div class="rules-card yes">
+              <div class="rc-title">✅ ПРАВИЛЬНОЕ ОСВЕЩЕНИЕ</div>
+              <ul>
+                <li>Мягкий рассеянный свет (студийный, естественный через окно)</li>
+                <li>Золотой час (утро/вечер) — тёплый, мягкий свет</li>
+                <li>Студийный свет с рассеивателем</li>
+                <li>Равномерная освещённость лица без резких теней</li>
+                <li>Допустимо умеренное боковое освещение (добавляет объём)</li>
+                <li>Разные источники и направления света (но не экстремальные)</li>
+              </ul>
+            </div>
+            <div class="rules-card no">
+              <div class="rc-title">❌ НЕПРАВИЛЬНОЕ ОСВЕЩЕНИЕ</div>
+              <ul>
+                <li>Жёсткие тени, закрывающие половину лица</li>
+                <li>Пересвет (overexposure) — лицо "выбеленное"</li>
+                <li>Сильный контровой свет (силуэт)</li>
+                <li>Стробоскоп / клубное освещение</li>
+                <li>Слишком тёмные изображения (недоэкспозиция)</li>
+                <li>Монотонное одинаковое освещение на всех фото — вариативность нужна</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            "Well-lit with neutral or soft lighting. Free from compression artifacts or filters"<br>
+            <span class="source-ref"><a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">RunDiffusion Dataset Guide</a></span>
+          </div>
+          <div class="callout">
+            "Not necessarily identical lighting, but professional-grade illumination without harsh shadows or overexposure"<br>
+            <span class="source-ref"><a href="https://aimensa.com/creating-ai-influencers-lora-z-image-training" target="_blank">Aimensa</a></span>
+          </div>
+
+          <!-- SEC 5 -->
+          <hr class="section-rule">
+          <h2 id="sec5">👗 РАЗДЕЛ 5 — Одежда</h2>
+
+          <div class="callout callout-warning">
+            <strong>Принцип:</strong> Один и тот же наряд — не более 3–6 изображений. Иначе модель будет "привязывать" наряд к персонажу и надевать его при каждой генерации.<br>
+            Одежда должна быть на разных типах кадра (один и тот же наряд — разные ракурсы).
+          </div>
+
+          <div class="rules-grid">
+            <div class="rules-card yes">
+              <div class="rc-title">✅ ХОРОШО</div>
+              <ul>
+                <li>Разные стили: повседневный, спортивный, вечерний, минималистичный</li>
+                <li>Разный цвет одежды</li>
+                <li>Одежда, плотно прилегающая к телу — помогает модели выучить фигуру персонажа</li>
+                <li>Разные покрои (топы, платья, рубашки, пиджаки)</li>
+              </ul>
+            </div>
+            <div class="rules-card no">
+              <div class="rc-title">❌ ПЛОХО</div>
+              <ul>
+                <li>Один и тот же наряд на всех/большинстве фото</li>
+                <li>Очень экзотичная/специфическая одежда, которую нельзя легко описать в промпте</li>
+                <li>Аксессуары, закрывающие ключевые черты (большие шляпы, закрывающие лоб)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            "If you use original clothes in every image, it will tend to create those clothes everytime even you don't want to"<br>
+            <span class="source-ref"><a href="https://docs.seaart.ai/guide-1/3-advanced-guide/3-2-lora-training-advance/how-to-create-dataset-for-training" target="_blank">SeaArt Docs</a></span>
+          </div>
+          <div class="callout">
+            "Including accessories like glasses or hats is acceptable if your AI influencer will consistently wear them, but variable accessories confuse the model's understanding of core facial features"<br>
+            <span class="source-ref"><a href="https://aimensa.com/creating-ai-influencers-lora-z-image-training" target="_blank">Aimensa</a></span>
+          </div>
+
+          <!-- SEC 6 -->
+          <hr class="section-rule">
+          <h2 id="sec6">🌿 РАЗДЕЛ 6 — Фон и окружение</h2>
+
+          <div class="callout callout-green">
+            <strong>Современный подход (2024–2025):</strong> Устаревшее мнение — "используй только белый фон". Сегодня профессионалы рекомендуют <strong>разнообразие фонов</strong> — это учит модель "видеть" персонажа, а не окружение.
+          </div>
+
+          <div class="rules-grid">
+            <div class="rules-card yes">
+              <div class="rc-title">✅ ХОРОШО</div>
+              <ul>
+                <li>Разные локации: комната, улица, парк, кафе, студия</li>
+                <li>Смесь интерьер + экстерьер</li>
+                <li>Нейтральные и умеренно сложные фоны</li>
+                <li>Фоны, не отвлекающие от персонажа</li>
+                <li>Боке / размытый задний план — отлично</li>
+              </ul>
+            </div>
+            <div class="rules-card no">
+              <div class="rc-title">❌ ПЛОХО</div>
+              <ul>
+                <li>Один и тот же фон на всех фото — модель "вклеит" его в генерации</li>
+                <li>Очень загромождённый фон (мешает изолировать персонажа)</li>
+                <li>Фон сливается с персонажем по цвету</li>
+                <li>Очень яркий, кричащий фон</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            "Background variation teaches the model to isolate the subject, rather than memorizing a fixed environment. Use indoor and outdoor backgrounds, real-world environments"<br>
+            <span class="source-ref"><a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">RunDiffusion Dataset Guide</a></span>
+          </div>
+          <div class="callout">
+            "If you use beach as a background in every image, it will generate images with beach background even if you don't ask for it"<br>
+            <span class="source-ref"><a href="https://docs.seaart.ai/guide-1/3-advanced-guide/3-2-lora-training-advance/how-to-create-dataset-for-training" target="_blank">SeaArt Docs</a></span>
+          </div>
+
+          <!-- SEC 7 -->
+          <hr class="section-rule">
+          <h2 id="sec7">🔍 РАЗДЕЛ 7 — Техническое качество изображений</h2>
+
+          <h3>Требования к разрешению</h3>
+
+          <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:0.75rem 0 1.25rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">Модель базы</th>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">Минимум</th>
+                <th style="text-align:left;padding:8px 10px;border-bottom:1px solid rgb(30,30,30);color:rgb(85,85,85);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;">Рекомендовано</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(170,170,170);">SDXL (Z-Image)</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(74,158,255);font-weight:600;">1024×1024 px</td><td style="padding:9px 10px;border-bottom:1px solid rgb(22,22,22);color:rgb(119,119,119);">1024×1024 px</td></tr>
+              <tr><td style="padding:9px 10px;color:rgb(170,170,170);">Flux</td><td style="padding:9px 10px;color:rgb(74,158,255);font-weight:600;">512×512 px</td><td style="padding:9px 10px;color:rgb(119,119,119);">768×768 или 1024×1024</td></tr>
+            </tbody>
+          </table>
+
+          <div class="rules-grid">
+            <div class="rules-card yes">
+              <div class="rc-title">✅ Техническое "да"</div>
+              <ul>
+                <li>Резкое, чёткое изображение</li>
+                <li>Высокий контраст деталей</li>
+                <li>Правильная экспозиция</li>
+                <li>Чистый файл (без JPEG-артефактов)</li>
+                <li>Формат: JPG или PNG</li>
+              </ul>
+            </div>
+            <div class="rules-card no">
+              <div class="rc-title">❌ Техническое "нет"</div>
+              <ul>
+                <li>Размытие (motion blur, out of focus)</li>
+                <li>Пикселизация</li>
+                <li>Сильные JPEG-артефакты (сжатие)</li>
+                <li>Водяные знаки / логотипы / UI-элементы</li>
+                <li>Рамки, коллажи, скриншоты</li>
+                <li>Стикеры, эмодзи поверх изображения</li>
+                <li>Растянутые изображения с чёрными полосами</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            "Free from compression artifacts or filters. Cropped properly, without borders or UI overlays. Not stretched, pixelated, or watermarked. Avoid screenshots, filtered selfies, or low-resolution uploads"<br>
+            <span class="source-ref"><a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">RunDiffusion Dataset Guide</a></span>
+          </div>
+          <div class="callout">
+            "Resolution matters significantly; images below 512×512 will produce degraded facial consistency, while 768×768 or 1024×1024 training images yield noticeably sharper feature retention"<br>
+            <span class="source-ref"><a href="https://aimensa.com/creating-ai-influencers-lora-z-image-training" target="_blank">Aimensa</a></span>
+          </div>
+
+          <!-- SEC 8 -->
+          <hr class="section-rule">
+          <h2 id="sec8">🚫 РАЗДЕЛ 8 — Критические ошибки (убивают качество LoRA)</h2>
+
+          <h3>Дубликаты и похожие изображения</h3>
+          <ul style="color:rgb(136,136,136);font-size:0.88rem;line-height:1.8;">
+            <li>Удаляй дубликаты и "почти дубликаты" (одна поза, только моргание)</li>
+            <li>Две очень похожие фото считаются как одна — они не добавляют информацию, только перекос</li>
+          </ul>
+          <div class="callout">
+            "Delete duplicate or near-duplicate images. Better to have 25 good images than 75 inconsistent ones"<br>
+            <span class="source-ref"><a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">RunDiffusion Dataset Guide</a></span>
+          </div>
+
+          <h3>Несколько персонажей</h3>
+          <ul style="color:rgb(136,136,136);font-size:0.88rem;line-height:1.8;">
+            <li>Только один персонаж на изображении</li>
+            <li>Другой человек даже на заднем плане — нежелательно</li>
+          </ul>
+          <div class="callout">
+            "Only one person, object, or artistic style per dataset. No mixed-character images"<br>
+            <span class="source-ref"><a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">RunDiffusion Dataset Guide</a></span>
+          </div>
+
+          <h3>Перекрытие персонажа</h3>
+          <ul style="color:rgb(136,136,136);font-size:0.88rem;line-height:1.8;">
+            <li>Тело/лицо не должны быть сильно перекрыты объектами</li>
+            <li>Руки перед лицом — плохо</li>
+            <li>Предметы, загораживающие тело на 50%+ — плохо</li>
+          </ul>
+          <div class="callout">
+            "Keep the subject clearly visible and unobstructed. Avoid images with overlays, stickers, or watermarks"<br>
+            <span class="source-ref"><a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">RunDiffusion Dataset Guide</a></span>
+          </div>
+
+          <h3>Экстремальная стилизация</h3>
+          <ul style="color:rgb(136,136,136);font-size:0.88rem;line-height:1.8;">
+            <li>AI-арт с нереалистичными цветами кожи — не использовать для реалистичной LoRA</li>
+            <li>Карикатурный стиль в датасете для реалистичной LoRA — ломает модель</li>
+          </ul>
+          <div class="callout">
+            "Your character's style must be similar to model you want to use. Photorealistic LoRA on Photorealistic Model: Dataset must include realistic images of subject"<br>
+            <span class="source-ref"><a href="https://docs.seaart.ai/guide-1/3-advanced-guide/3-2-lora-training-advance/how-to-create-dataset-for-training" target="_blank">SeaArt Docs</a></span>
+          </div>
+
+          <!-- SEC 9 -->
+          <hr class="section-rule">
+          <h2 id="sec9">✅ РАЗДЕЛ 9 — Чеклист для отбора (для Славы)</h2>
+
+          <p style="color:rgb(102,102,102);font-size:0.85rem;">Используй этот чеклист при ручном отборе фотографий. Каждое изображение должно пройти все пункты.</p>
+
+          <div class="rules-grid">
+            <div class="checklist-block green">
+              <h4>🟢 ЗЕЛЁНЫЙ СВЕТ — Берём в датасет</h4>
+              <ul class="checklist green">
+                <li>Изображение в фокусе, резкое</li>
+                <li>Разрешение ≥ 1024×1024 пикселей</li>
+                <li>Один персонаж, лицо чётко видно</li>
+                <li>Нет водяных знаков, рамок, стикеров</li>
+                <li>Нет сильного/яркого макияжа</li>
+                <li>Нет очков (солнцезащитных)</li>
+                <li>Лицо занимает 60–80% кадра (для портретов)</li>
+                <li>Мягкое или умеренное освещение без жёстких теней</li>
+                <li>Фон не сливается с персонажем</li>
+                <li>Не дубликат ранее отобранного фото</li>
+                <li>Одежда разнообразна (этот наряд не встречался уже 6+ раз)</li>
+                <li>Ракурс разнообразен (этот угол не встречался уже 6+ раз)</li>
+              </ul>
+            </div>
+            <div class="checklist-block red">
+              <h4>🔴 КРАСНЫЙ СВЕТ — Не берём</h4>
+              <ul class="checklist red">
+                <li>Размытое изображение</li>
+                <li>Разрешение ниже 512×512</li>
+                <li>JPEG-артефакты, пикселизация</li>
+                <li>Сильный макияж (тёмные губы, яркие тени)</li>
+                <li>Солнцезащитные очки</li>
+                <li>Маска / повязка на лице</li>
+                <li>Несколько лиц в кадре</li>
+                <li>Стикеры / эмодзи поверх лица или тела</li>
+                <li>Фильтры Instagram/Snapchat</li>
+                <li>Лицо закрыто руками / объектами более чем на 30%</li>
+                <li>Фон один и тот же как на 6+ других фото</li>
+                <li>Скриншот / коллаж / рамки</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- SEC 10 -->
+          <hr class="section-rule">
+          <h2 id="sec10">📊 РАЗДЕЛ 10 — Идеальный состав датасета на 40 фото</h2>
+
+          <div class="arch-block">
+            <pre>ПОРТРЕТЫ (лицо крупно) — 16 фото:
+├── Анфас: 5 фото (нейтрал, улыбка, смех, задумчивость, взгляд в сторону)
+├── 3/4 влево: 4 фото
+├── 3/4 вправо: 4 фото
+└── Профиль: 3 фото (лево, право, слегка вверх)
+
+ПОЛУФИГУРА (до пояса/груди) — 12 фото:
+├── Разные позы: стоя, облокотившись, руки в стороны
+├── Разная одежда: 4–5 разных нарядов
+└── Разные фоны: 4–5 разных локаций
+
+ПОЛНЫЙ РОСТ — 8 фото:
+├── Стоит прямо — 3 фото
+├── В движении — 2 фото
+├── Сидит — 2 фото
+└── Вид сзади / 3/4 сзади — 1 фото
+
+СПЕЦИАЛЬНЫЕ — 4 фото:
+├── Крупный план глаз+губ (детали) — 2 фото
+└── Вид полностью сзади — 2 фото</pre>
+          </div>
+
+          <!-- SOURCES -->
+          <hr class="section-rule">
+          <h2 id="sources">🔗 Источники</h2>
+
+          <table class="sources-table">
+            <thead>
+              <tr>
+                <th>Источник</th>
+                <th>Ссылка</th>
+                <th>Тип</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RunDiffusion Dataset Guide</td>
+                <td><a href="https://learn.rundiffusion.com/how-to-prepare-a-dataset-for-model-training-on-rundiffusion/" target="_blank">learn.rundiffusion.com</a></td>
+                <td>Официальная документация</td>
+              </tr>
+              <tr>
+                <td>SeaArt LoRA Training Docs</td>
+                <td><a href="https://docs.seaart.ai/guide-1/3-advanced-guide/3-2-lora-training-advance/how-to-create-dataset-for-training" target="_blank">docs.seaart.ai</a></td>
+                <td>Официальная документация</td>
+              </tr>
+              <tr>
+                <td>Civitai — Opinionated Guide to LoRA Training 2025</td>
+                <td><a href="https://civitai.com/articles/1716/opinionated-guide-to-all-lora-training-2025-update" target="_blank">civitai.com</a></td>
+                <td>Экспертная статья сообщества</td>
+              </tr>
+              <tr>
+                <td>Aimensa — AI Influencers through LoRA for Z-Image</td>
+                <td><a href="https://aimensa.com/creating-ai-influencers-lora-z-image-training" target="_blank">aimensa.com</a></td>
+                <td>Специализированное руководство</td>
+              </tr>
+              <tr>
+                <td>Reddit — After training 50+ LoRA Models</td>
+                <td><a href="https://www.reddit.com/r/StableDiffusion/comments/13dh7ql/" target="_blank">reddit.com/r/StableDiffusion</a></td>
+                <td>Опыт практиков</td>
+              </tr>
+              <tr>
+                <td>Reddit — Best practices for high-fidelity character LoRA</td>
+                <td><a href="https://www.reddit.com/r/comfyui/comments/1mnd5n3/" target="_blank">reddit.com/r/comfyui</a></td>
+                <td>Опыт практиков</td>
+              </tr>
+              <tr>
+                <td>Reddit — Standard for creating optimal person LoRA dataset</td>
+                <td><a href="https://www.reddit.com/r/StableDiffusion/comments/1gti80j/" target="_blank">reddit.com/r/StableDiffusion</a></td>
+                <td>Опыт практиков</td>
+              </tr>
+              <tr>
+                <td>Reddit — Best SD LoRA trainer for realistic AI influencer</td>
+                <td><a href="https://www.reddit.com/r/StableDiffusion/comments/1qa3xdh/" target="_blank">reddit.com/r/StableDiffusion</a></td>
+                <td>Опыт практиков</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div><!-- /content-body -->
+      </article>
+    </main>
+
+    <footer class="site-footer-bottom">
+      <p>AI Girls — внутренняя база знаний проекта</p>
+    </footer>
+
+  </div>
+</body>
+</html>
