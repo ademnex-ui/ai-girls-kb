@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контент-стратегия AI OFM — AI Girls</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .article-meta { display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center; margin-bottom:1.25rem; }
+    .tag { background:rgba(74,158,255,0.08); color:rgb(74,158,255); border:1px solid rgba(74,158,255,0.2); padding:0.15rem 0.55rem; border-radius:3px; font-size:0.75rem; }
+    .date { color:rgb(85,85,85); font-size:0.8rem; }
+    .lead { font-size:0.95rem; color:rgb(170,170,170); line-height:1.7; margin-bottom:1.5rem; }
+    .callout { background:rgb(18,18,18); border-left:3px solid rgb(74,158,255); padding:1rem 1.25rem; border-radius:0 6px 6px 0; margin:1.25rem 0; font-size:0.9rem; color:rgb(136,136,136); }
+    .callout strong { color:rgb(204,204,204); }
+    .callout.green { border-left-color:rgb(80,200,120); }
+    .callout.orange { border-left-color:rgb(255,160,50); }
+    .callout.red { border-left-color:rgb(255,80,80); }
+    .toc { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:1rem 1.25rem; margin:1.5rem 0; }
+    .toc-title { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:rgb(85,85,85); margin-bottom:0.75rem; }
+    .toc ol { padding-left:1.25rem; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:0 1rem; }
+    @media(max-width:600px){ .toc ol { grid-template-columns:1fr; } }
+    .toc li { padding:0.2rem 0; }
+    .toc a { color:rgb(102,102,102); font-size:0.82rem; }
+    .toc a:hover { color:rgb(74,158,255); }
+    .section-num { display:inline-block; background:rgba(74,158,255,0.12); color:rgb(74,158,255); border:1px solid rgba(74,158,255,0.2); border-radius:3px; padding:0.1rem 0.5rem; font-size:0.75rem; margin-bottom:0.4rem; }
+    .top-badge { display:inline-block; background:rgba(255,180,50,0.1); color:rgb(255,180,50); border:1px solid rgba(255,180,50,0.25); border-radius:3px; padding:0.1rem 0.5rem; font-size:0.72rem; margin-left:6px; vertical-align:middle; }
+    .badge-green { background:rgba(80,200,120,0.1); color:rgb(80,200,120); border:1px solid rgba(80,200,120,0.25); border-radius:3px; padding:0.1rem 0.5rem; font-size:0.72rem; margin-left:4px; vertical-align:middle; }
+    .badge-red { background:rgba(255,80,80,0.1); color:rgb(255,80,80); border:1px solid rgba(255,80,80,0.25); border-radius:3px; padding:0.1rem 0.5rem; font-size:0.72rem; margin-left:4px; vertical-align:middle; }
+    .funnel-block { background:rgb(10,10,10); border:1px solid rgb(26,26,26); border-radius:6px; padding:1rem 1.25rem; margin:1rem 0; overflow-x:auto; }
+    .funnel-block pre { margin:0; font-size:0.82rem; color:rgb(153,153,153); line-height:1.8; }
+    .platform-card { background:rgb(16,16,16); border:1px solid rgb(30,30,30); border-radius:6px; padding:1rem 1.25rem; margin:0.75rem 0; }
+    .platform-card h4 { font-size:0.95rem; margin-bottom:0.5rem; }
+    .platform-card ul { margin:0; padding-left:1.2rem; }
+    .platform-card li { font-size:0.85rem; color:rgb(136,136,136); padding:2px 0; }
+    .divider { border:none; border-top:1px solid rgb(26,26,26); margin:2rem 0; }
+    .sources { font-size:0.75rem; color:rgb(68,68,68); font-style:italic; margin-top:0.5rem; }
+    .error-block { background:rgba(255,80,80,0.05); border:1px solid rgba(255,80,80,0.15); border-radius:6px; padding:0.75rem 1rem; margin:0.5rem 0; }
+    .error-block h4 { color:rgb(255,100,100); font-size:0.88rem; margin-bottom:0.3rem; }
+    .error-block p { font-size:0.83rem; color:rgb(120,120,120); margin:0.2rem 0; }
+    .weekly-day { background:rgb(14,14,14); border:1px solid rgb(28,28,28); border-radius:4px; padding:0.75rem 1rem; margin:0.4rem 0; }
+    .weekly-day strong { color:rgb(74,158,255); font-size:0.85rem; }
+    .weekly-day ul { margin:0.3rem 0 0; padding-left:1.1rem; }
+    .weekly-day li { font-size:0.82rem; color:rgb(120,120,120); padding:1px 0; }
+    .insight-block { background:rgb(13,13,13); border:1px solid rgb(28,28,28); border-radius:6px; padding:1rem 1.25rem; margin:0.6rem 0; }
+    .insight-num { display:inline-block; background:rgba(74,158,255,0.15); color:rgb(74,158,255); border-radius:3px; padding:0.1rem 0.45rem; font-size:0.72rem; font-weight:600; margin-right:6px; }
+    .insight-block blockquote { border-left:2px solid rgb(40,40,40); padding-left:0.75rem; margin:0.5rem 0; font-size:0.83rem; color:rgb(100,100,100); font-style:italic; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="site-header">
+      <a href="../index.html" class="logo">AI GIRLS</a>
+      <div class="site-tagline">База знаний проекта — исследования, мануалы, стратегия</div>
+      <nav class="site-nav">
+        <a href="../research/index.html">Исследования</a>
+        <a href="../manuals/index.html">Мануалы</a>
+        <a href="#" style="opacity:0.4;pointer-events:none">Инструменты</a>
+        <a href="index.html" class="active">Стратегия</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="breadcrumbs">
+        <a href="../index.html">Главная</a>
+        <span class="sep">/</span>
+        <a href="index.html">Стратегия</a>
+        <span class="sep">/</span>
+        <span>Контент-стратегия AI OFM</span>
+      </div>
+
+      <a href="index.html" class="back-btn">← Назад к стратегии</a>
+
+      <article>
+        <div class="article-meta">
+          <span class="tag">Стратегия</span>
+          <span class="tag">AI OFM</span>
+          <span class="tag">Продвижение</span>
+          <span class="tag">11 разделов</span>
+          <span class="date">27 февраля 2026</span>
+        </div>
+
+        <h1 style="font-size:1.4rem;color:rgb(220,220,220);margin-bottom:0.5rem;">Контент-стратегия и продвижение AI OFM</h1>
+        <p class="lead">Полное исследование на основе 10+ YouTube-транскрипций (Dorian, Tommy Bradshaw, Jimmy Denero, Filip, Tom Voltt, Ivanich, AI Influencer Expert), Reddit-тредов и веб-источников. Все платформы, форматы, частота постинга, воронки и главные ошибки.</p>
+
+        <div class="toc">
+          <div class="toc-title">Содержание — 11 разделов</div>
+          <ol>
+            <li><a href="#s1">Платформы — полный обзор</a></li>
+            <li><a href="#s2">Форматы контента</a></li>
+            <li><a href="#s3">Частота постинга</a></li>
+            <li><a href="#s4">Воронка продвижения</a></li>
+            <li><a href="#s5">Стратегии роста 0–1K</a></li>
+            <li><a href="#s6">Масштабирование 1K+</a></li>
+            <li><a href="#s7">Комментинг и engagement</a></li>
+            <li><a href="#s8">Cross-platform стратегия</a></li>
+            <li><a href="#s9">Ошибки и что не работает</a></li>
+            <li><a href="#s10">Ключевые выводы</a></li>
+            <li><a href="#s11">Источники</a></li>
+          </ol>
+        </div>
+
+        <div class="content-body">
+
+          <!-- 1. ПЛАТФОРМЫ -->
+          <h2 id="s1"><span class="section-num">01</span> Платформы — полный обзор</h2>
+
+          <div class="platform-card">
+            <h4 style="color:rgb(160,100,255);">🟣 THREADS</h4>
+            <p style="font-size:0.85rem;color:rgb(136,136,136);margin:0.4rem 0;">Текстовая сеть от Meta. Лучший старт для нулевого аккаунта — первый пост сразу получает просмотры.</p>
+            <ul>
+              <li>Аудитория AI OFM: средняя, ниша не занята. 59% маркетологов увеличивают присутствие в 2025</li>
+              <li>Алгоритм: новые аккаунты получают органику с первого поста. Продвигает контент с дискуссией</li>
+              <li>Вовлечённость в первый час критична для алгоритмического буста</li>
+              <li><strong style="color:rgb(220,220,220);">Лучший формат:</strong> Rage bait («Кто вообще работает в McDonald's? Просто возьми деньги у родителей») + живые посты («Somebody FaceTime me. I'm bored»)</li>
+              <li>Ссылку на Telegram или FanView можно ставить в bio — меньше ограничений чем Instagram</li>
+              <li>Аудитория 40+ — платёжеспособнее TikTok</li>
+              <li><strong style="color:rgb(255,100,100);">Ограничения:</strong> NSFW строго запрещён</li>
+            </ul>
+            <div class="callout green" style="margin-top:0.75rem;">
+              <strong>Вывод:</strong> Первая платформа для старта. «Первый пост уже получает просмотры» (Tommy Bradshaw).
+            </div>
+          </div>
+
+          <div class="platform-card">
+            <h4 style="color:rgb(220,100,100);">📸 INSTAGRAM</h4>
+            <p style="font-size:0.85rem;color:rgb(136,136,136);margin:0.4rem 0;">Визуальная платформа #1 для AI OFM. Самое высокое качество трафика, сложный старт, лучшая конверсия.</p>
+            <ul>
+              <li>Reels — основной формат. <strong style="color:rgb(220,220,220);">Фото и карусели получили буст в 2025</strong> (Tom Voltt)</li>
+              <li>Stories ежедневно — сигнал «аккаунт живой»</li>
+              <li>Watch time и sends = главные метрики. Хэштеги — в комментарии в первые 30 секунд</li>
+              <li><strong style="color:rgb(220,220,220);">Mother-Daughter система:</strong> Main (мать) — только контент, без ссылок. Bio → daughter аккаунт. Daughter держит bridge page</li>
+              <li>Прогрев 2–4 недели перед запуском: скроллинг, комментарии, нарастание частоты</li>
+              <li>Реальный фон + AI-модель поверх = Instagram воспринимает как реального человека</li>
+              <li>Ссылка на FanView — только через Stories → Highlights</li>
+              <li><strong style="color:rgb(255,100,100);">Нельзя:</strong> покупать фолловеров, adult-ссылки напрямую в bio</li>
+            </ul>
+            <div class="callout green" style="margin-top:0.75rem;">
+              <strong>Кейсы:</strong> AI Influencer Expert: 14.6 млн просмотров/мес → $5,205/30 дней. Tom Voltt: 3K фолловеров за 60 дней. Dorian: $19,000 первый месяц.
+            </div>
+          </div>
+
+          <div class="platform-card">
+            <h4 style="color:rgb(255,80,80);">🎵 TIKTOK</h4>
+            <p style="font-size:0.85rem;color:rgb(136,136,136);margin:0.4rem 0;">Огромный охват, молодая аудитория, более низкая конвертация. Используется как источник трафика → Instagram.</p>
+            <ul>
+              <li><strong style="color:rgb(220,220,220);">2025 UPDATE: Slideshows получают ультра-буст</strong> от алгоритма</li>
+              <li>Алгоритм раздаёт охваты новым аккаунтам щедрее Instagram</li>
+              <li>Лучший формат: «He's a 10...» → слайд с раскрытием → таргет на одиноких мужчин</li>
+              <li>В bio — Instagram аккаунт (нельзя adult-ссылки)</li>
+              <li>Стратегия: TikTok → Instagram → 50–100 подписчиков → перелить</li>
+              <li>Постинг нарастанием: день 1–3 по 1–2 ролика, с 4–5 дня по 3–4 в день</li>
+              <li><strong style="color:rgb(255,100,100);">Ограничения:</strong> запрет adult-контента и ссылок, молодая аудитория = меньше платящих</li>
+            </ul>
+          </div>
+
+          <div class="platform-card">
+            <h4 style="color:rgb(100,180,255);">🐦 X (TWITTER)</h4>
+            <p style="font-size:0.85rem;color:rgb(136,136,136);margin:0.4rem 0;">Платформа для масштабирования через автоматизацию. Не для органического старта.</p>
+            <ul>
+              <li>Позволяет прямые adult-ссылки — важное отличие от других</li>
+              <li><strong style="color:rgb(220,220,220);">Mass DM automation:</strong> 450 DM/аккаунт/день × тысячи параллельных аккаунтов (Dorian)</li>
+              <li>50 млн просмотров за 30 дней на одном проекте (Dorian)</li>
+              <li>26,000 FanView подписчиков за 30 дней с нуля через automation</li>
+              <li><strong style="color:rgb(255,100,100);">Только для масштабирования</strong> — требует сложной технической инфраструктуры</li>
+            </ul>
+          </div>
+
+          <div class="platform-card">
+            <h4 style="color:rgb(255,150,50);">📱 REDDIT</h4>
+            <p style="font-size:0.85rem;color:rgb(136,136,136);margin:0.4rem 0;">Нишевые сообщества. Спорная платформа — требует стратегии, без неё не работает.</p>
+            <ul>
+              <li>Ключевые суббредиты: r/AIOnlyFans, r/aipornartists, r/AIGirls, r/NSFWCosplay, r/GoneWild</li>
+              <li>Нужна karma 50–100 из SFW субреддитов перед NSFW постингом</li>
+              <li>Прогрев аккаунта: 7–14 дней</li>
+              <li>Timing: 9 AM или 9 PM EST. Посты с 2–4 изображениями работают на 50% лучше одиночных</li>
+              <li>Один создатель удвоил заработок, играя роль персонажа в комментариях 1 час/день</li>
+              <li>Никогда не писать «OnlyFans» — использовать эмодзи или «spicy site»</li>
+              <li><strong style="color:rgb(255,100,100);">«Don't even try Reddit — you're going to lose»</strong> (Jimmy Denero, без стратегии)</li>
+            </ul>
+          </div>
+
+          <div class="platform-card">
+            <h4 style="color:rgb(40,180,220);">📲 TELEGRAM</h4>
+            <p style="font-size:0.85rem;color:rgb(136,136,136);margin:0.4rem 0;">Не основной источник трафика — стратегический ретаргетер и страховка от банов.</p>
+            <ul>
+              <li>Broadcast channel: ежедневные пуш-уведомления прямо в телефон</li>
+              <li>NSFW без модерации. 550 Stars ≈ $7.50</li>
+              <li>15,000+ Telegram подписчиков → «нажатием одной кнопки» 2,000 фолловеров нового Instagram</li>
+              <li>Воронка: Stories «Удалили фото — теперь в Telegram» → бесплатная подписка → пуш в момент одиночества → FanView</li>
+              <li><strong style="color:rgb(255,100,100);">AI-чатбот (Cupid Bot) НЕ работает:</strong> 300 диалогов → 140 кликов → 3 подписки → 0 платежей</li>
+            </ul>
+            <div class="callout orange" style="margin-top:0.75rem;">
+              <strong>Важный инсайт:</strong> Telegram — не замена FanView, а retargeter. Человек который не конвертировался через Instagram получает 2-й и 3-й шанс.
+            </div>
+          </div>
+
+          <div class="platform-card">
+            <h4 style="color:rgb(100,220,160);">💳 FANVUE</h4>
+            <p style="font-size:0.85rem;color:rgb(136,136,136);margin:0.4rem 0;">Основная монетизационная платформа. Единственная крупная, которая ЯВНО поддерживает AI-контент.</p>
+            <ul>
+              <li>80% выплата создателю. 45% активных создателей используют AI-функции</li>
+              <li>AI revenue удвоился MoM в 2024. AI chatbot встроен</li>
+              <li>Верификация: сам оператор (твой ID) — AI персонажу отдельный ID не нужен</li>
+              <li>Цена подписки: $7–15/мес (рекомендуется $9.99)</li>
+              <li>Free trial 3–7 дней конвертирует лучше сразу платной</li>
+              <li>20–30 постов достаточно для старта</li>
+            </ul>
+            <table>
+              <thead><tr><th>Платформа</th><th>AI-персонажи</th><th>AI-чатбот</th><th>Выплата</th></tr></thead>
+              <tbody>
+                <tr><td>Fanvue</td><td>✅ Явная поддержка</td><td>✅ Встроен</td><td>80%</td></tr>
+                <tr><td>OnlyFans</td><td>❌ Запрещено</td><td>❌ Нет</td><td>80%</td></tr>
+                <tr><td>Fansly</td><td>⚠️ Ситуативно</td><td>❌ Нет</td><td>80%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="platform-card">
+            <h4 style="color:rgb(180,180,180);">🎮 DISCORD / 👥 FACEBOOK GROUPS / 📌 ФОРУМЫ</h4>
+            <ul>
+              <li><strong style="color:rgb(220,220,220);">Discord:</strong> VIP-клуб для фандом-ниш. Cosplay/gamer ниши — Discord → Fanvue воронка (VIP роль = подписка)</li>
+              <li><strong style="color:rgb(220,220,220);">Facebook Groups:</strong> Низкий приоритет. Только для нишевых фандомов (cosplay) и локальных ниш</li>
+              <li><strong style="color:rgb(220,220,220);">Форумы (4chan /s/, xnxx forum, literotica):</strong> Нишевый трафик, community building. Нельзя спамить — нужна ценность</li>
+              <li><strong style="color:rgb(220,220,220);">Pinterest:</strong> Moodboard персонажа, вдохновение для промптов. Yoga/spiritual ниша — реальный SFW трафик</li>
+            </ul>
+          </div>
+
+          <hr class="divider">
+
+          <!-- 2. ФОРМАТЫ -->
+          <h2 id="s2"><span class="section-num">02</span> Форматы контента</h2>
+
+          <h3>SFW форматы</h3>
+          <table>
+            <thead><tr><th>Формат</th><th>Платформа</th><th>Особенности 2025–2026</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Reels / видео</strong></td><td>Instagram, TikTok</td><td>Hook в первые 3 сек. Watch time = главная метрика. 3–5/день без пропусков</td></tr>
+              <tr><td><strong>Фото / карусели</strong></td><td>Instagram</td><td>Буст 2025 — работают наравне с Reels. 5–7 слайдов, последний — CTA. Реальный фон + AI-модель</td></tr>
+              <tr><td><strong>TikTok Slideshows</strong></td><td>TikTok</td><td>Самый вирусный формат 2025. «He's a 10...» → reveal</td></tr>
+              <tr><td><strong>Stories</strong></td><td>Instagram</td><td>Ежедневно — сигнал алгоритму. Тизеры → CTA к Telegram/FanView через Highlights</td></tr>
+              <tr><td><strong>Текстовые посты</strong></td><td>Threads</td><td>Rage bait + живые посты. Вопросы и мнения → охваты</td></tr>
+              <tr><td><strong>Комментинг</strong></td><td>Все</td><td>30 мин/день. Роление персонажа. Ответ в первый час = сигнал алгоритму</td></tr>
+            </tbody>
+          </table>
+
+          <h3>NSFW форматы</h3>
+          <table>
+            <thead><tr><th>Формат</th><th>Цена</th><th>Применение</th></tr></thead>
+            <tbody>
+              <tr><td>Soft/teasing фото</td><td>$3–15</td><td>Разогрев в начале чата</td></tr>
+              <tr><td>Medium фото</td><td>$20–50</td><td>Upsell</td></tr>
+              <tr><td>Hard фото</td><td>$50–100</td><td>Upsell</td></tr>
+              <tr><td>Custom/extreme</td><td>$100–2,000+</td><td>«Кит»-уровень</td></tr>
+              <tr><td>Короткие видео</td><td>$15–30</td><td>Kling / Hailuo / Cidream анимация</td></tr>
+              <tr><td>Long видео</td><td>$25–75</td><td>Сцены, PPV</td></tr>
+              <tr><td>Mass PPV</td><td>Варьируется</td><td>Реактивация спящих 2×/мес</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout">
+            <strong>Психологические триггеры PPV:</strong> «Ты в беде» / аудиосообщение вместо «Привет». Тизер + интрига = высокий response rate. Никогда не снижать цену для китов.
+          </div>
+
+          <hr class="divider">
+
+          <!-- 3. ЧАСТОТА ПОСТИНГА -->
+          <h2 id="s3"><span class="section-num">03</span> Частота постинга</h2>
+
+          <h3>🔥 Агрессивный режим <span class="badge-red">Максимальный рост</span></h3>
+          <p style="font-size:0.85rem;color:rgb(100,100,100);">Первые 30–60 дней. Цель: 0 → 3,000+ фолловеров. Требует full-time или команды.</p>
+          <table>
+            <thead><tr><th>Платформа</th><th>Частота</th></tr></thead>
+            <tbody>
+              <tr><td>Instagram Reels</td><td>3–5 Reels/день, без пропусков</td></tr>
+              <tr><td>Instagram фото/карусели</td><td>1–3 в день</td></tr>
+              <tr><td>Instagram Stories</td><td>3–5 в день</td></tr>
+              <tr><td>TikTok</td><td>3–4 ролика/день (с 4–5 дня запуска)</td></tr>
+              <tr><td>Threads</td><td>3–5 постов/день</td></tr>
+              <tr><td>Telegram</td><td>Ежедневно (запланировано на год вперёд)</td></tr>
+              <tr><td>FanView</td><td>1 платный пост всегда + 3–4 PPV/неделю</td></tr>
+              <tr><td>Twitter/X (automation)</td><td>1–5 постов/аккаунт × тысячи аккаунтов</td></tr>
+            </tbody>
+          </table>
+
+          <h3>⚡ Средний режим <span class="top-badge">Рекомендуется</span></h3>
+          <p style="font-size:0.85rem;color:rgb(100,100,100);">После 1,000 фолловеров. Баланс роста и монетизации. 2–3 часа/день при команде.</p>
+          <table>
+            <thead><tr><th>Платформа</th><th>Частота</th></tr></thead>
+            <tbody>
+              <tr><td>Instagram Reels</td><td>1–2 Reels/день</td></tr>
+              <tr><td>Instagram фото/карусели</td><td>1 в день</td></tr>
+              <tr><td>Instagram Stories</td><td>2–3 в день</td></tr>
+              <tr><td>TikTok</td><td>1–2 ролика/день</td></tr>
+              <tr><td>Threads</td><td>1–2 поста/день</td></tr>
+              <tr><td>Telegram</td><td>Ежедневно (запланировано на 1–3 мес вперёд)</td></tr>
+              <tr><td>FanView feed</td><td>3–5 постов/неделю</td></tr>
+              <tr><td>FanView PPV</td><td>1–2/неделю + mass PPV 2×/мес</td></tr>
+            </tbody>
+          </table>
+
+          <h3>🌙 Умеренный режим</h3>
+          <p style="font-size:0.85rem;color:rgb(100,100,100);">Зрелый аккаунт (3,000+ фолловеров). Пассивное поддержание дохода.</p>
+          <table>
+            <thead><tr><th>Платформа</th><th>Частота</th></tr></thead>
+            <tbody>
+              <tr><td>Instagram</td><td>3–5 постов/неделю (любой формат)</td></tr>
+              <tr><td>Instagram Stories</td><td>1–2 в день</td></tr>
+              <tr><td>Telegram</td><td>3–4 раза/неделю</td></tr>
+              <tr><td>FanView</td><td>3 поста/неделю + 1 PPV/неделю</td></tr>
+            </tbody>
+          </table>
+
+          <hr class="divider">
+
+          <!-- 4. ВОРОНКА -->
+          <h2 id="s4"><span class="section-num">04</span> Воронка продвижения</h2>
+
+          <div class="funnel-block">
+            <pre>
+ЭТАП 1: ОСОЗНАНИЕ (Awareness)
+════════════════════════════════
+TikTok Slideshows → вирусный охват, молодая ЦА
+Threads rage bait → быстрые первые фолловеры
+Instagram Reels/фото → лучшее качество трафика
+    ↓
+Триггер: красота, curiosity hook, rage bait, storytelling
+
+ЭТАП 2: ИНТЕРЕС (Interest)
+════════════════════════════════
+Профиль → Bio → tagged daughter аккаунт
+Stories с тизером
+    ↓
+Триггер: незавершённость («хочу узнать больше»)
+
+ЭТАП 3: ЖЕЛАНИЕ (Desire)
+════════════════════════════════
+Bridge Page (who.bio / Linktree / LinkMe / Beacons)
+    ↓
+Социальное доказательство, реалистичность профиля
+    ↓
+Telegram Broadcast (ретаргет спящих лидов)
+
+ЭТАП 4: ДЕЙСТВИЕ (FanVue подписка)
+════════════════════════════════
+FanView FREE trial 3–7 дней / подписка $3–$10
+    ↓
+Триггер: «бесплатно», низкий барьер, FOMO
+
+ЭТАП 5: ЧАТТИНГ И МОНЕТИЗАЦИЯ
+════════════════════════════════
+Приветственное сообщение → начало чата
+    ↓
+KYC (вопросы о нём) → доверие и связь
+    ↓
+Бесплатные фото 1–5 шт → разогрев
+    ↓
+Teasing видео $3–15 → 1-я продажа
+    ↓
+Medium content $20–50 → upsell
+    ↓
+Hard content $50–100 → upsell
+    ↓
+Custom/extreme $100–2,000+ → "кит"
+
+ЭТАП 6: УДЕРЖАНИЕ И МАСШТАБ
+════════════════════════════════
+Mass PPV/DM → реактивация спящих
+Telegram пуш → повторная конверсия
+«Кит» → никогда не снижать цену, только увеличивать</pre>
+          </div>
+
+          <h3>Психологические триггеры на каждом этапе</h3>
+          <table>
+            <thead><tr><th>Этап</th><th>Триггер</th></tr></thead>
+            <tbody>
+              <tr><td>Просмотр контента</td><td>Красота, curiosity hook, rage bait, storytelling</td></tr>
+              <tr><td>Клик на профиль</td><td>«Хочу узнать больше» — незавершённость</td></tr>
+              <tr><td>Bridge Page</td><td>Реалистичный профиль как у настоящего инфлюэнсера</td></tr>
+              <tr><td>FanView подписка</td><td>«Бесплатно», низкий барьер, FOMO</td></tr>
+              <tr><td>1-й платёж</td><td>«Она написала лично мне» — личная связь</td></tr>
+              <tr><td>Повторные платежи</td><td>Паразоциальные отношения, upsell по воронке</td></tr>
+              <tr><td>Реактивация</td><td>Telegram пуш в момент одиночества</td></tr>
+            </tbody>
+          </table>
+
+          <hr class="divider">
+
+          <!-- 5. СТАРТ -->
+          <h2 id="s5"><span class="section-num">05</span> Стратегии роста на старте (0–1,000 подписчиков)</h2>
+
+          <h3>Первые 7 дней</h3>
+          <ol>
+            <li><strong>Создай Character Bible ДО запуска</strong> — имя, возраст, знак зодиака, город, хобби, питомцы, предыстория. 30–50 постов в FanView и 9+ для Instagram</li>
+            <li><strong>Прогрев Instagram (2–4 недели)</strong> — скроллинг 5–10 мин/день, первые посты только SFW, комментирование в других аккаунтах от имени персонажа</li>
+            <li><strong>Threads — первый пост немедленно</strong> — rage bait или живой пост. Цель: 100–200 фолловеров за неделю</li>
+            <li><strong>TikTok — slideshows с первого дня</strong> — «He's a 10...» → reveal. В bio: Instagram аккаунт</li>
+          </ol>
+
+          <h3>Первые 30 дней</h3>
+          <ol start="5">
+            <li><strong>Engagement loop:</strong> 10 аккаунтов в нише → лайк, комментарий от имени персонажа. 30 мин/день</li>
+            <li><strong>Telegram broadcast с первой недели</strong> — параллельно, страховка от банов и retargeter</li>
+            <li><strong>FanView бесплатная страница</strong> — не платная при нуле трафика. Free trial 3–7 дней</li>
+            <li><strong>Чаттинг СРАЗУ с первыми подписчиками</strong> — 4–6 часов/день в первые недели (Tom Voltt). Лучшие «киты» пришли в первую неделю</li>
+          </ol>
+
+          <h3>30–90 дней</h3>
+          <ol start="9">
+            <li><strong>Трекинг ссылок</strong> — несколько Bridge Pages, разные tracking links. Где больше трафика → удваивать</li>
+            <li><strong>Тест форматов</strong> — какие Reels дают 10K+ → повторяй формулу</li>
+            <li><strong>Не масштабируй до результата</strong> — «сначала доведи одну модель до $10K/мес» (Tommy Bradshaw)</li>
+          </ol>
+
+          <hr class="divider">
+
+          <!-- 6. МАСШТАБ -->
+          <h2 id="s6"><span class="section-num">06</span> Стратегии масштабирования (1,000+ подписчиков)</h2>
+
+          <table>
+            <thead><tr><th>Тактика</th><th>Описание</th></tr></thead>
+            <tbody>
+              <tr><td>«Нарезай пирог» по дням</td><td>$10K/мес = $333/день. Фокус на дневной цели. Dorian: хотел $6K → фокус на $200/день → заработал $11K</td></tr>
+              <tr><td>Найм чаттеров</td><td>Tier 1: сам. Tier 2: 1–2 чаттера Upwork/Telegram (10–15% комиссия). Tier 3: менеджер + иерархия</td></tr>
+              <tr><td>SOP (Standard Operating Procedures)</td><td>Инструкции для чаттеров, скрипты для каждого этапа воронки</td></tr>
+              <tr><td>Mass PPV реактивация</td><td>Спящие подписчики → mass message с интригой. 2 раза/мес минимум</td></tr>
+              <tr><td>Twitter/X автоматизация</td><td>450 DM/аккаунт/день × тысячи аккаунтов. Требует инфраструктуры</td></tr>
+              <tr><td>Cross-promo Telegram</td><td>15K+ подписчиков → новый Instagram → 2,000 фолловеров мгновенно</td></tr>
+              <tr><td>Масштаб через объём</td><td>«1 млн просмотров = $10K → 2 млн = $20K» (Dorian)</td></tr>
+            </tbody>
+          </table>
+
+          <hr class="divider">
+
+          <!-- 7. КОММЕНТИНГ -->
+          <h2 id="s7"><span class="section-num">07</span> Комментинг и engagement стратегия</h2>
+
+          <div class="callout">
+            <strong>Принцип:</strong> Комментинг — не просто реакция, это активный инструмент привлечения через демонстрацию персонажа публично.
+          </div>
+
+          <h3>Тактика Engagement Loop</h3>
+          <ol>
+            <li>Найди 10 аккаунтов в своей нише с активной аудиторией</li>
+            <li>Ежедневно: лайкай посты, оставляй живые комментарии от лица персонажа</li>
+            <li>Отвечай на комментарии под своими постами в первый час (сигнал алгоритму)</li>
+            <li>30 минут/день минимум</li>
+          </ol>
+
+          <h3>Конкретные примеры</h3>
+          <table>
+            <thead><tr><th>Платформа</th><th>Тип комментария</th><th>Пример</th></tr></thead>
+            <tbody>
+              <tr><td>Threads</td><td>Rage bait</td><td>«Кто-нибудь из реально взрослых понимает, что настоящая независимость — когда тебе не нужен никто?»</td></tr>
+              <tr><td>Instagram</td><td>Storytelling подпись</td><td>Hook: «Я думала кто я...» → Reveal → CTA: «Расскажи в комментариях»</td></tr>
+              <tr><td>Reddit</td><td>In-character roleplay</td><td>1 час/день = удвоение заработка (кейс redheaded AI cosplay persona)</td></tr>
+              <tr><td>Фандом-ниша</td><td>Под постами конкурентов</td><td>«Ave Imperator» под 40K постом — мгновенный триггер для фанатов</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout red" style="margin-top:1rem;">
+            <strong>Что НЕ работает:</strong> Копипаст одного комментария везде → shadowban. Ссылки в комментариях → бан. Выход из характера персонажа → потеря доверия.
+          </div>
+
+          <hr class="divider">
+
+          <!-- 8. CROSS-PLATFORM -->
+          <h2 id="s8"><span class="section-num">08</span> Cross-platform стратегия</h2>
+
+          <div class="callout green">
+            <strong>Принцип:</strong> Не дублируй — переливай. Каждая платформа выполняет свою роль в воронке.
+          </div>
+
+          <table>
+            <thead><tr><th>Платформа</th><th>Тип контента</th><th>Роль в воронке</th></tr></thead>
+            <tbody>
+              <tr><td><strong>TikTok</strong></td><td>SFW slideshows, reels</td><td>Охваты → Instagram</td></tr>
+              <tr><td><strong>Threads</strong></td><td>Rage bait, живые посты</td><td>Быстрые фолловеры → Telegram/FanView</td></tr>
+              <tr><td><strong>Instagram</strong></td><td>Reels + фото + Stories</td><td>Конверсия → FanView (основной канал)</td></tr>
+              <tr><td><strong>Telegram</strong></td><td>NSFW тизеры, ссылки</td><td>Ретаргет → FanView</td></tr>
+              <tr><td><strong>FanView</strong></td><td>NSFW контент + чаттинг</td><td>Монетизация</td></tr>
+              <tr><td><strong>Reddit</strong></td><td>Нишевые NSFW фото</td><td>Нишевый трафик → FanView</td></tr>
+              <tr><td><strong>Twitter/X</strong></td><td>Auto posts/DM (automation)</td><td>Масштаб → FanView</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Приоритизация усилий</h3>
+          <table>
+            <thead><tr><th>Платформа</th><th>% усилий</th><th>Причина</th></tr></thead>
+            <tbody>
+              <tr><td>Instagram</td><td><strong>60%</strong></td><td>Лучшее качество трафика + конверсия</td></tr>
+              <tr><td>TikTok</td><td><strong>20%</strong></td><td>Объём трафика</td></tr>
+              <tr><td>Threads</td><td><strong>15%</strong></td><td>Быстрый старт + взрослая ЦА</td></tr>
+              <tr><td>Telegram</td><td><strong>5%</strong></td><td>Параллельно всему, страховка</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Практический контент-план на неделю</h3>
+
+          <div class="weekly-day"><strong>Понедельник</strong><ul><li>Instagram: 1 Reel + 2 Stories (день персонажа)</li><li>Threads: 1 живой пост («Начинаю неделю с...»)</li><li>FanView: 1 SFW пост + 1 PPV тизер</li></ul></div>
+          <div class="weekly-day"><strong>Вторник</strong><ul><li>TikTok: 2 slideshows</li><li>Instagram: 1 фото/карусель + 2 Stories</li><li>Threads: 1 rage bait</li></ul></div>
+          <div class="weekly-day"><strong>Среда</strong><ul><li>Instagram: 1 Reel + 2 Stories</li><li>FanView: Medium PPV</li></ul></div>
+          <div class="weekly-day"><strong>Четверг</strong><ul><li>TikTok: 2 slideshows</li><li>Instagram: 1 фото + 2 Stories</li><li>Threads: Q&amp;A вопрос подписчикам</li></ul></div>
+          <div class="weekly-day"><strong>Пятница</strong><ul><li>Instagram: 1 Reel + Stories CTA к Telegram</li><li>Telegram: пост «I'm online here»</li><li>FanView: Mass PPV (при 50+ подписчиков)</li></ul></div>
+          <div class="weekly-day"><strong>Суббота</strong><ul><li>Instagram: lifestyle фото/карусель</li><li>FanView: эксклюзивный контент</li><li>Reddit (при наличии стратегии): 1 пост с 2–4 фото</li></ul></div>
+          <div class="weekly-day"><strong>Воскресенье</strong><ul><li>Instagram: Stories + мягкий CTA</li><li>Batch generation: контент на следующую неделю</li><li>Планирование Telegram на 1–2 недели вперёд</li></ul></div>
+
+          <hr class="divider">
+
+          <!-- 9. ОШИБКИ -->
+          <h2 id="s9"><span class="section-num">09</span> Ошибки и что не работает</h2>
+
+          <div class="error-block">
+            <h4>❌ Ошибка 1: Только Reels, никаких фото</h4>
+            <p>Фото и карусели конвертируют в Stories → FanView. Без разнообразия контента нет воронки.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 2: Нет CTA</h4>
+            <p>«Most people are like monkeys. You have to tell them: do this, go here, send money.» В каждом посте — чёткий призыв к действию.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 3: Платная подписка с первого дня (без трафика)</h4>
+            <p>Нет трафика = нет платных подписчиков. Бесплатная страница + free trial → первые деньги → потом платная.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 4: Запуск 5 платформ одновременно</h4>
+            <p>«Pick one strategy. One Instagram, one TikTok. Nothing else.» (Jimmy Denero) 1–2 платформы → результат → масштаб.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 5: AI-артефакты (плохое качество)</h4>
+            <p>«Garbage in = garbage out» (Jimmy Denero). Из 100 генераций 1–2 пригодны. Обязательный Upscale 4x + Photoshop каждого изображения.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 6: Нет Character Bible</h4>
+            <p>«В 2026 году просто красивая девушка без темы не работает» (Tommy Bradshaw). Клиенты проверяют детали. Рассинхрон = потеря доверия.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 7: Покупка фолловеров</h4>
+            <p>Instagram видит engagement rate 15 лайков / 1 млн подписчиков = shadowban + деградация аккаунта.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 8: Снижать цену для «китов»</h4>
+            <p>«Never go back to low prices with a high paying customer.» (Dorian) Кит тратит $500–700, ты снижаешь → он привыкает → теряешь $1,000s.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 9: AI-чатбот для pure AI OFM</h4>
+            <p>300 диалогов → 140 кликов → 3 подписки → 0 платежей. Бот даёт то, за что должны платить на FanView.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 10: Нет Telegram параллельно основным платформам</h4>
+            <p>Бан Instagram = потеря всего бизнеса. С первого дня строить Telegram broadcast — страховка и retargeter.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 11: Пустой аккаунт FanView при запуске</h4>
+            <p>Первое впечатление — пустота = 0 конверсии. 20–30 постов заранее до начала продвижения.</p>
+          </div>
+          <div class="error-block">
+            <h4>❌ Ошибка 12: Слишком много аккаунтов сразу</h4>
+            <p>«Don't create too many accounts. Start with one.» (Filip) Каждый аккаунт требует отдельного прогрева.</p>
+          </div>
+
+          <hr class="divider">
+
+          <!-- 10. ИНСАЙТЫ -->
+          <h2 id="s10"><span class="section-num">10</span> Ключевые выводы и рекомендации</h2>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#1</span> <strong style="color:rgb(220,220,220);">Чаттинг = 80–90% денег, не подписки</strong></p>
+            <blockquote>«Subscriptions revenue only represent 10–20% of the whole income. The big money is made in the chatting.» (Dorian)</blockquote>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">→ Действие: фокус на чаттинге с первого подписчика. Скрипты воронки: KYC → бесплатные фото → teasing → hard → custom → кит.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#2</span> <strong style="color:rgb(220,220,220);">Реалистичность убивает или создаёт конверсию</strong></p>
+            <blockquote>«When you're hot, a girl, and people actually believe you're real — they give you money.» (Jimmy Denero)</blockquote>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">→ Upscale 4x + Photoshop каждого изображения. Из 100 генераций → 1–2 пригодны.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#3</span> <strong style="color:rgb(220,220,220);">Маркетинг важнее модели</strong></p>
+            <blockquote>«If you have the best pictures but your marketing is shit — you get shit results.» (Filip)</blockquote>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">→ 60% времени на маркетинг. Лучшие фото без трафика = 0 дохода.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#4</span> <strong style="color:rgb(220,220,220);">80% денег от «китов» (20% подписчиков)</strong></p>
+            <blockquote>«You can make $40K/month without NSFW because 80% of money comes from whales.» (Jimmy Denero)</blockquote>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">→ Идентифицировать китов с первой покупки, никогда не снижать цену. Инвестировать в отношения.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#5</span> <strong style="color:rgb(220,220,220);">Threads — самый быстрый первый старт</strong></p>
+            <blockquote>«Right when you make a brand new Threads account, your first post is going to get views.» (Tommy Bradshaw)</blockquote>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">→ Threads — первый пост в день запуска. Взрослая платёжеспособная аудитория 40+.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#6</span> <strong style="color:rgb(220,220,220);">Telegram — стратегический актив, не просто канал</strong></p>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">15,000 Telegram подписчиков → 2,000 фолловеров нового Instagram аккаунта мгновенно. Строить параллельно с первого дня.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#7</span> <strong style="color:rgb(220,220,220);">Тема/идентичность = must в 2026</strong></p>
+            <blockquote>«In 2026, just a beautiful girl without a theme doesn't work.» (Tommy Bradshaw)</blockquote>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">→ Конкретная ниша + детальный Character Bible. Gym girl, gamer girl, cosplay — любая, но конкретная.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#8</span> <strong style="color:rgb(220,220,220);">Один канал → результат → масштаб</strong></p>
+            <blockquote>«Pick one strategy. Pick Instagram and TikTok and do nothing else.» (Jimmy Denero)</blockquote>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">→ Первые 60–90 дней — 1–2 платформы максимум. После $5–10K/мес — масштабировать.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#9</span> <strong style="color:rgb(220,220,220);">Instagram 2025–2026 буустит фото наравне с Reels</strong></p>
+            <blockquote>«Instagram started boosting a lot more photos and carousels.» (Tom Voltt)</blockquote>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">→ Не только Reels — добавить 1–3 фото/карусели в день. Хэштеги в комментарии в первые 30 секунд.</p>
+          </div>
+
+          <div class="insight-block">
+            <p><span class="insight-num">#10</span> <strong style="color:rgb(220,220,220);">Срок до первых денег — 2–4 недели при правильном подходе</strong></p>
+            <p style="font-size:0.83rem;color:rgb(120,120,120);">Лучшие «киты» появились в ПЕРВУЮ НЕДЕЛЮ (Tom Voltt). $5,205 за 30 дней (AI Influencer Expert). Но только при правильном исполнении — качество, чаттинг, CTA.</p>
+          </div>
+
+          <hr class="divider">
+
+          <!-- 11. ИСТОЧНИКИ -->
+          <h2 id="s11"><span class="section-num">11</span> Источники</h2>
+
+          <h3>Obsidian — обработанные материалы</h3>
+          <table>
+            <thead><tr><th>Файл</th><th>Автор / Канал</th><th>Ключевые инсайты</th></tr></thead>
+            <tbody>
+              <tr><td>AI-OFM-Deep-Research.md</td><td>Сводное из 10 транскрипций</td><td>Монетизация, воронки, персонаж, статистика</td></tr>
+              <tr><td>FULL-AI-OFM-COURSE-2025-Blueprint.md</td><td>Dorian AI OFM</td><td>$100K за 4 мес, MySnapFace, чаттинг стратегия</td></tr>
+              <tr><td>AI-OFM-MARKETING-Start-and-Grow-Your-IG.md</td><td>Filip (AI Influencer Expert)</td><td>Instagram маркетинг, Character Bible, прогрев</td></tr>
+              <tr><td>0-to-5.6K-with-AI-OFM-FULL-GUIDE.md</td><td>Tom Voltt</td><td>Кейс студента $5,600/60 дней, фото+карусели</td></tr>
+              <tr><td>AI-OFM-Marketing-Strategy-7000-a-Month.md</td><td>Tommy Bradshaw</td><td>Mother-daughter, Threads rage bait, bridge pages</td></tr>
+              <tr><td>I-Made-5205-With-AI-OFM-Telegram-Tutorial.md</td><td>AI Influencer Expert</td><td>Telegram воронка, $5,205/30 дней</td></tr>
+              <tr><td>FULL-AI-OFM-COURSE-AUGUST-2025-UPDATED.md</td><td>Jimmy Denero</td><td>$40K/мес, реализм, чаттинг без NSFW</td></tr>
+              <tr><td>ПОЛНЫЙ-ГАЙД-По-AI-OFM-2026-ИИ-Модели.md</td><td>Ivanich</td><td>Русский гайд, Cdream V4, TikTok схема</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Веб-источники</h3>
+          <table>
+            <thead><tr><th>Источник</th><th>Ключевые данные</th></tr></thead>
+            <tbody>
+              <tr><td>aiinfluencercompany.com</td><td>Reddit стратегия: karma, timing, subreddits</td></tr>
+              <tr><td>apatero.com/blog/fanvue-ai-creator-complete-guide-2025</td><td>Fanvue: 80% payout, 45% AI creators, posting schedule</td></tr>
+              <tr><td>substy.ai/blog/how-to-promote-onlyfans-on-reddit-in-2025</td><td>Reddit промоушн тактики</td></tr>
+              <tr><td>help.fanvue.com</td><td>Официальная политика Fanvue для AI</td></tr>
+              <tr><td>recurpost.com/blog/threads-algorithm/</td><td>Threads алгоритм 2025–2026</td></tr>
+              <tr><td>r/passive_income — аниме инфлюэнсер</td><td>Tumblr + Twitter → Fanvue → $800/30 дней</td></tr>
+              <tr><td>r/EntrepreneurRideAlong — 50+ creator survey</td><td>Опрос 50+ создателей AI OFM</td></tr>
+            </tbody>
+          </table>
+
+          <p class="sources">Документ создан: 2026-02-27 | Автор: Nex | Следующий шаг: применить к Персонажу 1 (Warhammer 40K фандом / Miri Saba)</p>
+
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div>AI Girls — База знаний проекта</div>
+    </footer>
+
+  </div>
+</body>
+</html>
